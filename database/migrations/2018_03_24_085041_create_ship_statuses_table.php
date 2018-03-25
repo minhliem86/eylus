@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBrandsTable extends Migration
+class CreateShipStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,10 @@ class CreateBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
+        Schema::create('ship_statuses', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('code')->default(1)->comment('1: Trong Kho, 2: Đang Vận Chuyển Hoặc Sử Lý, 3: Đã Nhận Hàng');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ class CreateBrandsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('brands');
+        Schema::drop('ship_statuses');
     }
 }

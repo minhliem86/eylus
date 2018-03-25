@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagesTable extends Migration
+class CreateShipCostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,13 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('ship_costs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->text('content')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('description')->nullable();
             $table->string('img_url')->nullable();
-            $table->string('type')->default('static');
+            $table->integer('price')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pages');
+        Schema::drop('ship_costs');
     }
 }

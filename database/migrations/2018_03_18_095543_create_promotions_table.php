@@ -14,6 +14,12 @@ class CreatePromotionsTable extends Migration
     {
         Schema::create('promotions', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title')->nullable();
+            $table->string('slug')->nullable();
+            $table->text('content')->nullable();
+            $table->string('img_url')->nullable();
+            $table->integer('order')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

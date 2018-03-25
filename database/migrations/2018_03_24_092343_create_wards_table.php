@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVideosTable extends Migration
+class CreateWardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,16 @@ class CreateVideosTable extends Migration
      */
     public function up()
     {
-        Schema::create('videos', function (Blueprint $table) {
+        Schema::create('wards', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('video_url');
-            $table->integer('order')->nullable();
-            $table->boolean('status')->default(1);
+            $table->string('slug');
+            $table->string('type');
+            $table->string('name_with_type');
+            $table->integer('code');
+            $table->string('path');
+            $table->string('path_with_type');
+            $table->integer('parent_code');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateVideosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('videos');
+        Schema::drop('wards');
     }
 }

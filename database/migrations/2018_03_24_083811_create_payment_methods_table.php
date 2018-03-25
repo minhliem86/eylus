@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagesTable extends Migration
+class CreatePaymentMethodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,13 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('payment_methods', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->text('content')->nullable();
-            $table->string('img_url')->nullable();
-            $table->string('type')->default('static');
+            $table->string('slug')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('order')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pages');
+        Schema::drop('payment_methods');
     }
 }
