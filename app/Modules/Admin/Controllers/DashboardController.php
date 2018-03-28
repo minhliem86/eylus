@@ -56,6 +56,6 @@ class DashboardController extends Controller
 
     public function index ()
     {
-        return view('Admin::pages.dashboard.index');
+        return view('Admin::pages.index');
     }
 }
