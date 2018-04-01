@@ -4,7 +4,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
     Route::group(['middleware'=>['web']], function(){
         Route::get('login',['as' => 'admin.login.get', 'uses' => 'Auth\AuthController@showLoginForm']);
         Route::post('login',['as' => 'admin.login.post', 'uses' => 'Auth\AuthController@login']);
-        Route::get('logout', ['as' => 'admin.logout', 'uses' => 'Auth\AuthController@logout']);
+        Route::get('logout', ['as' => 'admin.logout.post', 'uses' => 'Auth\AuthController@logout']);
 
         // Registration Routes...
         Route::get('register', ['as' => 'admin.register.get', 'uses' => 'Auth\AuthController@showRegistrationForm']);
@@ -29,7 +29,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
             Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
             //   PORFILE
             Route::get('/profile', ['as' => 'admin.profile.index', 'uses' => 'ProfileController@index']);
-            Route::post('/profile/changePass', ['as' => 'admin.profile.changePass', 'uses' => 'ProfileController@postChangePass']);
 
             /*USER MANAGEMENT*/
             Route::get('user/getData', ['as' => 'admin.user.getData', 'uses' => 'UserManagementController@getData']);

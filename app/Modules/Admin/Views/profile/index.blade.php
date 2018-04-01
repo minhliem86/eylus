@@ -1,4 +1,4 @@
-@extends('Admin::layouts.default')
+@extends('Admin::layouts.main-layout')
 
 @section('title','Profile')
 
@@ -23,7 +23,7 @@
                                         <b><p class="title">Name:</p></b>
                                     </td>
                                     <td>
-                                        <p>{!! Auth::guard('web')->user()->name !!}</p>
+                                        <p>Phan Minh Liem</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -31,7 +31,7 @@
                                         <b><p class="title">Email:</p></b>
                                     </td>
                                     <td>
-                                        <p>{!! Auth::guard('web')->user()->email !!}</p>
+                                        <p>minhliemphp@gmail.com</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -39,14 +39,14 @@
                                         <b><p class="title">Create Date:</p></b>
                                     </td>
                                     <td>
-                                        <p>{!! \Carbon\Carbon::parse(Auth::guard('web')->user()->created_at)->format('d-m-Y') !!}</p>
+                                        <p>20-10-2018</p>
                                     </td>
                                 </tr>
                             </table>
 
                         </div>
                         <div class="tab-pane fade" id="changePass">
-                            {{Form::open(['route' =>['admin.profile.changePass'], 'class' =>'form-changepass'  ] )}}
+                            {{Form::open(['url' =>['/admin/test'], 'class' =>'form-changepass'  ] )}}
                             <div class="form-group">
                                 <label for="old_password">Old Password</label>
                                 {{Form::password('old_password', ['class'=>'form-control', 'id' =>'old_password' ])}}
