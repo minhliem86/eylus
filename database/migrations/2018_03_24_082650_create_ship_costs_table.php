@@ -14,11 +14,14 @@ class CreateShipCostsTable extends Migration
     {
         Schema::create('ship_costs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
+            $table->string('name_vi')->nullable();
+            $table->string('name_en')->nullable();
             $table->string('slug')->nullable();
-            $table->string('description')->nullable();
+            $table->string('description_vi')->nullable();
+            $table->string('description_en')->nullable();
             $table->string('img_url')->nullable();
-            $table->integer('price')->nullable();
+            $table->integer('price_vi')->nullable();
+            $table->integer('price_en')->nullable();
             $table->timestamps();
         });
     }

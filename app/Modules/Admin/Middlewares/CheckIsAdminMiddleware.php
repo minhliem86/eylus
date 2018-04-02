@@ -22,9 +22,9 @@ class CheckIsAdminMiddleware
     public function handle($request, Closure $next)
     {
         if(!$this->auth->check()){
-            return redirect()->url('/admin/login');
+            return redirect('/admin/login');
         }else if (!$this->auth->user()->hasRole('admin')){
-            return redirect()->back()->with('error','You do not have permission');
+            return back()->with('error','You do not have permission');
         }else{
             return $next($request);
         }

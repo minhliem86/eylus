@@ -1,5 +1,6 @@
 @extends('Admin::layouts.default')
-@section('title','Tin Tức')
+
+@section('title','Tin Khuyến Mãi')
 
 @section('content')
     @if(Session::has('error'))
@@ -18,11 +19,11 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="wrap-center">
-                            <a href="{!! route('admin.news.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
+                            <a href="{!! route('admin.promotion.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
                             <button type="button" class="btn btn-warning btn-sm text-white" id="btn-updateOrder"><i class="fa fa-refresh"></i> Cập Nhật Thứ Tự</button>
                         </div>
                         <div class="wrap-title">
-                            <strong>TIN TỨC</strong>
+                            <strong>TIN KHUYẾN MÃI</strong>
                         </div>
                         <div class="wrap-control">
                             <button type="button" class="btn btn-danger btn-sm" id="btn-remove-all"><i class="fa fa-trash"></i> Xóa Chọn</button>
@@ -68,7 +69,7 @@
             processing: true,
             serverSide: true,
             ajax:{
-                url:  '{!! route('admin.news.index') !!}',
+                url:  '{!! route('admin.promotion.index') !!}',
                 data: function(d){
                     d.name = $('input[type="search"]').val();
                 }
@@ -93,8 +94,8 @@
                     alertify.confirm('You can not undo this action. Are you sure ?', function(e){
                         if(e){
                             $.ajax({
-                                'url':"{!!route('admin.news.deleteAll')!!}",
-                                'data' : {arr: data},
+                                'url':"{!!route('admin.promotion.deleteAll')!!}",
+                                'data' : {arr: data,_token:$('meta[name="csrf-token"]').attr('content')},
                                 'type': "POST",
                                 'success':function(result){
                                     if(result.msg = 'ok'){
@@ -118,9 +119,9 @@
                         data_order[id] = va;
                     });
                     $.ajax({
-                        url: '{{route("admin.news.postAjaxUpdateOrder")}}',
+                        url: '{{route("admin.promotion.postAjaxUpdateOrder")}}',
                         type:'POST',
-                        data: {data: data_order },
+                        data: {data: data_order,  _token:$('meta[name="csrf-token"]').attr('content') },
                         success: function(rs){
                             if(rs.code == 200){
                                 location.reload(true);
@@ -128,26 +129,27 @@
                         }
                     })
                 })
-                $('table.table').on('change','input[name=status]', function(){
-                    var value = 0;
-                    if($(this).is(':checked')){
-                        value = 1;
-                    }
-                    const id_item = $(this).data('id');
-                    console.log(id_item);
-                    $.ajax({
-                        url: "{{route('admin.news.updateStatus')}}",
-                        type : 'POST',
-                        data: {value: value, id: id_item},
-                        success: function(data){
-                            if(!data.error){
-                                alertify.success('Status changed !');
-                            }else{
-                                alertify.error('Fail changed !');
-                            }
-                        }
-                    })
-                })
+
+               $('table.table').on('change','input[name=status]', function(){
+                   var value = 0;
+                   if($(this).is(':checked')){
+                       value = 1;
+                   }
+                   const id_item = $(this).data('id');
+                   console.log(id_item);
+                   $.ajax({
+                       url: "{{route('admin.news.updateStatus')}}",
+                       type : 'POST',
+                       data: {value: value, id: id_item},
+                       success: function(data){
+                           if(!data.error){
+                               alertify.success('Status changed !');
+                           }else{
+                               alertify.error('Fail changed !');
+                           }
+                       }
+                   })
+               })
            }
         });
         /*SELECT ROW*/

@@ -29,11 +29,11 @@ class NewsController extends Controller
             $news = $this->news->query(['id', 'title', 'img_url', 'order', 'status']);
             return Datatables::of($news)
                 ->addColumn('action', function($news){
-                    return '<a href="'.route('admin.news.edit', $news->id).'" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
-                <form method="POST" action=" '.route('admin.news.destroy', $news->id).' " accept-charset="UTF-8" class="inline-block-span">
+                    return '<a href="'.route('admin.news.edit', $news->id).'" class="btn btn-success btn-sm d-inline-block"><i class="fa fa-edit"></i> </a>
+                <form method="POST" action=" '.route('admin.news.destroy', $news->id).' " accept-charset="UTF-8" class="d-inline-block">
                     <input name="_method" type="hidden" value="DELETE">
                     <input name="_token" type="hidden" value="'.csrf_token().'">
-                               <button class="btn  btn-danger btn-xs" type="button" attrid=" '.route('admin.news.destroy', $news->id).' " onclick="confirm_remove(this);" > <i class="fa fa-trash"></i></button>
+                               <button class="btn  btn-danger btn-sm" type="button" attrid=" '.route('admin.news.destroy', $news->id).' " onclick="confirm_remove(this);" > <i class="fa fa-trash"></i></button>
                </form>' ;
                 })->editColumn('order', function($news){
                     return "<input type='text' name='order' class='form-control' data-id= '".$news->id."' value= '".$news->order."' />";
@@ -42,13 +42,13 @@ class NewsController extends Controller
                     $news_id =$news->id;
                     return '
                   <label class="switch switch-icon switch-success-outline">
-                    <input type="checkbox" class="switch-input" '.$status.' data-id="'.$news_id.'">
+                    <input type="checkbox" class="switch-input" name="status" '.$status.' data-id="'.$news_id.'">
                     <span class="switch-label" data-on="" data-off=""></span>
                     <span class="switch-handle"></span>
                 </label>
               ';
                 })->editColumn('img_url',function($news){
-                    return '<img src="'.$news->avatar_img.'" width="120" class="img-fluid">';
+                    return '<img src="'.asset('public/uploads/'.$news->img_url).'" width="120" class="img-fluid">';
                 })->filter(function($query) use ($request){
                     if (request()->has('name')) {
                         $query->where('title', 'like', "%{$request->input('name')}%");
@@ -58,38 +58,6 @@ class NewsController extends Controller
 
         return view('Admin::pages.news.index');
     }
-
-//    public function getData(Request $request)
-//    {
-//        $news = DB::table('newsgories')->select(['id', 'title', 'avatar_img', 'order', 'status']);
-//        return Datatables::of($news)
-//            ->addColumn('action', function($news){
-//                return '<a href="'.route('admin.news.edit', $news->id).'" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> </a>
-//                <form method="POST" action=" '.route('admin.news.destroy', $news->id).' " accept-charset="UTF-8" class="inline-block-span">
-//                    <input name="_method" type="hidden" value="DELETE">
-//                    <input name="_token" type="hidden" value="'.csrf_token().'">
-//                               <button class="btn  btn-danger btn-xs" type="button" attrid=" '.route('admin.news.destroy', $news->id).' " onclick="confirm_remove(this);" > <i class="fa fa-trash"></i></button>
-//               </form>' ;
-//            })->addColumn('order', function($news){
-//                return "<input type='text' name='order' class='form-control' data-id= '".$news->id."' value= '".$news->order."' />";
-//            })->addColumn('status', function($news){
-//                $status = $news->status ? 'checked' : '';
-//                $news_id =$news->id;
-//                return '
-//                  <label class="switch switch-icon switch-success-outline">
-//                    <input type="checkbox" class="switch-input" '.$status.' data-id="'.$news_id.'">
-//                    <span class="switch-label" data-on="" data-off=""></span>
-//                    <span class="switch-handle"></span>
-//                </label>
-//              ';
-//            })->editColumn('avatar_img',function($news){
-//                return '<img src="'.$news->avatar_img.'" width="120" class="img-responsive">';
-//            })->filter(function($query) use ($request){
-//                if (request()->has('name')) {
-//                    $query->where('title', 'like', "%{$request->input('name')}%");
-//                }
-//            })->setRowId('id')->make(true);
-//    }
 
     /**
      * Show the form for creating a new resource.
@@ -119,6 +87,7 @@ class NewsController extends Controller
         $data = [
             'title' => $request->input('title'),
             'slug' => \LP_lib::unicode($request->input('title')),
+            'content' => $request->input('content'),
             'img_url' => $img_url,
             'order' => $order,
         ];
@@ -162,7 +131,8 @@ class NewsController extends Controller
         $data = [
             'title' => $request->input('title'),
             'slug' => \LP_lib::unicode($request->input('title')),
-            'avatar_img' => $img_url,
+            'content' => $request->input('content'),
+            'img_url' => $img_url,
             'order' => $request->input('order'),
             'status' => $request->input('status'),
         ];

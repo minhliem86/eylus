@@ -6,16 +6,13 @@
             </li>
 
             <li class="nav-title">
-                Theme
-            </li>
-            <li class="nav-item">
-                <a href="colors.html" class="nav-link"><i class="icon-drop"></i> Product</a>
-            </li>
-            <li class="nav-title">
-                Components
+                Chức Năng
             </li>
             <li class="nav-item ">
-                <a href="colors.html" class="nav-link"><i class="icon-drop"></i> Sản Phẩm</a>
+                <a href="{!! route('admin.news.index') !!}" class="nav-link {!! LP_lib::setActive('1','news') !!}"><i class="icon-drop"></i> Tin Tức</a>
+            </li>
+            <li class="nav-item ">
+                <a href="{!! route('admin.promotion.index') !!}" class="nav-link {!! LP_lib::setActive('1','promotion') !!}"><i class="icon-drop"></i> Tin Khuyến Mãi</a>
             </li>
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-bell"></i> Notifications</a>

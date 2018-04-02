@@ -1,14 +1,14 @@
 @extends('Admin::layouts.default')
 
-@section('title','Tin Tức')
+@section('title','Tin Khuyến Mãi')
 
 @section('content')
     <div class="row">
         <div class="col">
             <div class="card">
-                {!!  Form::model($inst, ['route'=>['admin.news.update',$inst->id], 'method'=>'put' ])!!}
+                {!!  Form::model($inst, ['route'=>['admin.promotion.update',$inst->id], 'method'=>'put' ])!!}
                 <div class="card-header">
-                    <strong>TIN TỨC</strong>
+                    <strong>TIN KHUYẾN MÃI</strong>
                 </div>
                 <div class="card-body">
                     <div class="form-group row">

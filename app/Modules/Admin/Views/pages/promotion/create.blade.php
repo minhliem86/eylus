@@ -1,15 +1,15 @@
 @extends('Admin::layouts.default')
 
-@section('title','Tin Tức')
+@section('title','Tin Khuyến Mãi')
 
 @section('content')
     <div class="row">
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <strong>TIN TỨC</strong>
+                    <strong>TIN KHUYẾN MÃI</strong>
                 </div>
-                {!! Form::open(['route'=>'admin.news.store', 'class' =>'form']) !!}
+                {!! Form::open(['route'=>'admin.promotion.store', 'class' =>'form']) !!}
                 <div class="card-body">
                         <div class="card-body">
                             <div class="form-group row">

@@ -12,7 +12,7 @@
             <a class="nav-link" href="{!! route('admin.dashboard') !!}">Dashboard</a>
         </li>
         <li class="nav-item px-3">
-            <a class="nav-link" href="#">Users</a>
+            <a class="nav-link" href="{!! route('admin.profile.index') !!}">Users</a>
         </li>
     </ul>
     <ul class="nav navbar-nav ml-auto mr-4">
@@ -37,8 +37,8 @@
                 <div class="dropdown-header text-center">
                     <strong>Cấu Hình</strong>
                 </div>
-                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+                <a class="dropdown-item" href="{!! route('admin.profile.index') !!}"><i class="fa fa-user"></i> Profile</a>
+                <a class="dropdown-item" href="{!! route('admin.logout.post') !!}"><i class="fa fa-lock"></i> Logout</a>
             </div>
         </li>
     </ul>

@@ -20,7 +20,7 @@ class CreateDistrictsTable extends Migration
             $table->string('name_with_type');
             $table->integer('code');
             $table->string('path');
-            $table->string('path_with_type  ');
+            $table->string('path_with_type');
             $table->integer('parent_code');
             $table->timestamps();
         });

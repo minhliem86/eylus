@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
             Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
             //   PORFILE
             Route::get('/profile', ['as' => 'admin.profile.index', 'uses' => 'ProfileController@index']);
+            Route::post('/profile/changePass', ['as' => 'admin.profile.changePass', 'uses' => 'ProfileController@postChangePass']);
 
             /*USER MANAGEMENT*/
             Route::get('user/getData', ['as' => 'admin.user.getData', 'uses' => 'UserManagementController@getData']);
@@ -66,6 +67,20 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
             Route::post('product/updateStatus', ['as' => 'admin.product.updateStatus', 'uses' => 'ProductController@updateStatus']);
             Route::post('product/updateHotProduct', ['as' => 'admin.product.updateHotProduct', 'uses' => 'ProductController@updateHotProduct']);
             Route::resource('product', 'ProductController');
+
+
+            /*NEWS*/
+            Route::post('news/deleteAll', ['as' => 'admin.news.deleteAll', 'uses' => 'NewsController@deleteAll']);
+            Route::post('news/updateStatus', ['as' => 'admin.news.updateStatus', 'uses' => 'NewsController@updateStatus']);
+            Route::post('news/postAjaxUpdateOrder', ['as' => 'admin.news.postAjaxUpdateOrder', 'uses' => 'NewsController@postAjaxUpdateOrder']);
+            Route::resource('news', 'NewsController');
+
+            /*NEWS*/
+            Route::post('promotion/deleteAll', ['as' => 'admin.promotion.deleteAll', 'uses' => 'PromotionController@deleteAll']);
+            Route::post('promotion/updateStatus', ['as' => 'admin.promotion.updateStatus', 'uses' => 'PromotionController@updateStatus']);
+            Route::post('promotion/postAjaxUpdateOrder', ['as' => 'admin.promotion.postAjaxUpdateOrder', 'uses' => 'PromotionController@postAjaxUpdateOrder']);
+            Route::resource('promotion', 'PromotionController');
+
 
         });
     });
