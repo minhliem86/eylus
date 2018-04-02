@@ -75,7 +75,7 @@
             },
             columns: [
                {data: 'id', name: 'id', 'orderable': false, title: '#', visible: false},
-               {data: 'title', name: 'title', title: 'Bài viết'},
+               {data: 'title_vi', name: 'Bài viết', title: 'Bài viết'},
                {data: 'img_url', name: 'Hình ảnh', 'orderable': false},
                {data: 'order', name: 'Sắp xếp'},
                {data: 'status', name: 'Trạng thái'},

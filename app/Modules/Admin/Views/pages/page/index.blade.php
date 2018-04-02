@@ -1,6 +1,5 @@
 @extends('Admin::layouts.default')
-
-@section('title','Tin Khuyến Mãi')
+@section('title','Trang Đơn')
 
 @section('content')
     @if(Session::has('error'))
@@ -19,11 +18,11 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="wrap-center">
-                            <a href="{!! route('admin.promotion.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
+                            <a href="{!! route('admin.page.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
                             <button type="button" class="btn btn-warning btn-sm text-white" id="btn-updateOrder"><i class="fa fa-refresh"></i> Cập Nhật Thứ Tự</button>
                         </div>
                         <div class="wrap-title">
-                            <strong>TIN KHUYẾN MÃI</strong>
+                            <strong>TRANG ĐƠN</strong>
                         </div>
                         <div class="wrap-control">
                             <button type="button" class="btn btn-danger btn-sm" id="btn-remove-all"><i class="fa fa-trash"></i> Xóa Chọn</button>
@@ -36,10 +35,8 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Bài viết</th>
-                            <th width="120">Hình ảnh</th>
-                            <th width="10%">Sắp xếp</th>
-                            <th width="10%">Trạng thái</th>
+                            <th>Tên Trang</th>
+                            <th width="120">Loại</th>
                             <th width="15%"></th>
                         </tr>
                         </thead>
@@ -69,17 +66,15 @@
             processing: true,
             serverSide: true,
             ajax:{
-                url:  '{!! route('admin.promotion.index') !!}',
+                url:  '{!! route('admin.page.index') !!}',
                 data: function(d){
                     d.name = $('input[type="search"]').val();
                 }
             },
             columns: [
                {data: 'id', name: 'id', 'orderable': false, title: '#', visible: false},
-               {data: 'title_vi', name: 'title_vi', title: 'Bài viết'},
-               {data: 'img_url', name: 'Hình ảnh', 'orderable': false},
-               {data: 'order', name: 'Sắp xếp'},
-               {data: 'status', name: 'Trạng thái'},
+               {data: 'name_vi', name: 'Tên Trang', title: 'Tên Trang'},
+               {data: 'type', name: 'Loại'},
                {data: 'action', name: 'action', 'orderable': false}
            ],
            initComplete: function(){
@@ -94,8 +89,8 @@
                     alertify.confirm('You can not undo this action. Are you sure ?', function(e){
                         if(e){
                             $.ajax({
-                                'url':"{!!route('admin.promotion.deleteAll')!!}",
-                                'data' : {arr: data,_token:$('meta[name="csrf-token"]').attr('content')},
+                                'url':"{!!route('admin.page.deleteAll')!!}",
+                                'data' : {arr: data},
                                 'type': "POST",
                                 'success':function(result){
                                     if(result.msg = 'ok'){
@@ -119,9 +114,9 @@
                         data_order[id] = va;
                     });
                     $.ajax({
-                        url: '{{route("admin.promotion.postAjaxUpdateOrder")}}',
+                        url: '{{route("admin.page.postAjaxUpdateOrder")}}',
                         type:'POST',
-                        data: {data: data_order,  _token:$('meta[name="csrf-token"]').attr('content') },
+                        data: {data: data_order },
                         success: function(rs){
                             if(rs.code == 200){
                                 location.reload(true);
@@ -129,27 +124,26 @@
                         }
                     })
                 })
-
-               $('table.table').on('change','input[name=status]', function(){
-                   var value = 0;
-                   if($(this).is(':checked')){
-                       value = 1;
-                   }
-                   const id_item = $(this).data('id');
-                   console.log(id_item);
-                   $.ajax({
-                       url: "{{route('admin.news.updateStatus')}}",
-                       type : 'POST',
-                       data: {value: value, id: id_item},
-                       success: function(data){
-                           if(!data.error){
-                               alertify.success('Status changed !');
-                           }else{
-                               alertify.error('Fail changed !');
-                           }
-                       }
-                   })
-               })
+                $('table.table').on('change','input[name=status]', function(){
+                    var value = 0;
+                    if($(this).is(':checked')){
+                        value = 1;
+                    }
+                    const id_item = $(this).data('id');
+                    console.log(id_item);
+                    $.ajax({
+                        url: "{{route('admin.page.updateStatus')}}",
+                        type : 'POST',
+                        data: {value: value, id: id_item},
+                        success: function(data){
+                            if(!data.error){
+                                alertify.success('Status changed !');
+                            }else{
+                                alertify.error('Fail changed !');
+                            }
+                        }
+                    })
+                })
            }
         });
         /*SELECT ROW*/

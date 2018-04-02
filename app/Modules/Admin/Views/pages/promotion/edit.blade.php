@@ -14,13 +14,45 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">Bài Viết</label>
                         <div class="col-md-9">
-                            {{Form::text('title',old('title'), ['class'=>'form-control', 'placeholder'=>'Title'])}}
+                            <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active show" data-toggle="pill" href="#title_vi" role="tab" aria-controls="pills-title_vi">VI</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#title_en" role="tab" aria-controls="pills-title_en">EN</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade active show" id="title_vi" role="tabpanel" aria-labelledby="pills-title_vi">
+                                    {{Form::text('title_vi',old('title_vi'), ['class'=>'form-control', 'placeholder'=>'Title'])}}
+                                </div>
+                                <div class="tab-pane fade" id="title_en" role="tabpanel" aria-labelledby="pills-title_en">
+                                    {{Form::text('title_en',old('title_en'), ['class'=>'form-control', 'placeholder'=>'Title'])}}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">Nội Dung</label>
                         <div class="col-md-9">
-                            {{Form::textarea('content',old('content'), ['class'=>'form-control my-editor', 'placeholder'=>'Nội dung'])}}
+                            <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active show" data-toggle="pill" href="#description_vi" role="tab" aria-controls="pills-title_vi">VI</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#description_en" role="tab" aria-controls="pills-title_en">EN</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade active show" id="description_vi" role="tabpanel" aria-labelledby="pills-title_vi">
+                                    {!! Form::textarea('content_vi',old('content_vi'), ['class'=> 'form-control my-editor', 'rows' => 10]) !!}
+                                </div>
+                                <div class="tab-pane fade" id="description_en" role="tabpanel" aria-labelledby="pills-title_en">
+                                    {!! Form::textarea('content_en',old('content_en'), ['class'=> 'form-control my-editor', 'rows' => 10]) !!}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">

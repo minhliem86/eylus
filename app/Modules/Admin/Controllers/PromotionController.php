@@ -26,7 +26,7 @@ class PromotionController extends Controller
     public function index(Request $request )
     {
         if($request->ajax()){
-            $promotion = $this->promotion->query(['id', 'title', 'img_url', 'order', 'status']);
+            $promotion = $this->promotion->query(['id', 'title_vi', 'img_url', 'order', 'status']);
             return Datatables::of($promotion)
                 ->addColumn('action', function($promotion){
                     return '<a href="'.route('admin.promotion.edit', $promotion->id).'" class="btn btn-success btn-sm d-inline-block"><i class="fa fa-edit"></i> </a>
@@ -51,7 +51,7 @@ class PromotionController extends Controller
                     return '<img src="'.asset('public/uploads/'.$promotion->img_url).'" width="120" class="img-fluid">';
                 })->filter(function($query) use ($request){
                     if (request()->has('name')) {
-                        $query->where('title', 'like', "%{$request->input('name')}%");
+                        $query->where('title_vi', 'like', "%{$request->input('name')}%");
                     }
                 })->setRowId('id')->make(true);
         }
@@ -85,9 +85,11 @@ class PromotionController extends Controller
         $order = $this->promotion->getOrder();
 
         $data = [
-            'title' => $request->input('title'),
-            'slug' => \LP_lib::unicode($request->input('title')),
-            'content' => $request->input('content'),
+            'title_vi' => $request->input('title_vi'),
+            'title_en' => $request->input('title_en'),
+            'slug' => \LP_lib::unicode($request->input('title_vi')),
+            'content_vi' => $request->input('content_vi'),
+            'content_en' => $request->input('content_en'),
             'img_url' => $img_url,
             'order' => $order,
         ];
@@ -129,9 +131,11 @@ class PromotionController extends Controller
     {
         $img_url = $this->common->getPath($request->input('img_url'));
         $data = [
-            'title' => $request->input('title'),
-            'slug' => \LP_lib::unicode($request->input('title')),
-            'content' => $request->input('content'),
+            'title_vi' => $request->input('title_vi'),
+            'title_en' => $request->input('title_en'),
+            'slug' => \LP_lib::unicode($request->input('title_vi')),
+            'content_vi' => $request->input('content_vi'),
+            'content_en' => $request->input('content_en'),
             'img_url' => $img_url,
             'order' => $request->input('order'),
             'status' => $request->input('status'),

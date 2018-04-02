@@ -75,11 +75,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
             Route::post('news/postAjaxUpdateOrder', ['as' => 'admin.news.postAjaxUpdateOrder', 'uses' => 'NewsController@postAjaxUpdateOrder']);
             Route::resource('news', 'NewsController');
 
-            /*NEWS*/
+            /*PROMOTION*/
             Route::post('promotion/deleteAll', ['as' => 'admin.promotion.deleteAll', 'uses' => 'PromotionController@deleteAll']);
             Route::post('promotion/updateStatus', ['as' => 'admin.promotion.updateStatus', 'uses' => 'PromotionController@updateStatus']);
             Route::post('promotion/postAjaxUpdateOrder', ['as' => 'admin.promotion.postAjaxUpdateOrder', 'uses' => 'PromotionController@postAjaxUpdateOrder']);
             Route::resource('promotion', 'PromotionController');
+
+            /*PAGE*/
+            Route::post('page/deleteAll', ['as' => 'admin.page.deleteAll', 'uses' => 'PageController@deleteAll']);
+            Route::post('page/updateStatus', ['as' => 'admin.page.updateStatus', 'uses' => 'PageController@updateStatus']);
+            Route::post('page/postAjaxUpdateOrder', ['as' => 'admin.page.postAjaxUpdateOrder', 'uses' => 'PageController@postAjaxUpdateOrder']);
+            Route::resource('page', 'PageController');
 
 
         });
