@@ -1,22 +1,21 @@
 <?php
 namespace App\Modules\Admin\Controllers;
 
-use App\Models\Page;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Repositories\PageRepository;
+use App\Repositories\ShipRepository;
 use App\Repositories\Eloquent\CommonRepository;
 use Datatables;
 
-class PageController extends Controller
+class ShipController extends Controller
 {
-    protected $page;
+    protected $ship;
     protected $common;
-    public function __construct(PageRepository $page, CommonRepository $common)
+    public function __construct(ShipRepository $ship, CommonRepository $common)
     {
-        $this->page = $page;
+        $this->ship = $ship;
         $this->common = $common;
     }
     /**
@@ -27,23 +26,25 @@ class PageController extends Controller
     public function index(Request $request )
     {
         if($request->ajax()){
-            $page = $this->page->query(['id', 'name_vi', 'type']);
-            return Datatables::of($page)
-                ->addColumn('action', function($page){
-                    return '<a href="'.route('admin.page.edit', $page->id).'" class="btn btn-success btn-sm d-inline-block"><i class="fa fa-edit"></i> </a>
-                <form method="POST" action=" '.route('admin.page.destroy', $page->id).' " accept-charset="UTF-8" class="d-inline-block">
+            $ship = $this->ship->query(['id', 'name_vi', 'img_url', 'price_vi']);
+            return Datatables::of($ship)
+                ->addColumn('action', function($ship){
+                    return '<a href="'.route('admin.ship.edit', $ship->id).'" class="btn btn-success btn-sm d-inline-block"><i class="fa fa-edit"></i> </a>
+                <form method="POST" action=" '.route('admin.ship.destroy', $ship->id).' " accept-charset="UTF-8" class="d-inline-block">
                     <input name="_method" type="hidden" value="DELETE">
                     <input name="_token" type="hidden" value="'.csrf_token().'">
-                               <button class="btn  btn-danger btn-sm" type="button" attrid=" '.route('admin.page.destroy', $page->id).' " onclick="confirm_remove(this);" > <i class="fa fa-trash"></i></button>
-               </form>';
+                               <button class="btn  btn-danger btn-sm" type="button" attrid=" '.route('admin.ship.destroy', $ship->id).' " onclick="confirm_remove(this);" > <i class="fa fa-trash"></i></button>
+               </form>' ;
+                })->editColumn('img_url',function($ship){
+                    return '<img src="'.asset('public/uploads/'.$ship->img_url).'" width="120" class="img-fluid">';
                 })->filter(function($query) use ($request){
                     if (request()->has('name')) {
-                        $query->where('title_vi', 'like', "%{$request->input('name')}%");
+                        $query->where('name_vi', 'like', "%{$request->input('name')}%");
                     }
                 })->setRowId('id')->make(true);
         }
 
-        return view('Admin::pages.page.index');
+        return view('Admin::pages.ship.index');
     }
 
     /**
@@ -53,7 +54,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('Admin::pages.page.create');
+        return view('Admin::pages.ship.create');
     }
 
     /**
@@ -69,19 +70,19 @@ class PageController extends Controller
         }else{
             $img_url = '';
         }
-        $order = $this->page->getOrder();
+        $order = $this->ship->getOrder();
 
         $data = [
             'name_vi' => $request->input('name_vi'),
             'name_en' => $request->input('name_en'),
             'slug' => \LP_lib::unicode($request->input('name_vi')),
-            'content_vi' => $request->input('content_vi'),
-            'content_en' => $request->input('content_en'),
+            'description_vi' => $request->input('description_vi'),
+            'description_en' => $request->input('description_en'),
             'img_url' => $img_url,
-            'type' => $request->input('type'),
+            'price_vi' => $request->input('price_vi'),
         ];
-        $this->page->create($data);
-        return redirect()->route('admin.page.index')->with('success','Created !');
+        $this->ship->create($data);
+        return redirect()->route('admin.ship.index')->with('success','Created !');
     }
 
     /**
@@ -103,8 +104,8 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        $inst = $this->page->find($id);
-        return view('Admin::pages.page.edit', compact('inst'));
+        $inst = $this->ship->find($id);
+        return view('Admin::pages.ship.edit', compact('inst'));
     }
 
     /**
@@ -121,13 +122,13 @@ class PageController extends Controller
             'name_vi' => $request->input('name_vi'),
             'name_en' => $request->input('name_en'),
             'slug' => \LP_lib::unicode($request->input('name_vi')),
-            'content_vi' => $request->input('content_vi'),
-            'content_en' => $request->input('content_en'),
+            'description_vi' => $request->input('description_vi'),
+            'description_en' => $request->input('description_en'),
             'img_url' => $img_url,
-            'type' => $request->input('type'),
+            'price_vi' => $request->input('price_vi'),
         ];
-        $this->page->update($data, $id);
-        return redirect()->route('admin.page.index')->with('success', 'Updated !');
+        $this->ship->update($data, $id);
+        return redirect()->route('admin.ship.index')->with('success', 'Updated !');
     }
 
     /**
@@ -138,8 +139,8 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        $this->page->delete($id);
-        return redirect()->route('admin.page.index')->with('success','Deleted !');
+        $this->ship->delete($id);
+        return redirect()->route('admin.ship.index')->with('success','Deleted !');
     }
 
     /*DELETE ALL*/
@@ -149,7 +150,7 @@ class PageController extends Controller
             abort(404);
         }else{
             $data = $request->arr;
-            $response = $this->page->deleteAll($data);
+            $response = $this->ship->deleteAll($data);
             return response()->json(['msg' => 'ok']);
         }
     }
@@ -166,7 +167,7 @@ class PageController extends Controller
                 $upt  =  [
                     'order' => $v,
                 ];
-                $obj = $this->page->find($k);
+                $obj = $this->ship->find($k);
                 $obj->update($upt);
             }
             return response()->json(['msg' =>'ok', 'code'=>200], 200);
@@ -181,9 +182,9 @@ class PageController extends Controller
         }else{
             $value = $request->input('value');
             $id = $request->input('id');
-            $page = $this->page->find($id);
-            $page->status = $value;
-            $page->save();
+            $ship = $this->ship->find($id);
+            $ship->status = $value;
+            $ship->save();
             return response()->json([
                 'mes' => 'Updated',
                 'error'=> false,

@@ -87,6 +87,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
             Route::post('page/postAjaxUpdateOrder', ['as' => 'admin.page.postAjaxUpdateOrder', 'uses' => 'PageController@postAjaxUpdateOrder']);
             Route::resource('page', 'PageController');
 
+            /*EMAIL SUBSCRIBE*/
+            Route::get('/subscribe', ['as' => 'admin.subscribe', 'uses' => 'EmailSubscribeController@getIndex'] );
+            Route::post('/subscribe/download', ['as' => 'admin.subscribe.download', 'uses' => 'EmailSubscribeController@download']);
+
+            /*SHIP COST*/
+            Route::post('ship-cost/deleteAll', ['as' => 'admin.ship-cost.deleteAll', 'uses' => 'ShipController@deleteAll']);
+            Route::post('ship-cost/updateStatus', ['as' => 'admin.ship-cost.updateStatus', 'uses' => 'ShipController@updateStatus']);
+            Route::post('ship-cost/postAjaxUpdateOrder', ['as' => 'admin.ship-cost.postAjaxUpdateOrder', 'uses' => 'ShipController@postAjaxUpdateOrder']);
+            Route::resource('ship-cost', 'ShipController');
+
 
         });
     });

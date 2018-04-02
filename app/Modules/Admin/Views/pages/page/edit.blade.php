@@ -1,34 +1,34 @@
 @extends('Admin::layouts.default')
 
-@section('title','Tin Tức')
+@section('title','Trang Đơn')
 
 @section('content')
     <div class="row">
         <div class="col">
             <div class="card">
-                {!!  Form::model($inst, ['route'=>['admin.news.update',$inst->id], 'method'=>'put' ])!!}
+                {!!  Form::model($inst, ['route'=>['admin.page.update',$inst->id], 'method'=>'put' ])!!}
                 <div class="card-header">
-                    <strong>TIN TỨC</strong>
+                    <strong>TRANG ĐƠN</strong>
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Bài Viết</label>
+                        <label class="col-md-3 col-form-label" for="title">Tên Trang</label>
                         <div class="col-md-9">
                             <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active show" data-toggle="pill" href="#title_vi" role="tab" aria-controls="pills-title_vi">VI</a>
+                                    <a class="nav-link active show" data-toggle="pill" href="#name_vi" role="tab" aria-controls="pills-name_vi">VI</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#title_en" role="tab" aria-controls="pills-title_en">EN</a>
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#name_en" role="tab" aria-controls="pills-name_en">EN</a>
                                 </li>
                             </ul>
 
                             <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade active show" id="title_vi" role="tabpanel" aria-labelledby="pills-title_vi">
-                                    {{Form::text('title_vi',old('title_vi'), ['class'=>'form-control', 'placeholder'=>'Title'])}}
+                                <div class="tab-pane fade active show" id="name_vi" role="tabpanel" aria-labelledby="pills-name_vi">
+                                    {!! Form::text('name_vi', old('name_vi'), ['class' => 'form-control']) !!}
                                 </div>
-                                <div class="tab-pane fade" id="title_en" role="tabpanel" aria-labelledby="pills-title_en">
-                                    {{Form::text('title_en',old('title_en'), ['class'=>'form-control', 'placeholder'=>'Title'])}}
+                                <div class="tab-pane fade" id="name_en" role="tabpanel" aria-labelledby="pills-name_en">
+                                    {!! Form::text('name_en', old('name_en'), ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                         </div>
@@ -56,21 +56,12 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="description">Sắp xếp</label>
+                        <label class="col-md-3 col-form-label" for="type">Sắp xếp</label>
                         <div class="col-md-9">
-                            {{Form::text('order',old('order'), ['class'=>'form-control', 'placeholder'=>'order'])}}
+                            {!! Form::select('type',['static'=>'Trang tĩnh', 'other'=>'Trang Footer'], old('type'), ['class'=>'form-control']) !!}
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="description">Trạng thái</label>
-                        <div class="col-md-9">
-                            <label class="switch switch-icon switch-success-outline">
-                                <input type="checkbox" class="switch-input" name="status" value="{!! $inst->status ? 1 : 0 !!}" {!! $inst->status ? "checked" : null  !!} data-id="{!! $inst->id !!}">
-                                <span class="switch-label" data-on="" data-off=""></span>
-                                <span class="switch-handle"></span>
-                            </label>
-                        </div>
-                    </div>
+
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">Hình đại diện:</label>
                         <div class="col-md-9">

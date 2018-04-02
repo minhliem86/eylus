@@ -17,6 +17,9 @@
             <li class="nav-item ">
                 <a href="{!! route('admin.page.index') !!}" class="nav-link {!! LP_lib::setActive('2','page') !!}"><i class="icon-drop"></i> Trang Đơn</a>
             </li>
+            <li class="nav-item ">
+                <a href="{!! route('admin.subscribe') !!}" class="nav-link {!! LP_lib::setActive('2','subscribe') !!}"><i class="icon-drop"></i> Subscribes</a>
+            </li>
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-bell"></i> Notifications</a>
                 <ul class="nav-dropdown-items">
