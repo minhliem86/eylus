@@ -19,7 +19,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="wrap-center">
-                            <a href="{!! route('admin.ship.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
+                            <a href="{!! route('admin.ship-cost.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
                         </div>
                         <div class="wrap-title">
                             <strong>QUẢN LÝ GIÁ SHIP</strong>
@@ -67,7 +67,7 @@
             processing: true,
             serverSide: true,
             ajax:{
-                url:  '{!! route('admin.ship.index') !!}',
+                url:  '{!! route('admin.ship-cost.index') !!}',
                 data: function(d){
                     d.name = $('input[type="search"]').val();
                 }
@@ -75,8 +75,8 @@
             columns: [
                {data: 'id', name: 'id', 'orderable': false, title: '#', visible: false},
                {data: 'name_vi', name: 'name_vi', title: 'Loại ship'},
-               {data: 'img_url', name: 'Hình ảnh', 'orderable': false},
                {data: 'price_vi', name: 'Giá', 'orderable': false},
+                {data: 'img_url', name: 'Hình ảnh', 'orderable': false},
                {data: 'action', name: 'action', 'orderable': false}
            ],
            initComplete: function(){
@@ -91,7 +91,7 @@
                     alertify.confirm('You can not undo this action. Are you sure ?', function(e){
                         if(e){
                             $.ajax({
-                                'url':"{!!route('admin.ship.deleteAll')!!}",
+                                'url':"{!!route('admin.ship-cost.deleteAll')!!}",
                                 'data' : {arr: data,_token:$('meta[name="csrf-token"]').attr('content')},
                                 'type': "POST",
                                 'success':function(result){
@@ -107,46 +107,46 @@
                     })
                 })
 
-                $('#btn-updateOrder').click(function(){
-                    var rows_order = table_api.rows().data();
-                    var data_order = {};
-                    $('input[name="order"]').each(function(index){
-                        var id = $(this).data('id');
-                        var va = $(this).val();
-                        data_order[id] = va;
-                    });
-                    $.ajax({
-                        url: '{{route("admin.ship.postAjaxUpdateOrder")}}',
-                        type:'POST',
-                        data: {data: data_order,  _token:$('meta[name="csrf-token"]').attr('content') },
-                        success: function(rs){
-                            if(rs.code == 200){
-                                location.reload(true);
-                            }
-                        }
-                    })
-                })
+                {{--$('#btn-updateOrder').click(function(){--}}
+                    {{--var rows_order = table_api.rows().data();--}}
+                    {{--var data_order = {};--}}
+                    {{--$('input[name="order"]').each(function(index){--}}
+                        {{--var id = $(this).data('id');--}}
+                        {{--var va = $(this).val();--}}
+                        {{--data_order[id] = va;--}}
+                    {{--});--}}
+                    {{--$.ajax({--}}
+                        {{--url: '{{route("admin.ship.postAjaxUpdateOrder")}}',--}}
+                        {{--type:'POST',--}}
+                        {{--data: {data: data_order,  _token:$('meta[name="csrf-token"]').attr('content') },--}}
+                        {{--success: function(rs){--}}
+                            {{--if(rs.code == 200){--}}
+                                {{--location.reload(true);--}}
+                            {{--}--}}
+                        {{--}--}}
+                    {{--})--}}
+                {{--})--}}
 
-               $('table.table').on('change','input[name=status]', function(){
-                   var value = 0;
-                   if($(this).is(':checked')){
-                       value = 1;
-                   }
-                   const id_item = $(this).data('id');
-                   console.log(id_item);
-                   $.ajax({
-                       url: "{{route('admin.news.updateStatus')}}",
-                       type : 'POST',
-                       data: {value: value, id: id_item},
-                       success: function(data){
-                           if(!data.error){
-                               alertify.success('Status changed !');
-                           }else{
-                               alertify.error('Fail changed !');
-                           }
-                       }
-                   })
-               })
+               {{--$('table.table').on('change','input[name=status]', function(){--}}
+                   {{--var value = 0;--}}
+                   {{--if($(this).is(':checked')){--}}
+                       {{--value = 1;--}}
+                   {{--}--}}
+                   {{--const id_item = $(this).data('id');--}}
+                   {{--console.log(id_item);--}}
+                   {{--$.ajax({--}}
+                       {{--url: "{{route('admin.news.updateStatus')}}",--}}
+                       {{--type : 'POST',--}}
+                       {{--data: {value: value, id: id_item},--}}
+                       {{--success: function(data){--}}
+                           {{--if(!data.error){--}}
+                               {{--alertify.success('Status changed !');--}}
+                           {{--}else{--}}
+                               {{--alertify.error('Fail changed !');--}}
+                           {{--}--}}
+                       {{--}--}}
+                   {{--})--}}
+               {{--})--}}
            }
         });
         /*SELECT ROW*/

@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                {!!  Form::model($inst, ['route'=>['admin.ship.update',$inst->id], 'method'=>'put' ])!!}
+                {!!  Form::model($inst, ['route'=>['admin.ship-cost.update',$inst->id], 'method'=>'put' ])!!}
                 <div class="card-header">
                     <strong>QUẢN LÝ GIÁ SHIP</strong>
                 </div>
@@ -70,10 +70,10 @@
 
                             <div class="tab-content" id="pills-tabContent">
                                 <div class="tab-pane fade active show" id="price_vi" role="tabpanel" aria-labelledby="pills-price_vi">
-                                    {!! Form::text('price_vi',old('price_vi'), ['class'=> 'form-control']) !!}
+                                    {!! Form::text('price_vi',old('price_vi'), ['class'=> 'form-control price']) !!}
                                 </div>
                                 <div class="tab-pane fade" id="price_en" role="tabpanel" aria-labelledby="pills-price_en">
-                                    {!! Form::text('price_en',old('price_en'), ['class'=> 'form-control']) !!}
+                                    {!! Form::text('price_en',old('price_en'), ['class'=> 'form-control price']) !!}
                                 </div>
                             </div>
                         </div>
@@ -111,6 +111,10 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script src="{{asset('public')}}/vendor/laravel-filemanager/js/lfm.js"></script>
     <script src="{{asset('public/assets/admin/js/script.js')}}"></script>
+
+    <!-- PRICE -->
+    <script src="{{asset('public/assets/admin/js/jquery.priceformat.min.js')}}"></script>
+
     <script>
         const url = "{{url('/')}}"
         init_tinymce(url);
@@ -123,6 +127,16 @@
             }else{
                 $(this).val(0);
             }
+        })
+
+        $(document).ready(function(){
+            //PRICE
+            $('.price').priceFormat({
+                prefix: '',
+                centsSeparator: '',
+                thousandsSeparator: '',
+                centsLimit: 2,
+            })
         })
 
     </script>

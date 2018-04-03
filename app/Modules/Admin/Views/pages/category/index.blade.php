@@ -1,12 +1,5 @@
-@extends('Admin::layouts.main-layout')
-
-@section('link')
-    {{Html::link(route('admin.category.create'),'Add New',['class'=>'btn btn-primary'])}}
-    <button type="button" class="btn btn-danger" id="btn-remove-all">Remove All Selected</button>
-    <button type="button" class="btn btn-warning" id="btn-updateOrder">Update Order</button>
-@stop
-
-@section('title','Category Page')
+@extends('Admin::layouts.default')
+@section('title','Danh Mục')
 
 @section('content')
     @if(Session::has('error'))
@@ -20,53 +13,53 @@
     </div>
     @endif
     <div class="row">
-        <div class="card">
-            <div class="card-header">
-                <strong>Company</strong>
-                <small>Form</small>
-            </div>
-            <div class="card-body">
-                <table class="table table-responsive-sm table-bordered table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Full</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            <label class="switch switch-icon switch-success-outline">
-                                <input type="checkbox" class="switch-input" checked="">
-                                <span class="switch-label" data-on="" data-off=""></span>
-                                <span class="switch-handle"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger btn-xs" class="button"><i class="fa fa-trash"></i></button>
-                            <button class="btn btn-success btn-xs" class="button"><i class="fa fa-edit"></i></button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="wrap-center">
+                            <a href="{!! route('admin.category.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
+                            <button type="button" class="btn btn-warning btn-sm text-white" id="btn-updateOrder"><i class="fa fa-refresh"></i> Cập Nhật Thứ Tự</button>
+                        </div>
+                        <div class="wrap-title">
+                            <strong>DANH MỤC SẢN PHẨM</strong>
+                        </div>
+                        <div class="wrap-control">
+                            <button type="button" class="btn btn-danger btn-sm" id="btn-remove-all"><i class="fa fa-trash"></i> Xóa Chọn</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <table class="table table-responsive-sm  table-striped table-sm">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Bài viết</th>
+                            <th width="120">Hình ảnh</th>
+                            <th width="10%">Sắp xếp</th>
+                            <th width="10%">Trạng thái</th>
+                            <th width="15%"></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 @endsection
 
 @section('script')
-    <script type="text/javascript" src="{{asset('/public/assets/admin')}}/bootflat-admin/js/jquery-1.10.1.min.js"></script>
-    <script type="text/javascript" src="{{asset('/public/assets/admin')}}/dist/js/scroll/jquery.mCustomScrollbar.min.js"></script>
+    <script type="text/javascript" src="{{asset('/public/assets/admin')}}/js/bootstrap.min.js"></script>
     <!-- DATA TABLE -->
-    <link rel="stylesheet" href="{{asset('/public/assets/admin')}}/dist/js/plugins/datatables/jquery.dataTables.min.css">
-    <script src="{{asset('/public/assets/admin')}}/dist/js/plugins/datatables/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="{{asset('/public/assets/admin')}}/js/plugins/datatables/jquery.dataTables.min.css">
+    <script src="{{asset('/public/assets/admin')}}/js/plugins/datatables/jquery.dataTables.min.js"></script>
 
     <!-- ALERTIFY -->
-    <link rel="stylesheet" href="{{asset('/public/assets/admin')}}/dist/js/plugins/alertify/alertify.css">
-    <link rel="stylesheet" href="{{asset('/public/assets/admin')}}/dist/js/plugins/alertify/bootstrap.min.css">
-    <script type="text/javascript" src="{{asset('/public/assets/admin')}}/dist/js/plugins/alertify/alertify.js"></script>
+    <link rel="stylesheet" href="{{asset('/public/assets/admin')}}/js/plugins/alertify/alertify.css">
+    <link rel="stylesheet" href="{{asset('/public/assets/admin')}}/js/plugins/alertify/bootstrap.min.css">
+    <script type="text/javascript" src="{{asset('/public/assets/admin')}}/js/plugins/alertify/alertify.js"></script>
+
     <script>
       $(document).ready(function(){
         hideAlert('.alert');
@@ -75,17 +68,17 @@
             processing: true,
             serverSide: true,
             ajax:{
-                url:  '{!! route('admin.category.getData') !!}',
+                url:  '{!! route('admin.category.index') !!}',
                 data: function(d){
                     d.name = $('input[type="search"]').val();
                 }
             },
             columns: [
-               {data: 'id', name: 'id', 'orderable': false},
-               {data: 'title', name: 'title'},
-               {data: 'avatar_img', name: 'Avatar Photo', 'orderable': false},
-               {data: 'order', name: 'order'},
-               {data: 'status', name: 'status'},
+               {data: 'id', name: 'id', 'orderable': false, title: '#', visible: false},
+               {data: 'name_vi', name: 'Danh Mục Sản Phẩm', title: 'Danh Mục Sản Phẩm'},
+               {data: 'img_url', name: 'Hình ảnh', 'orderable': false},
+               {data: 'order', name: 'Sắp xếp'},
+               {data: 'status', name: 'Trạng thái'},
                {data: 'action', name: 'action', 'orderable': false}
            ],
            initComplete: function(){
@@ -101,7 +94,7 @@
                         if(e){
                             $.ajax({
                                 'url':"{!!route('admin.category.deleteAll')!!}",
-                                'data' : {arr: data,_token:$('meta[name="csrf-token"]').attr('content')},
+                                'data' : {arr: data},
                                 'type': "POST",
                                 'success':function(result){
                                     if(result.msg = 'ok'){
@@ -127,7 +120,7 @@
                     $.ajax({
                         url: '{{route("admin.category.postAjaxUpdateOrder")}}',
                         type:'POST',
-                        data: {data: data_order,  _token:$('meta[name="csrf-token"]').attr('content') },
+                        data: {data: data_order },
                         success: function(rs){
                             if(rs.code == 200){
                                 location.reload(true);
@@ -135,9 +128,8 @@
                         }
                     })
                 })
-
-                $('input[name="status"]').change(function(){
-                    let value = 0;
+                $('table.table').on('change','input[name=status]', function(){
+                    var value = 0;
                     if($(this).is(':checked')){
                         value = 1;
                     }
@@ -146,7 +138,7 @@
                     $.ajax({
                         url: "{{route('admin.category.updateStatus')}}",
                         type : 'POST',
-                        data: {value: value, id: id_item, _token:$('meta[name="csrf-token"]').attr('content')},
+                        data: {value: value, id: id_item},
                         success: function(data){
                             if(!data.error){
                                 alertify.success('Status changed !');

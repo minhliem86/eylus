@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Repositories\ShipRepository;
+use App\Repositories\ShipCostRepository;
 use App\Repositories\Eloquent\CommonRepository;
 use Datatables;
 
@@ -13,7 +13,7 @@ class ShipController extends Controller
 {
     protected $ship;
     protected $common;
-    public function __construct(ShipRepository $ship, CommonRepository $common)
+    public function __construct(ShipCostRepository $ship, CommonRepository $common)
     {
         $this->ship = $ship;
         $this->common = $common;
@@ -29,14 +29,16 @@ class ShipController extends Controller
             $ship = $this->ship->query(['id', 'name_vi', 'img_url', 'price_vi']);
             return Datatables::of($ship)
                 ->addColumn('action', function($ship){
-                    return '<a href="'.route('admin.ship.edit', $ship->id).'" class="btn btn-success btn-sm d-inline-block"><i class="fa fa-edit"></i> </a>
-                <form method="POST" action=" '.route('admin.ship.destroy', $ship->id).' " accept-charset="UTF-8" class="d-inline-block">
+                    return '<a href="'.route('admin.ship-cost.edit', $ship->id).'" class="btn btn-success btn-sm d-inline-block"><i class="fa fa-edit"></i> </a>
+                <form method="POST" action=" '.route('admin.ship-cost.destroy', $ship->id).' " accept-charset="UTF-8" class="d-inline-block">
                     <input name="_method" type="hidden" value="DELETE">
                     <input name="_token" type="hidden" value="'.csrf_token().'">
-                               <button class="btn  btn-danger btn-sm" type="button" attrid=" '.route('admin.ship.destroy', $ship->id).' " onclick="confirm_remove(this);" > <i class="fa fa-trash"></i></button>
+                               <button class="btn  btn-danger btn-sm" type="button" attrid=" '.route('admin.ship-cost.destroy', $ship->id).' " onclick="confirm_remove(this);" > <i class="fa fa-trash"></i></button>
                </form>' ;
                 })->editColumn('img_url',function($ship){
                     return '<img src="'.asset('public/uploads/'.$ship->img_url).'" width="120" class="img-fluid">';
+                })->editColumn('price_vi',function($ship){
+                    return number_format($ship->price_vi).' VND';
                 })->filter(function($query) use ($request){
                     if (request()->has('name')) {
                         $query->where('name_vi', 'like', "%{$request->input('name')}%");
@@ -79,10 +81,10 @@ class ShipController extends Controller
             'description_vi' => $request->input('description_vi'),
             'description_en' => $request->input('description_en'),
             'img_url' => $img_url,
-            'price_vi' => $request->input('price_vi'),
+            'price_vi' => floor($request->input('price_vi')),
         ];
         $this->ship->create($data);
-        return redirect()->route('admin.ship.index')->with('success','Created !');
+        return redirect()->route('admin.ship-cost.index')->with('success','Created !');
     }
 
     /**
@@ -125,10 +127,10 @@ class ShipController extends Controller
             'description_vi' => $request->input('description_vi'),
             'description_en' => $request->input('description_en'),
             'img_url' => $img_url,
-            'price_vi' => $request->input('price_vi'),
+            'price_vi' => floor($request->input('price_vi')),
         ];
         $this->ship->update($data, $id);
-        return redirect()->route('admin.ship.index')->with('success', 'Updated !');
+        return redirect()->route('admin.ship-cost.index')->with('success', 'Updated !');
     }
 
     /**
