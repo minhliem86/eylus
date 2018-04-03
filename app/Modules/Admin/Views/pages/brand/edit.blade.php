@@ -1,18 +1,24 @@
 @extends('Admin::layouts.default')
 
-@section('title','Giá Shipping')
+@section('title','THƯƠNG HIỆU')
 
 @section('content')
     <div class="row">
         <div class="col">
             <div class="card">
-                {!!  Form::model($inst, ['route'=>['admin.ship-cost.update',$inst->id], 'method'=>'put' ])!!}
+                {!!  Form::model($inst, ['route'=>['admin.category.update',$inst->id], 'method'=>'put' ])!!}
                 <div class="card-header">
-                    <strong>QUẢN LÝ GIÁ SHIP</strong>
+                    <strong>THƯƠNG HIỆU</strong>
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Loại Shipping</label>
+                        <label for="" class="col-md-3 col-form-label">Danh Mục Sản Phẩm</label>
+                        <div class="col-md-9">
+                            {!! Form::select('category_id',$categories, old('category_id'), ['class' => 'form-control', 'required']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Tên Thương Hiệu</label>
                         <div class="col-md-9">
                             <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
                                 <li class="nav-item">
@@ -25,60 +31,52 @@
 
                             <div class="tab-content" id="pills-tabContent">
                                 <div class="tab-pane fade active show" id="name_vi" role="tabpanel" aria-labelledby="pills-name_vi">
-                                    {!! Form::text('name_vi', old('name_vi'), ['class'=> 'form-control'] ) !!}
+                                    {!! Form::text('name_vi', old('name_vi'), ['class' => 'form-control']) !!}
                                 </div>
                                 <div class="tab-pane fade" id="name_en" role="tabpanel" aria-labelledby="pills-name_en">
-                                    {!! Form::text('name_en', old('name_en'), ['class'=> 'form-control'] ) !!}
+                                    {!! Form::text('name_en', old('name_en'), ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Mô Tả</label>
+                        <label class="col-md-3 col-form-label">Mô tả</label>
                         <div class="col-md-9">
                             <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active show" data-toggle="pill" href="#description_vi" role="tab" aria-controls="pills-description_vi">VI</a>
+                                    <a class="nav-link active show" data-toggle="pill" href="#content_vi" role="tab" aria-controls="pills-content_vi">VI</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#description_en" role="tab" aria-controls="pills-description_en">EN</a>
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#content_en" role="tab" aria-controls="pills-content_en">EN</a>
                                 </li>
                             </ul>
 
                             <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade active show" id="description_vi" role="tabpanel" aria-labelledby="pills-description_vi">
-                                    {!! Form::textarea('description_vi',old('description_vi'), ['class'=> 'form-control my-editor', 'rows' => 10]) !!}
+                                <div class="tab-pane fade active show" id="content_vi" role="tabpanel" aria-labelledby="pills-content_vi">
+                                    {!! Form::textarea('content_vi',old('content_vi'), ['class'=> 'form-control my-editor', 'rows' => 10]) !!}
                                 </div>
-                                <div class="tab-pane fade" id="description_en" role="tabpanel" aria-labelledby="pills-description_en">
-                                    {!! Form::textarea('description_en',old('description_en'), ['class'=> 'form-control my-editor', 'rows' => 10]) !!}
+                                <div class="tab-pane fade" id="content_en" role="tabpanel" aria-labelledby="pills-content_en">
+                                    {!! Form::textarea('content_en',old('content_en'), ['class'=> 'form-control my-editor', 'rows' => 10]) !!}
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="title">Giá</label>
+                        <label class="col-md-3 col-form-label" for="description">Sắp xếp</label>
                         <div class="col-md-9">
-                            <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active show" data-toggle="pill" href="#price_vi" role="tab" aria-controls="pills-price_vi">VI</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#price_en" role="tab" aria-controls="pills-price_en">EN</a>
-                                </li>
-                            </ul>
-
-                            <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade active show" id="price_vi" role="tabpanel" aria-labelledby="pills-price_vi">
-                                    {!! Form::text('price_vi',old('price_vi'), ['class'=> 'form-control price']) !!}
-                                </div>
-                                <div class="tab-pane fade" id="price_en" role="tabpanel" aria-labelledby="pills-price_en">
-                                    {!! Form::text('price_en',old('price_en'), ['class'=> 'form-control price']) !!}
-                                </div>
-                            </div>
+                            {{Form::text('order',old('order'), ['class'=>'form-control', 'placeholder'=>'order'])}}
                         </div>
                     </div>
-
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="description">Trạng thái</label>
+                        <div class="col-md-9">
+                            <label class="switch switch-icon switch-success-outline">
+                                <input type="checkbox" class="switch-input" name="status" value="{!! $inst->status ? 1 : 0 !!}" {!! $inst->status ? "checked" : null  !!} data-id="{!! $inst->id !!}">
+                                <span class="switch-label" data-on="" data-off=""></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">Hình đại diện:</label>
                         <div class="col-md-9">
@@ -111,10 +109,6 @@
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script src="{{asset('public')}}/vendor/laravel-filemanager/js/lfm.js"></script>
     <script src="{{asset('public/assets/admin/js/script.js')}}"></script>
-
-    <!-- PRICE -->
-    <script src="{{asset('public/assets/admin/js/jquery.priceformat.min.js')}}"></script>
-
     <script>
         const url = "{{url('/')}}"
         init_tinymce(url);
@@ -127,16 +121,6 @@
             }else{
                 $(this).val(0);
             }
-        })
-
-        $(document).ready(function(){
-            //PRICE
-            $('.price').priceFormat({
-                prefix: '',
-                centsSeparator: '',
-                thousandsSeparator: '',
-                centsLimit: 2,
-            })
         })
 
     </script>

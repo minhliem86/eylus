@@ -1,6 +1,5 @@
 @extends('Admin::layouts.default')
-
-@section('title','Giá Ship')
+@section('title','Thương hiệu')
 
 @section('content')
     @if(Session::has('error'))
@@ -19,10 +18,11 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="wrap-center">
-                            <a href="{!! route('admin.ship-cost.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
+                            <a href="{!! route('admin.brand.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
+                            <button type="button" class="btn btn-warning btn-sm text-white" id="btn-updateOrder"><i class="fa fa-refresh"></i> Cập Nhật Thứ Tự</button>
                         </div>
                         <div class="wrap-title">
-                            <strong>QUẢN LÝ GIÁ SHIP</strong>
+                            <strong>THƯƠNG HIỆU</strong>
                         </div>
                         <div class="wrap-control">
                             <button type="button" class="btn btn-danger btn-sm" id="btn-remove-all"><i class="fa fa-trash"></i> Xóa Chọn</button>
@@ -35,9 +35,11 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Loại Shipping</th>
-                            <th>Giá</th>
+                            <th>Thương hiệu</th>
+                            <th>Danh Mục</th>
                             <th width="120">Hình ảnh</th>
+                            <th width="10%">Sắp xếp</th>
+                            <th width="10%">Trạng thái</th>
                             <th width="15%"></th>
                         </tr>
                         </thead>
@@ -67,16 +69,18 @@
             processing: true,
             serverSide: true,
             ajax:{
-                url:  '{!! route('admin.ship-cost.index') !!}',
+                url:  '{!! route('admin.brand.index') !!}',
                 data: function(d){
                     d.name = $('input[type="search"]').val();
                 }
             },
             columns: [
                {data: 'id', name: 'id', 'orderable': false, title: '#', visible: false},
-               {data: 'name_vi', name: 'name_vi', title: 'Loại ship'},
-               {data: 'price_vi', name: 'Giá', 'orderable': false},
-                {data: 'img_url', name: 'Hình ảnh', 'orderable': false},
+               {data: 'name_vi', name: 'Thương Hiệu', title: 'Thương Hiệu'},
+               {data: 'name_cate', name: 'Thuộc Danh Mục', title: 'Thuộc Danh Mục'},
+               {data: 'img_url', name: 'Hình ảnh', 'orderable': false},
+               {data: 'order', name: 'Sắp xếp'},
+               {data: 'status', name: 'Trạng thái'},
                {data: 'action', name: 'action', 'orderable': false}
            ],
            initComplete: function(){
@@ -91,8 +95,8 @@
                     alertify.confirm('You can not undo this action. Are you sure ?', function(e){
                         if(e){
                             $.ajax({
-                                'url':"{!!route('admin.ship-cost.deleteAll')!!}",
-                                'data' : {arr: data,_token:$('meta[name="csrf-token"]').attr('content')},
+                                'url':"{!!route('admin.category.deleteAll')!!}",
+                                'data' : {arr: data},
                                 'type': "POST",
                                 'success':function(result){
                                     if(result.msg = 'ok'){
@@ -107,46 +111,45 @@
                     })
                 })
 
-                {{--$('#btn-updateOrder').click(function(){--}}
-                    {{--var rows_order = table_api.rows().data();--}}
-                    {{--var data_order = {};--}}
-                    {{--$('input[name="order"]').each(function(index){--}}
-                        {{--var id = $(this).data('id');--}}
-                        {{--var va = $(this).val();--}}
-                        {{--data_order[id] = va;--}}
-                    {{--});--}}
-                    {{--$.ajax({--}}
-                        {{--url: '{{route("admin.ship.postAjaxUpdateOrder")}}',--}}
-                        {{--type:'POST',--}}
-                        {{--data: {data: data_order,  _token:$('meta[name="csrf-token"]').attr('content') },--}}
-                        {{--success: function(rs){--}}
-                            {{--if(rs.code == 200){--}}
-                                {{--location.reload(true);--}}
-                            {{--}--}}
-                        {{--}--}}
-                    {{--})--}}
-                {{--})--}}
-
-               {{--$('table.table').on('change','input[name=status]', function(){--}}
-                   {{--var value = 0;--}}
-                   {{--if($(this).is(':checked')){--}}
-                       {{--value = 1;--}}
-                   {{--}--}}
-                   {{--const id_item = $(this).data('id');--}}
-                   {{--console.log(id_item);--}}
-                   {{--$.ajax({--}}
-                       {{--url: "{{route('admin.news.updateStatus')}}",--}}
-                       {{--type : 'POST',--}}
-                       {{--data: {value: value, id: id_item},--}}
-                       {{--success: function(data){--}}
-                           {{--if(!data.error){--}}
-                               {{--alertify.success('Status changed !');--}}
-                           {{--}else{--}}
-                               {{--alertify.error('Fail changed !');--}}
-                           {{--}--}}
-                       {{--}--}}
-                   {{--})--}}
-               {{--})--}}
+                $('#btn-updateOrder').click(function(){
+                    var rows_order = table_api.rows().data();
+                    var data_order = {};
+                    $('input[name="order"]').each(function(index){
+                        var id = $(this).data('id');
+                        var va = $(this).val();
+                        data_order[id] = va;
+                    });
+                    $.ajax({
+                        url: '{{route("admin.category.postAjaxUpdateOrder")}}',
+                        type:'POST',
+                        data: {data: data_order },
+                        success: function(rs){
+                            if(rs.code == 200){
+                                location.reload(true);
+                            }
+                        }
+                    })
+                })
+                $('table.table').on('change','input[name=status]', function(){
+                    var value = 0;
+                    if($(this).is(':checked')){
+                        value = 1;
+                    }
+                    const id_item = $(this).data('id');
+                    console.log(id_item);
+                    $.ajax({
+                        url: "{{route('admin.category.updateStatus')}}",
+                        type : 'POST',
+                        data: {value: value, id: id_item},
+                        success: function(data){
+                            if(!data.error){
+                                alertify.success('Status changed !');
+                            }else{
+                                alertify.error('Fail changed !');
+                            }
+                        }
+                    })
+                })
            }
         });
         /*SELECT ROW*/

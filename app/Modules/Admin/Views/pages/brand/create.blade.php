@@ -1,18 +1,24 @@
 @extends('Admin::layouts.default')
 
-@section('title','Danh Mục')
+@section('title','Thương hiệu')
 
 @section('content')
     <div class="row">
         <div class="col">
             <div class="card">
-                {!! Form::open(['route'=>'admin.category.store', 'class' =>'form']) !!}
+                {!! Form::open(['route'=>'admin.brand.store', 'class' =>'form']) !!}
                 <div class="card-header">
-                    <strong>DANH MỤC SẢN PHẨM</strong>
+                    <strong>THƯƠNG HIỆU</strong>
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="title">Tên Danh Mục</label>
+                        <label for="" class="col-md-3 col-form-label">Danh Mục Sản Phẩm</label>
+                        <div class="col-md-9">
+                            {!! Form::select('category_id',$categories, old('category_id'), ['class' => 'form-control', 'required']) !!}
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="title">Tên Thương Hiệu</label>
                         <div class="col-md-9">
                             <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
                                 <li class="nav-item">

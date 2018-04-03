@@ -20,6 +20,15 @@
             <li class="nav-item ">
                 <a href="{!! route('admin.subscribe') !!}" class="nav-link {!! LP_lib::setActive('2','subscribe') !!}"><i class="icon-drop"></i> Subscribes</a>
             </li>
+            <li class="nav-item ">
+                <a href="{!! route('admin.ship-cost.index') !!}" class="nav-link {!! LP_lib::setActive('2','ship-cost') !!}"><i class="icon-drop"></i> Giá Ship</a>
+            </li>
+            <li class="nav-item ">
+                <a href="{!! route('admin.category.index') !!}" class="nav-link {!! LP_lib::setActive('2','category') !!}"><i class="icon-drop"></i> Danh Mục Sản Phẩm</a>
+            </li>
+            <li class="nav-item ">
+                <a href="{!! route('admin.brand.index') !!}" class="nav-link {!! LP_lib::setActive('2','brand') !!}"><i class="icon-drop"></i> Thương Hiệu</a>
+            </li>
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-bell"></i> Notifications</a>
                 <ul class="nav-dropdown-items">

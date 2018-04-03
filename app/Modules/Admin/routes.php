@@ -48,11 +48,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
             Route::post('photo/deleteAll', ['as' => 'admin.photo.deleteAll', 'uses'=>'MultiPhotoController@deleteAll']);
 
             /*CATEGORY*/
-            Route::get('category/getData', ['as' => 'admin.category.getData', 'uses' => 'CategoryController@getData']);
             Route::post('category/deleteAll', ['as' => 'admin.category.deleteAll', 'uses' => 'CategoryController@deleteAll']);
             Route::post('category/updateStatus', ['as' => 'admin.category.updateStatus', 'uses' => 'CategoryController@updateStatus']);
             Route::post('category/postAjaxUpdateOrder', ['as' => 'admin.category.postAjaxUpdateOrder', 'uses' => 'CategoryController@postAjaxUpdateOrder']);
             Route::resource('category', 'CategoryController');
+
+            /*BRAND*/
+            Route::post('brand/deleteAll', ['as' => 'admin.brand.deleteAll', 'uses' => 'BrandController@deleteAll']);
+            Route::post('brand/updateStatus', ['as' => 'admin.brand.updateStatus', 'uses' => 'BrandController@updateStatus']);
+            Route::post('brand/postAjaxUpdateOrder', ['as' => 'admin.brand.postAjaxUpdateOrder', 'uses' => 'BrandController@postAjaxUpdateOrder']);
+            Route::resource('brand', 'BrandController');
 
             /* COMPANY */
             Route::any('company/{id?}', ['as' => 'admin.company.index', 'uses' => 'CompanyController@getInformation']);

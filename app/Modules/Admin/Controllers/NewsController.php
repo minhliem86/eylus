@@ -48,7 +48,7 @@ class NewsController extends Controller
                 </label>
               ';
                 })->editColumn('img_url',function($news){
-                    return '<img src="'.asset('public/uploads/'.$news->img_url).'" width="120" class="img-fluid">';
+                    return '<img src="'.asset('public/uploads/'.$news->img_url).'" width="60" class="img-fluid">';
                 })->filter(function($query) use ($request){
                     if (request()->has('name')) {
                         $query->where('title_vi', 'like', "%{$request->input('name')}%");
