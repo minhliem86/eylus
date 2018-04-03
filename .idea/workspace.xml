@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e83dbf9-0157-498a-bc9d-11925666c370" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/email/index.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/ship/create.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/ship/edit.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/ship/index.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/paginator/right.blade.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/admin/img/favicon.ico" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/img/logo.png" afterPath="$PROJECT_DIR$/public/assets/admin/img/logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Admin/Controllers/EmailSubscribeController.php" afterPath="$PROJECT_DIR$/app/Modules/Admin/Controllers/EmailSubscribeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Admin/Controllers/PageController.php" afterPath="$PROJECT_DIR$/app/Modules/Admin/Controllers/PageController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Admin/Views/layouts/default.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/layouts/default.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Admin/Views/layouts/header.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/layouts/header.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Admin/Views/layouts/sidebar.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/layouts/sidebar.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/news/create.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/news/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/news/edit.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/news/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/page/create.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/page/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/page/edit.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/page/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/promotion/create.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/promotion/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/promotion/edit.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Admin/Views/pages/promotion/edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Admin/routes.php" afterPath="$PROJECT_DIR$/app/Modules/Admin/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/css/style.css" afterPath="$PROJECT_DIR$/public/assets/admin/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/css/style.css.map" afterPath="$PROJECT_DIR$/public/assets/admin/css/style.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/admin/scss/_custom.scss" afterPath="$PROJECT_DIR$/public/assets/admin/scss/_custom.scss" />
-    </list>
+    <list default="true" id="8e83dbf9-0157-498a-bc9d-11925666c370" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -194,7 +169,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1296" />
     <option name="height" value="1000" />
   </component>
@@ -379,7 +354,7 @@
       <workItem from="1522485203293" duration="4058000" />
       <workItem from="1522568385898" duration="5902000" />
       <workItem from="1522645263048" duration="13809000" />
-      <workItem from="1522677058481" duration="6032000" />
+      <workItem from="1522677058481" duration="6168000" />
     </task>
     <task id="LOCAL-00001" summary="up">
       <created>1522252781631</created>
@@ -392,11 +367,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55480000" />
+    <option name="totallyTimeSpent" value="55616000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
