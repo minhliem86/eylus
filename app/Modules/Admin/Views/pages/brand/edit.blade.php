@@ -6,15 +6,15 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                {!!  Form::model($inst, ['route'=>['admin.brand.update',$inst->id], 'method'=>'put' ])!!}
+                {!!  Form::model($inst, ['route'=>['admin.category.update',$inst->id], 'method'=>'put' ])!!}
                 <div class="card-header">
                     <strong>THƯƠNG HIỆU</strong>
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="" class="col-md-3 col-form-label">Chọn Danh Mục Sản Phẩm</label>
+                        <label for="" class="col-md-3 col-form-label">Danh Mục Sản Phẩm</label>
                         <div class="col-md-9">
-                            {!! Form::select('category_id',[''=>'-- Thuộc Danh Mục --'] + $categories, old('category_id'), ['class' => 'form-control', 'required']) !!}
+                            {!! Form::select('category_id',$categories, old('category_id'), ['class' => 'form-control', 'required']) !!}
                         </div>
                     </div>
                     <div class="form-group row">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Mô Tả</label>
+                        <label class="col-md-3 col-form-label">Mô tả</label>
                         <div class="col-md-9">
                             <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
                                 <li class="nav-item">

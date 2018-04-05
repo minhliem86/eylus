@@ -36,7 +36,7 @@ class ShipController extends Controller
                                <button class="btn  btn-danger btn-sm" type="button" attrid=" '.route('admin.ship-cost.destroy', $ship->id).' " onclick="confirm_remove(this);" > <i class="fa fa-trash"></i></button>
                </form>' ;
                 })->editColumn('img_url',function($ship){
-                    return '<img src="'.asset('public/uploads/'.$ship->img_url).'" width="120" class="img-fluid">';
+                    return '<img src="'.asset('public/uploads/'.$ship->img_url).'" width="60" class="img-fluid">';
                 })->editColumn('price_vi',function($ship){
                     return number_format($ship->price_vi).' VND';
                 })->filter(function($query) use ($request){

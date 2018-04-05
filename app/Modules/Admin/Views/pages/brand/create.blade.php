@@ -1,6 +1,6 @@
 @extends('Admin::layouts.default')
 
-@section('title','THƯƠNG HIỆU')
+@section('title','Thương hiệu')
 
 @section('content')
     <div class="row">
@@ -12,9 +12,9 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="" class="col-md-3 col-form-label">Chọn Danh Mục Sản Phẩm</label>
+                        <label for="" class="col-md-3 col-form-label">Danh Mục Sản Phẩm</label>
                         <div class="col-md-9">
-                            {!! Form::select('category_id',[''=>'-- Thuộc Danh Mục --'] + $categories, old('category_id'), ['class' => 'form-control', 'required']) !!}
+                            {!! Form::select('category_id',$categories, old('category_id'), ['class' => 'form-control', 'required']) !!}
                         </div>
                     </div>
                     <div class="form-group row">
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="title">Mô Tả</label>
+                        <label class="col-md-3 col-form-label" for="title">Mô tả</label>
                         <div class="col-md-9">
                             <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
                                 <li class="nav-item">

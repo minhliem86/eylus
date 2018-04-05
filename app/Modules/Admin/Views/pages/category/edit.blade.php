@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Mô Tả</label>
+                        <label class="col-md-3 col-form-label">Mô tả</label>
                         <div class="col-md-9">
                             <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
                                 <li class="nav-item">

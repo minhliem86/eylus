@@ -48,7 +48,7 @@ class PromotionController extends Controller
                 </label>
               ';
                 })->editColumn('img_url',function($promotion){
-                    return '<img src="'.asset('public/uploads/'.$promotion->img_url).'" width="120" class="img-fluid">';
+                    return '<img src="'.asset('public/uploads/'.$promotion->img_url).'" width="60" class="img-fluid">';
                 })->filter(function($query) use ($request){
                     if (request()->has('name')) {
                         $query->where('title_vi', 'like', "%{$request->input('name')}%");

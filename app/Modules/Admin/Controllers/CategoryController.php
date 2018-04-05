@@ -48,7 +48,7 @@ class CategoryController extends Controller
                 </label>
               ';
                 })->editColumn('img_url',function($category){
-                    return '<img src="'.asset('public/uploads/'.$category->img_url).'" width="120" class="img-fluid">';
+                    return '<img src="'.asset('public/uploads/'.$category->img_url).'" width="60" class="img-fluid">';
                 })->filter(function($query) use ($request){
                     if (request()->has('name')) {
                         $query->where('name_vi', 'like', "%{$request->input('name')}%");
