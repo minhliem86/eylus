@@ -29,6 +29,9 @@
             <li class="nav-item ">
                 <a href="{!! route('admin.brand.index') !!}" class="nav-link {!! LP_lib::setActive('2','brand') !!}"><i class="icon-drop"></i> Thương Hiệu</a>
             </li>
+            <li class="nav-item ">
+                <a href="{!! route('admin.product.index') !!}" class="nav-link {!! LP_lib::setActive('2','product') !!}"><i class="icon-drop"></i> Sản Phẩm</a>
+            </li>
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-bell"></i> Notifications</a>
                 <ul class="nav-dropdown-items">

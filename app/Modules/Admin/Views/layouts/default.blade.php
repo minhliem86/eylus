@@ -25,6 +25,7 @@
     <link href="{!! asset('public/assets/admin') !!}/css/flat-icon/css/flag-icon.min.css" rel="stylesheet">
 
 
+    @yield('css')
     <!-- Main styles for this application -->
     <link href="{!! asset('public/assets/admin') !!}/css/style.css" rel="stylesheet">
     <!-- Styles required by this views -->

@@ -1,5 +1,5 @@
 @extends('Admin::layouts.default')
-@section('title','Thương hiệu')
+@section('title','THƯƠNG HIỆU')
 
 @section('content')
     @if(Session::has('error'))
@@ -36,7 +36,7 @@
                         <tr>
                             <th>#</th>
                             <th>Thương hiệu</th>
-                            <th>Danh Mục</th>
+                            <th>Danh Mục Sản Phẩm</th>
                             <th width="120">Hình ảnh</th>
                             <th width="10%">Sắp xếp</th>
                             <th width="10%">Trạng thái</th>
@@ -77,7 +77,7 @@
             columns: [
                {data: 'id', name: 'id', 'orderable': false, title: '#', visible: false},
                {data: 'name_vi', name: 'Thương Hiệu', title: 'Thương Hiệu'},
-               {data: 'name_cate', name: 'Thuộc Danh Mục', title: 'Thuộc Danh Mục'},
+               {data: 'category_name', name: 'Danh Mục Sản Phẩm', title: 'Danh Mục Sản Phẩm'},
                {data: 'img_url', name: 'Hình ảnh', 'orderable': false},
                {data: 'order', name: 'Sắp xếp'},
                {data: 'status', name: 'Trạng thái'},
@@ -95,7 +95,7 @@
                     alertify.confirm('You can not undo this action. Are you sure ?', function(e){
                         if(e){
                             $.ajax({
-                                'url':"{!!route('admin.category.deleteAll')!!}",
+                                'url':"{!!route('admin.brand.deleteAll')!!}",
                                 'data' : {arr: data},
                                 'type': "POST",
                                 'success':function(result){
@@ -120,7 +120,7 @@
                         data_order[id] = va;
                     });
                     $.ajax({
-                        url: '{{route("admin.category.postAjaxUpdateOrder")}}',
+                        url: '{{route("admin.brand.postAjaxUpdateOrder")}}',
                         type:'POST',
                         data: {data: data_order },
                         success: function(rs){
@@ -138,7 +138,7 @@
                     const id_item = $(this).data('id');
                     console.log(id_item);
                     $.ajax({
-                        url: "{{route('admin.category.updateStatus')}}",
+                        url: "{{route('admin.brand.updateStatus')}}",
                         type : 'POST',
                         data: {value: value, id: id_item},
                         success: function(data){

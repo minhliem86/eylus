@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\BrandRepository;
 use App\Repositories\Eloquent\CommonRepository;
 use Datatables;
+use DB;
 
 class BrandController extends Controller
 {
@@ -26,7 +27,7 @@ class BrandController extends Controller
     public function index(Request $request )
     {
         if($request->ajax()){
-            $brand = $this->brand->query()->join('categories','categories.id','=','brands.category_id')->select('brands.id as id', 'brands.name_vi as name_vi', 'brands.img_url as img_url', 'brands.order as order', 'brands.status as status', 'categories.name_vi as name_cate', 'categories.id');
+            $brand = $this->brand->query(['brands.id as id', 'brands.name_vi as name_vi', 'brands.img_url as img_url', 'brands.order as order', 'brands.status as status', 'brands.category_id as category_id', 'categories.name_vi as category_name'])->join('categories','categories.id', '=', 'brands.category_id');
             return Datatables::of($brand)
                 ->addColumn('action', function($brand){
                     return '<a href="'.route('admin.brand.edit', $brand->id).'" class="btn btn-success btn-sm d-inline-block"><i class="fa fa-edit"></i> </a>
@@ -48,7 +49,7 @@ class BrandController extends Controller
                 </label>
               ';
                 })->editColumn('img_url',function($brand){
-                    return '<img src="'.asset('public/uploads/'.$brand->img_url).'" width="60" class="img-fluid">';
+                    return '<img src="'.asset('public/uploads/'.$brand->img_url).'" width="120" class="img-fluid">';
                 })->filter(function($query) use ($request){
                     if (request()->has('name')) {
                         $query->where('name_vi', 'like', "%{$request->input('name')}%");
@@ -66,7 +67,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        $categories = \App\Models\Category::lists('name_vi','id');
+        $categories = DB::table('categories')->lists('name_vi', 'id');
         return view('Admin::pages.brand.create', compact('categories'));
     }
 
@@ -91,9 +92,9 @@ class BrandController extends Controller
             'slug' => \LP_lib::unicode($request->input('name_vi')),
             'content_vi' => $request->input('content_vi'),
             'content_en' => $request->input('content_en'),
+            'category_id' => $request->input('category_id'),
             'img_url' => $img_url,
             'order' => $order,
-            'category_id' => $request->input('category_id'),
         ];
         $this->brand->create($data);
         return redirect()->route('admin.brand.index')->with('success','Created !');
@@ -118,8 +119,9 @@ class BrandController extends Controller
      */
     public function edit($id)
     {
+        $categories = DB::table('categories')->lists('name_vi', 'id');
         $inst = $this->brand->find($id);
-        return view('Admin::pages.brand.edit', compact('inst'));
+        return view('Admin::pages.brand.edit', compact('inst', 'categories'));
     }
 
     /**
