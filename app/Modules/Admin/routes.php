@@ -53,12 +53,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
             Route::post('category/postAjaxUpdateOrder', ['as' => 'admin.category.postAjaxUpdateOrder', 'uses' => 'CategoryController@postAjaxUpdateOrder']);
             Route::resource('category', 'CategoryController');
 
+            /*BRAND*/
+            Route::post('brand/deleteAll', ['as' => 'admin.brand.deleteAll', 'uses' => 'BrandController@deleteAll']);
+            Route::post('brand/updateStatus', ['as' => 'admin.brand.updateStatus', 'uses' => 'BrandController@updateStatus']);
+            Route::post('brand/postAjaxUpdateOrder', ['as' => 'admin.brand.postAjaxUpdateOrder', 'uses' => 'BrandController@postAjaxUpdateOrder']);
+            Route::resource('brand', 'BrandController');
+
             /* COMPANY */
             Route::any('company/{id?}', ['as' => 'admin.company.index', 'uses' => 'CompanyController@getInformation']);
 
 
             /*PRODUCT*/
-            Route::get('product/getData', ['as' => 'admin.product.getData', 'uses' => 'ProductController@getData']);
             Route::post('product/deleteAll', ['as' => 'admin.product.deleteAll', 'uses' => 'ProductController@deleteAll']);
             Route::post('product/postAjaxUpdateOrder', ['as' => 'admin.product.postAjaxUpdateOrder', 'uses' => 'ProductController@postAjaxUpdateOrder']);
             Route::post('product/AjaxRemovePhoto', ['as' => 'admin.product.AjaxRemovePhoto', 'uses' => 'ProductController@AjaxRemovePhoto']);

@@ -25,16 +25,16 @@
 
                             <div class="tab-content" id="pills-tabContent">
                                 <div class="tab-pane fade active show" id="name_vi" role="tabpanel" aria-labelledby="pills-name_vi">
-                                    {!! Form::text('name_vi', old('name_vi', ['class' => 'form-control'])) !!}
+                                    {!! Form::text('name_vi', old('name_vi'), ['class' => 'form-control']) !!}
                                 </div>
                                 <div class="tab-pane fade" id="name_en" role="tabpanel" aria-labelledby="pills-name_en">
-                                    {!! Form::text('name_en', old('name_en', ['class' => 'form-control'])) !!}
+                                    {!! Form::text('name_en', old('name_en'), ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Nội Dung</label>
+                        <label class="col-md-3 col-form-label">Mô Tả</label>
                         <div class="col-md-9">
                             <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
                                 <li class="nav-item">
