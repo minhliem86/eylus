@@ -105,29 +105,32 @@ class ProductController extends Controller
         }else{
           $img_url = "";
         }
-        if($request->has('meta_images')){
-            $meta_img = $this->common->getPath($request->input('meta_images'));
-        }else{
-          $meta_img = "";
-        }
         $order = $this->productRepo->getOrder();
         $data = [
-            'title' => $request->input('title'),
-            'slug' => \LP_lib::unicode($request->input('title')),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-            'avatar_img' => $img_url,
+            'name_vi' => $request->input('name_vi'),
+            'name_en' => $request->input('name_en'),
+            'slug' => \LP_lib::unicode($request->input('name_vi')),
+            'description_vi' => $request->input('description_vi'),
+            'description_en' => $request->input('description_en'),
+            'content_vi' => $request->input('content_vi'),
+            'content_en' => $request->input('content_en'),
+            'sku' => $request->input('sku'),
+            'quantity' => $request->input('quantity'),
+            'price_vi' => floor($request->input('price_vi')),
+            'img_url' => $img_url,
             'order' => $order,
-            'category_id' => 1,
+            'brand_id' => $request->input('brand_id'),
         ];
         $product = $this->productRepo->create($data);
+
+        $sub_photo = $request->input('thumb-input');
 
         if($sub_photo[0]){
             $data_photo = [];
             foreach($sub_photo as $thumb){
                 $originalSize = $this->common->uploadImage($request, $thumb, $this->_original_path,$resize = false,null,null, base_path($this->_removePath));
                 $smallsize = $this->common->createThumbnail($originalSize,$this->_resize_path,350, 350, base_path($this->_removePath));
-                $order = $this->gallery->getOrder();
+                $order = $this->photo->getOrder();
                 $filename = $this->common->getFileName($originalSize);
                 $data = new \App\Models\Photo(
                     [
@@ -140,8 +143,23 @@ class ProductController extends Controller
                 array_push($data_photo, $data);
             }
 
-            $gallery->photos()->saveMany($data_photo);
+            $product->photos()->saveMany($data_photo);
         }
+
+        if($request->has('seo_checking')){
+            if($request->has('meta_img')){
+                $img_meta = $this->common->getPath($request->input('meta_img'));
+            }else{
+                $img_meta = '';
+            }
+            $data_seo = [
+                'meta_keyword' => $request->input('keywords'),
+                'meta_description' => $request->input('description'),
+                'meta_img' => $img_meta,
+            ];
+            $product->metas()->save(new \App\Models\Meta($data_seo));
+        }
+
         return redirect()->route('admin.product.index')->with('success','Created !');
     }
 
@@ -196,19 +214,48 @@ class ProductController extends Controller
         ];
         $product = $this->productRepo->update($data, $id);
 
-        if($request->hasFile('thumb-input')){
-          foreach($request->file('thumb-input') as $k=>$thumb){
-            $img = $this->common->uploadImage($request, $thumb, $this->_bigsize,$resize = false);
-            $thumbnail = $this->common->createThumbnail($img,$this->_thumbnail,100, 100);
+        $sub_photo = $request->input('thumb-input');
 
-            $order = $this->photo->getOrder();
-            $product->photos()->save(new \App\Models\Photo([
-              'img_url' => $this->common->getPath($img, asset('public/upload')),
-              'thumb_url' => $this->common->getPath($thumbnail, asset('public/upload')),
-              'order'=>$order,
-            ]));
-          }
+        if($sub_photo[0]){
+            $data_photo = [];
+            foreach($sub_photo as $thumb){
+                $originalSize = $this->common->uploadImage($request, $thumb, $this->_original_path,$resize = false,null,null, base_path($this->_removePath));
+                $smallsize = $this->common->createThumbnail($originalSize,$this->_resize_path,350, 350, base_path($this->_removePath));
+                $order = $this->photo->getOrder();
+                $filename = $this->common->getFileName($originalSize);
+                $data = new \App\Models\Photo(
+                    [
+                        'img_url' => $originalSize,
+                        'thumb_url' => $smallsize,
+                        'order'=>$order,
+                        'filename' => $filename,
+                    ]
+                );
+                array_push($data_photo, $data);
+            }
+
+            $product->photos()->saveMany($data_photo);
         }
+
+
+        if($request->has('seo_checking')){
+            if($request->has('meta_img')){
+                $img_meta = $this->common->getPath($request->input('meta_img'));
+            }else{
+                $img_meta = '';
+            }
+            $data_seo = [
+                'meta_keyword' => $request->input('keywords'),
+                'meta_description' => $request->input('description'),
+                'meta_img' => $img_meta,
+            ];
+            if(!$request->has('meta_id')){
+                $product->metas()->save(new \App\Models\Meta($data_seo));
+            }else{
+                \DB::table('metables')->where('id',$request->input('meta_id'))->update($data_seo);
+            }
+        }
+
         return redirect()->route('admin.product.index')->with('success', 'Updated !');
     }
 

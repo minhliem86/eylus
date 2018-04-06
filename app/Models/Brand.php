@@ -19,4 +19,9 @@ class Brand extends Model
     {
         return $this->hasMany('App\Models\Product','product_id');
     }
+
+    public function metas()
+    {
+        return $this->morphMany('App\Models\Meta', 'metable');
+    }
 }

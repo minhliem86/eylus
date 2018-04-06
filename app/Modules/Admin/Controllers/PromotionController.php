@@ -93,7 +93,21 @@ class PromotionController extends Controller
             'img_url' => $img_url,
             'order' => $order,
         ];
-        $this->promotion->create($data);
+        $promotion = $this->promotion->create($data);
+
+        if($request->has('seo_checking')){
+            if($request->has('meta_img')){
+                $img_meta = $this->common->getPath($request->input('meta_img'));
+            }else{
+                $img_meta = '';
+            }
+            $data_seo = [
+                'meta_keyword' => $request->input('keywords'),
+                'meta_description' => $request->input('description'),
+                'meta_img' => $img_meta,
+            ];
+            $promotion->metas()->save(new \App\Models\Meta($data_seo));
+        }
         return redirect()->route('admin.promotion.index')->with('success','Created !');
     }
 
@@ -140,7 +154,26 @@ class PromotionController extends Controller
             'order' => $request->input('order'),
             'status' => $request->input('status'),
         ];
-        $this->promotion->update($data, $id);
+        $promotion = $this->promotion->update($data, $id);
+
+        if($request->has('seo_checking')){
+            if($request->has('meta_img')){
+                $img_meta = $this->common->getPath($request->input('meta_img'));
+            }else{
+                $img_meta = '';
+            }
+            $data_seo = [
+                'meta_keyword' => $request->input('keywords'),
+                'meta_description' => $request->input('description'),
+                'meta_img' => $img_meta,
+            ];
+            if(!$request->has('meta_id')){
+                $promotion->metas()->save(new \App\Models\Meta($data_seo));
+            }else{
+                \DB::table('metables')->where('id',$request->input('meta_id'))->update($data_seo);
+            }
+        }
+
         return redirect()->route('admin.promotion.index')->with('success', 'Updated !');
     }
 

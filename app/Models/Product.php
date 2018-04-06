@@ -14,4 +14,16 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Brand', 'product_id');
     }
+
+    public function metas()
+    {
+        return $this->morphMany('App\Models\Meta', 'metable');
+    }
+
+    public function photos()
+    {
+        return $this->morphMany('App\Models\Photo', 'photoable');
+    }
+
+
 }

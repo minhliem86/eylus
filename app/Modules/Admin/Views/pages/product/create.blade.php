@@ -117,10 +117,10 @@
 
                                 <div class="tab-content" id="pills-tabContent">
                                     <div class="tab-pane fade active show" id="description_vi" role="tabpanel" aria-labelledby="pills-description_vi">
-                                        <input type="text" class="form-control" name="description_vi">
+                                        {!! Form::textarea('description_vi',old('description_vi'), ['class' => 'form-control']) !!}
                                     </div>
                                     <div class="tab-pane fade" id="description_en" role="tabpanel" aria-labelledby="pills-description_en">
-                                        <input type="text" class="form-control" name="description_en">
+                                        {!! Form::textarea('description_en',old('description_en'), ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -139,10 +139,10 @@
 
                                 <div class="tab-content" id="pills-tabContent">
                                     <div class="tab-pane fade active show" id="content_vi" role="tabpanel" aria-labelledby="pills-content_vi">
-                                        <input type="text" class="form-control" name="content_vi">
+                                        {!! Form::textarea('content_vi',old('content_vi'), ['class' => 'form-control my-editor']) !!}
                                     </div>
                                     <div class="tab-pane fade" id="content_en" role="tabpanel" aria-labelledby="pills-content_en">
-                                        <input type="text" class="form-control" name="content_en">
+                                        {!! Form::textarea('content_en',old('content_en'), ['class' => 'form-control my-editor']) !!}
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
 
                                 <div class="tab-content" id="pills-tabContent">
                                     <div class="tab-pane fade active show" id="price_vi" role="tabpanel" aria-labelledby="pills-price_vi">
-                                        <input type="text" class="form-control" name="price_vi">
+                                        <input type="text" class="form-control price" name="price_vi">
                                     </div>
                                     {{--<div class="tab-pane fade" id="price_en" role="tabpanel" aria-labelledby="pills-price_en">--}}
                                     {{--<input type="text" class="form-control" name="price_en">--}}
@@ -170,16 +170,18 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label >Hình đại diện:</label>
-                            <div class="input-group">
-                            <span class="input-group-btn">
-                                <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-success">
-                                    <i class="fa fa-picture-o"></i> Chọn
-                                </a>
-                            </span>
-                                <input id="thumbnail" class="form-control" type="hidden" name="img_url">
+                            <label class="col-md-3 col-form-label">Hình đại diện:</label>
+                            <div class="col-md-9">
+                                <div class="input-group">
+                                <span class="input-group-btn">
+                                    <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-success btn-sm text-white">
+                                        <i class="fa fa-picture-o"></i> Chọn
+                                    </a>
+                                </span>
+                                    <input id="thumbnail" class="form-control" type="hidden" name="img_url">
+                                </div>
+                                <img id="holder" style="margin-top:15px;max-height:100px;">
                             </div>
-                            <img id="holder" style="margin-top:15px;max-height:100px;">
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">Hình Chi Tiết (opt)</label>
@@ -190,8 +192,43 @@
                             </div>
                         </div>
                     </fieldset>
-                    <fieldset>
 
+                    <fieldset class="form-group">
+                        <div class="form-group row">
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" id="seo_checking" name="seo_checking" class="custom-control-input ">
+                                <label class="custom-control-label" for="seo_checking"><b>CẤU HÌNH SEO</b></label>
+                            </div>
+                        </div>
+                        <div class="seo-container">
+                            <div class="form-group row">
+                                <label for="" class="col-md-3 col-form-label">Keywords</label>
+                                <div class="col-md-9">
+                                    {!! Form::text('keywords',old('keywords'), ['class' => 'form-control']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-md-3 col-form-label">Description</label>
+                                <div class="col-md-9">
+                                    {!! Form::text('description',old('description'), ['class' => 'form-control']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" >FB Sharing (600x315):</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <a id="lfm_meta" data-input="thumbnail_meta" data-preview="holder" class="btn btn-primary text-white">
+                                            <i class="fa fa-picture-o"></i> Chọn
+                                        </a>
+                                    </span>
+                                        <input id="thumbnail_meta" class="form-control" type="hidden" name="meta_img">
+                                    </div>
+                                    <img id="holder" style="margin-top:15px;max-height:100px;">
+                                </div>
+                            </div>
+                        </div>
                     </fieldset>
 
 
@@ -220,6 +257,9 @@
     <script src="{{asset('/public/assets/admin')}}/js/plugins/bootstrap-input/js/plugins/purify.min.js"></script>
     <script src="{{asset('/public/assets/admin')}}/js/plugins/bootstrap-input/js/fileinput.min.js"></script>
 
+    <!--PRICE FORMAT -->
+    <script src="{{asset('/public/assets/admin')}}/js/jquery.priceformat.min.js"></script>
+
     <script>
         const url = "{{url('/')}}"
         init_tinymce(url);
@@ -227,31 +267,33 @@
         init_btnImage(url,'#lfm');
         init_btnImage(url,'#lfm-meta');
 
-
         $(document).ready(function(){
-          // var footerTemplate = '<div class="file-thumbnail-footer" style ="height:94px">\n' +
-          // '   <div style="margin:5px 0">\n' +
-          // '       <input class="kv-input kv-new form-control input-sm text-center {TAG_CSS_NEW}" value="{caption}" placeholder="Enter caption..." name="caption[]">\n' +
-          // '   </div>\n' +
-          // '   {size} {progress} {actions}\n' +
-          // '</div>';
             $("#thumb-input").fileinput({
-                uploadUrl: "{{route('admin.product.store')}}", // server upload action
+                uploadUrl: "{!!route('admin.product.store')!!}", // server upload action
                 uploadAsync: true,
                 showUpload: false,
+                showBrowse: false,
                 showCaption: false,
-                // layoutTemplates: {footer: footerTemplate},
-                // previewThumbTags: {
-                //     '{TAG_VALUE}': '',        // no value
-                //     '{TAG_CSS_NEW}': '',      // new thumbnail input
-                //     '{TAG_CSS_INIT}': 'hide'  // hide the initial input
-                // },
-                dropZoneEnabled : false,
+                showCancel: false,
+                dropZoneEnabled : true,
+                browseOnZoneClick: true,
                 fileActionSettings:{
-                  showUpload : false,
+                    showUpload : false,
+                    showZoom: false,
+                    showDrag: false,
+                    showDownload: false,
+                    removeIcon: '<i class="fa fa-trash text-danger"></i>',
+                },
+                layoutTemplates: {
+                    progress: '<div class="kv-upload-progress hidden"></div>'
                 }
             })
 
+            $('.price').priceFormat({
+                prefix: '',
+//                thousandsSeparator: '',
+//                clearOnEmpty: true
+            })
         })
     </script>
 @stop

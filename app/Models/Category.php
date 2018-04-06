@@ -14,4 +14,9 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Brand');
     }
+
+    public function metas()
+    {
+        return $this->morphMany('App\Models\Meta', 'metable');
+    }
 }

@@ -9,4 +9,9 @@ class News extends Model
     public $table = 'news';
 
     protected $guarded =['id'];
+
+    public function metas()
+    {
+        return $this->morphMany('App\Models\Meta', 'metable');
+    }
 }

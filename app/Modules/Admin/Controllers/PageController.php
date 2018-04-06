@@ -80,7 +80,21 @@ class PageController extends Controller
             'img_url' => $img_url,
             'type' => $request->input('type'),
         ];
-        $this->page->create($data);
+        $page = $this->page->create($data);
+
+        if($request->has('seo_checking')){
+            if($request->has('meta_img')){
+                $img_meta = $this->common->getPath($request->input('meta_img'));
+            }else{
+                $img_meta = '';
+            }
+            $data_seo = [
+                'meta_keyword' => $request->input('keywords'),
+                'meta_description' => $request->input('description'),
+                'meta_img' => $img_meta,
+            ];
+            $page->metas()->save(new \App\Models\Meta($data_seo));
+        }
         return redirect()->route('admin.page.index')->with('success','Created !');
     }
 
@@ -126,7 +140,26 @@ class PageController extends Controller
             'img_url' => $img_url,
             'type' => $request->input('type'),
         ];
-        $this->page->update($data, $id);
+        $page = $this->page->update($data, $id);
+
+        if($request->has('seo_checking')){
+            if($request->has('meta_img')){
+                $img_meta = $this->common->getPath($request->input('meta_img'));
+            }else{
+                $img_meta = '';
+            }
+            $data_seo = [
+                'meta_keyword' => $request->input('keywords'),
+                'meta_description' => $request->input('description'),
+                'meta_img' => $img_meta,
+            ];
+            if(!$request->has('meta_id')){
+                $page->metas()->save(new \App\Models\Meta($data_seo));
+            }else{
+                \DB::table('metables')->where('id',$request->input('meta_id'))->update($data_seo);
+            }
+        }
+
         return redirect()->route('admin.page.index')->with('success', 'Updated !');
     }
 

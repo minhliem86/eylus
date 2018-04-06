@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\NewsRepository;
 use App\Repositories\Eloquent\CommonRepository;
 use Datatables;
+use DB;
 
 class NewsController extends Controller
 {
@@ -93,7 +94,21 @@ class NewsController extends Controller
             'img_url' => $img_url,
             'order' => $order,
         ];
-        $this->news->create($data);
+        $news = $this->news->create($data);
+
+        if($request->has('seo_checking')){
+            if($request->has('meta_img')){
+                $img_meta = $this->common->getPath($request->input('meta_img'));
+            }else{
+                $img_meta = '';
+            }
+            $data_seo = [
+                'meta_keyword' => $request->input('keywords'),
+                'meta_description' => $request->input('description'),
+                'meta_img' => $img_meta,
+            ];
+            $news->metas()->save(new \App\Models\Meta($data_seo));
+        }
         return redirect()->route('admin.news.index')->with('success','Created !');
     }
 
@@ -140,7 +155,26 @@ class NewsController extends Controller
             'order' => $request->input('order'),
             'status' => $request->input('status'),
         ];
-        $this->news->update($data, $id);
+        $news = $this->news->update($data, $id);
+
+        if($request->has('seo_checking')){
+            if($request->has('meta_img')){
+                $img_meta = $this->common->getPath($request->input('meta_img'));
+            }else{
+                $img_meta = '';
+            }
+            $data_seo = [
+                'meta_keyword' => $request->input('keywords'),
+                'meta_description' => $request->input('description'),
+                'meta_img' => $img_meta,
+            ];
+            if(!$request->has('meta_id')){
+                $news->metas()->save(new \App\Models\Meta($data_seo));
+            }else{
+                \DB::table('metables')->where('id',$request->input('meta_id'))->update($data_seo);
+            }
+        }
+
         return redirect()->route('admin.news.index')->with('success', 'Updated !');
     }
 

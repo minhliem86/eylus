@@ -11,6 +11,7 @@
                     <strong>TIN KHUYẾN MÃI</strong>
                 </div>
                 <div class="card-body">
+                    <fieldset class="form-group">
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="title">Tên Bài Viết</label>
                             <div class="col-md-9">
@@ -72,7 +73,47 @@
                             </div>
                         </div>
                         <!--/.row-->
-            </div>
+                    </fieldset>
+
+                    <fieldset class="form-group">
+
+                        <div class="form-group row">
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input type="checkbox" id="seo_checking" name="seo_checking" checked class="custom-control-input ">
+                                <label class="custom-control-label" for="seo_checking"><b>CẤU HÌNH SEO</b></label>
+                            </div>
+                        </div>
+                        <div class="seo-container">
+                            <div class="form-group row">
+                                <label for="" class="col-md-3 col-form-label">Keywords</label>
+                                <div class="col-md-9">
+                                    {!! Form::text('keywords',old('keywords'), ['class' => 'form-control']) !!}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-md-3 col-form-label">Description</label>
+                                <div class="col-md-9">
+                                    {!! Form::text('description',old('description'), ['class' => 'form-control']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-3 col-form-label" >FB Sharing (600x315):</label>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <a id="lfm_meta" data-input="thumbnail_meta" data-preview="holder" class="btn btn-primary text-white">
+                                            <i class="fa fa-picture-o"></i> Chọn
+                                        </a>
+                                    </span>
+                                        <input id="thumbnail_meta" class="form-control" type="hidden" name="meta_img">
+                                    </div>
+                                    <img id="holder" style="margin-top:15px;max-height:100px;">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
                 <div class="card-footer">
                     <div class="col-md-9 offset-md-3">
                         <a href="{!! url()->previous() !!}" class="btn btn-danger text-white"><i class="fa fa-arrow-left"></i> Back</a>
@@ -94,6 +135,7 @@
         init_tinymce(url);
         // BUTTON ALONE
         init_btnImage(url,'#lfm');
+        init_btnImage(url,'#lfm_meta');
 
     </script>
 @stop

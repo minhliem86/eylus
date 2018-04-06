@@ -41,3 +41,13 @@ function init_btnImage(url,target){
 function init_btnFile(url,target){
     $(target).filemanager('file',{prefix: url+'/laravel-filemanager'});
 }
+ /*CONFIG SEO*/
+$('.seo-container').hide();
+if($('input[name=seo_checking]').is(':checked')){
+    $('.seo-container').show();
+}
+$('input[name=seo_checking]').change(function(){
+    $('.seo-container').slideToggle() ;
+
+})
+

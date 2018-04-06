@@ -96,7 +96,23 @@ class BrandController extends Controller
             'img_url' => $img_url,
             'order' => $order,
         ];
-        $this->brand->create($data);
+        $brand = $this->brand->create($data);
+
+        if($request->has('seo_checking')){
+            if($request->has('meta_img')){
+                $img_meta = $this->common->getPath($request->input('meta_img'));
+            }else{
+                $img_meta = '';
+            }
+            $data_seo = [
+                'meta_keyword' => $request->input('keywords'),
+                'meta_description' => $request->input('description'),
+                'meta_img' => $img_meta,
+            ];
+            $brand->metas()->save(new \App\Models\Meta($data_seo));
+        }
+
+
         return redirect()->route('admin.brand.index')->with('success','Created !');
     }
 
@@ -145,7 +161,26 @@ class BrandController extends Controller
             'order' => $request->input('order'),
             'status' => $request->input('status'),
         ];
-        $this->brand->update($data, $id);
+        $brand = $this->brand->update($data, $id);
+
+        if($request->has('seo_checking')){
+            if($request->has('meta_img')){
+                $img_meta = $this->common->getPath($request->input('meta_img'));
+            }else{
+                $img_meta = '';
+            }
+            $data_seo = [
+                'meta_keyword' => $request->input('keywords'),
+                'meta_description' => $request->input('description'),
+                'meta_img' => $img_meta,
+            ];
+            if(!$request->has('meta_id')){
+                $brand->metas()->save(new \App\Models\Meta($data_seo));
+            }else{
+                \DB::table('metables')->where('id',$request->input('meta_id'))->update($data_seo);
+            }
+        }
+
         return redirect()->route('admin.brand.index')->with('success', 'Updated !');
     }
 
