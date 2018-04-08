@@ -39,6 +39,7 @@
                                 <th>Sản Phẩm</th>
                                 <th>Thương Hiệu</th>
                                 <th>Mã Sản Phẩm</th>
+                                <th>Số lượng tồn kho</th>
                                 <th width="120">Hình ảnh</th>
                                 <th width="10%">Sắp xếp</th>
                                 <th width="10%">Trạng thái</th>
@@ -81,6 +82,7 @@
                     {data: 'brand_name', name: 'brand_name', 'title': 'Thương Hiệu'},
                     {data: 'img_url', name: 'img_url', 'title': 'Hình Ảnh', 'orderable': false},
                     {data: 'sku', name: 'sku', 'title': 'Mã Sản Phẩm'},
+                    {data: 'quantity', name: 'quantity', 'title': 'Số Lượng tồn kho'},
                     {data: 'order', name: 'order'},
                     {data: 'status', name: 'status', 'orderable': false},
                     {data: 'hot', name: 'hot', 'title': 'Nổi Bật', 'orderable': false},
@@ -154,7 +156,7 @@
                         })
                     })
                     $('input[name="hot"]').change(function(){
-                        let value = 0;
+                        var value = 0;
                         if($(this).is(':checked')){
                             value = 1;
                         }

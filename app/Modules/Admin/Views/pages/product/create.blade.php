@@ -66,7 +66,7 @@
                 <div class="card-header">
                     <strong>SẢN PHẨM</strong>
                 </div>
-                {!! Form::open(['route'=>'admin.product.store', 'class' =>'form']) !!}
+                {!! Form::open(['route'=>'admin.product.store', 'class' =>'form', 'files'=>true] ) !!}
                 <div class="card-body">
                     <fieldset>
                         <div class="form-group row">
@@ -86,19 +86,19 @@
                             <div class="col-md-9">
                                 <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active show" data-toggle="pill" href="#title_vi" role="tab" aria-controls="pills-title_vi">VI</a>
+                                        <a class="nav-link active show" data-toggle="pill" href="#name_vi" role="tab" aria-controls="pills-name_vi">VI</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#title_en" role="tab" aria-controls="pills-title_en">EN</a>
+                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#name_en" role="tab" aria-controls="pills-name_en">EN</a>
                                     </li>
                                 </ul>
 
                                 <div class="tab-content" id="pills-tabContent">
-                                    <div class="tab-pane fade active show" id="title_vi" role="tabpanel" aria-labelledby="pills-title_vi">
-                                        <input type="text" class="form-control" name="title_vi">
+                                    <div class="tab-pane fade active show" id="name_vi" role="tabpanel" aria-labelledby="pills-name_vi">
+                                        <input type="text" class="form-control" name="name_vi">
                                     </div>
-                                    <div class="tab-pane fade" id="title_en" role="tabpanel" aria-labelledby="pills-title_en">
-                                        <input type="text" class="form-control" name="title_en">
+                                    <div class="tab-pane fade" id="name_en" role="tabpanel" aria-labelledby="pills-name_en">
+                                        <input type="text" class="form-control" name="name_en">
                                     </div>
                                 </div>
                             </div>
@@ -170,6 +170,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="" class="col-md-3 col-form-label">Số lượng nhập kho</label>
+                            <div class="col-md-9">
+                                {!! Form::text('quantity',old('quantity'), ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-md-3 col-form-label">Hình đại diện:</label>
                             <div class="col-md-9">
                                 <div class="input-group">
@@ -219,13 +225,13 @@
                                 <div class="col-md-9">
                                     <div class="input-group">
                                     <span class="input-group-btn">
-                                        <a id="lfm_meta" data-input="thumbnail_meta" data-preview="holder" class="btn btn-primary text-white">
+                                        <a id="lfm_meta" data-input="thumbnail_meta" data-preview="meta_preview" class="btn btn-primary text-white">
                                             <i class="fa fa-picture-o"></i> Chọn
                                         </a>
                                     </span>
                                         <input id="thumbnail_meta" class="form-control" type="hidden" name="meta_img">
                                     </div>
-                                    <img id="holder" style="margin-top:15px;max-height:100px;">
+                                    <img id="meta_preview" style="margin-top:15px;max-height:100px;">
                                 </div>
                             </div>
                         </div>
@@ -265,7 +271,7 @@
         init_tinymce(url);
         // BUTTON ALONE
         init_btnImage(url,'#lfm');
-        init_btnImage(url,'#lfm-meta');
+        init_btnImage(url,'#lfm_meta');
 
         $(document).ready(function(){
             $("#thumb-input").fileinput({
@@ -291,6 +297,7 @@
 
             $('.price').priceFormat({
                 prefix: '',
+                centsLimit:0,
 //                thousandsSeparator: '',
 //                clearOnEmpty: true
             })
