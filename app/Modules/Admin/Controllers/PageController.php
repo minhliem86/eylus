@@ -143,11 +143,8 @@ class PageController extends Controller
         $page = $this->page->update($data, $id);
 
         if($request->has('seo_checking')){
-            if($request->has('meta_img')){
-                $img_meta = $this->common->getPath($request->input('meta_img'));
-            }else{
-                $img_meta = '';
-            }
+            $img_meta = $this->common->getPath($request->input('meta_img'));
+
             $data_seo = [
                 'meta_keyword' => $request->input('keywords'),
                 'meta_description' => $request->input('description'),

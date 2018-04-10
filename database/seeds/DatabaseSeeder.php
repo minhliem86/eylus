@@ -1,9 +1,25 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
 {
+    protected $tables =
+        [
+            'customers',
+            'payment_methods',
+            'ship_statuses'
+
+        ];
+
+    protected $seeders =
+        [
+            CustomerSeeder::class,
+            PaymentMethodSeeder::class,
+            ShipStatusSeeder::class
+        ];
+
     /**
      * Run the database seeds.
      *
@@ -11,6 +27,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        Model::unguard();
+        if (\DB::connection()->getName() === 'mysql') {
+            $this->truncateDatabase();
+        }
+        foreach ($this->seeders as $seeder) {
+            $this->call($seeder);
+        }
+        Model::reguard();
+    }
+
+    private function truncateDatabase()
+    {
+        \DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        foreach ($this->tables as $table) {
+            \DB::table($table)->truncate();
+        }
+        \DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

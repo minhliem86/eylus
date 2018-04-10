@@ -24,6 +24,4 @@ class Product extends Model
     {
         return $this->morphMany('App\Models\Photo', 'photoable');
     }
-
-
 }

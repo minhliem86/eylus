@@ -120,15 +120,15 @@
                                 <div class="col-md-9">
                                     <div class="input-group">
                                     <span class="input-group-btn">
-                                        <a id="lfm_meta" data-input="thumbnail_meta" data-preview="holder" class="btn btn-primary text-white">
+                                        <a id="lfm_meta" data-input="thumbnail_meta" data-preview="meta_preview" class="btn btn-primary text-white">
                                             <i class="fa fa-picture-o"></i> Chọn
                                         </a>
                                     </span>
-                                        {{Form::hidden('meta_img',$inst->metas()->count() ? old($inst->metas()->first()->meta_img) : '', ['class'=>'form-control', 'id'=>'thumbnail_meta' ])}}
+                                        {{Form::hidden('meta_img',$inst->metas()->count() ? $inst->metas()->first()->meta_img : '', ['class'=>'form-control', 'id'=>'thumbnail_meta' ])}}
 
                                     </div>
 
-                                    <img id="holder" style="margin-top:15px;max-height:100px;"{!! $inst->metas()->count() ? 'src="'.asset('public/uploads/'.$inst->metas()->first()->meta_img).'"' : null  !!} >
+                                    <img id="meta_preview" style="margin-top:15px;max-height:100px;"{!! $inst->metas()->count() ? 'src="'.asset('public/uploads/'.$inst->metas()->first()->meta_img).'"' : null  !!} >
                                 </div>
                             </div>
                             {!! Form::hidden('meta_id',$inst->metas()->count() ? $inst->metas()->first()->id : '') !!}

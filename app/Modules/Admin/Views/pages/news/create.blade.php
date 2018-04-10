@@ -99,13 +99,13 @@
                                 <div class="col-md-9">
                                     <div class="input-group">
                                     <span class="input-group-btn">
-                                        <a id="lfm_meta" data-input="thumbnail_meta" data-preview="holder" class="btn btn-primary text-white">
+                                        <a id="lfm_meta" data-input="thumbnail_meta" data-preview="meta_preview" class="btn btn-primary text-white">
                                             <i class="fa fa-picture-o"></i> Chọn
                                         </a>
                                     </span>
                                         <input id="thumbnail_meta" class="form-control" type="hidden" name="meta_img">
                                     </div>
-                                    <img id="holder" style="margin-top:15px;max-height:100px;">
+                                    <img id="meta_preview" style="margin-top:15px;max-height:100px;">
                                 </div>
                             </div>
                         </div>
