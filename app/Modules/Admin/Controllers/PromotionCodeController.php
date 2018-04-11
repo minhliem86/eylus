@@ -1,19 +1,20 @@
 <?php
 namespace App\Modules\Admin\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Repositories\promotioncodeCodeRepository;
+use App\Repositories\PromotionCodeRepository;
 use App\Repositories\Eloquent\CommonRepository;
 use Datatables;
 
-class promotioncodeCodeController extends Controller
+class PromotionCodeController extends Controller
 {
     protected $promotioncode;
     protected $common;
-    public function __construct(promotioncodeCodeRepository $promotioncode, CommonRepository $common)
+    public function __construct(PromotionCodeRepository $promotioncode, CommonRepository $common)
     {
         $this->promotioncode = $promotioncode;
         $this->common = $common;
@@ -26,7 +27,7 @@ class promotioncodeCodeController extends Controller
     public function index(Request $request )
     {
         if($request->ajax()){
-            $promotioncode = $this->promotioncode->query(['id', 'title_vi', 'img_url', 'order', 'status']);
+            $promotioncode = $this->promotioncode->query(['id', 'name', 'sku_promotion', 'type', 'value', 'value_type', 'quantity', 'status', 'from_time', 'to_time', 'num_use']);
             return Datatables::of($promotioncode)
                 ->addColumn('action', function($promotioncode){
                     return '<a href="'.route('admin.promotioncode.edit', $promotioncode->id).'" class="btn btn-success btn-sm d-inline-block"><i class="fa fa-edit"></i> </a>
@@ -35,8 +36,13 @@ class promotioncodeCodeController extends Controller
                     <input name="_token" type="hidden" value="'.csrf_token().'">
                                <button class="btn  btn-danger btn-sm" type="button" attrid=" '.route('admin.promotioncode.destroy', $promotioncode->id).' " onclick="confirm_remove(this);" > <i class="fa fa-trash"></i></button>
                </form>' ;
-                })->editColumn('order', function($promotioncode){
-                    return "<input type='text' name='order' class='form-control' data-id= '".$promotioncode->id."' value= '".$promotioncode->order."' />";
+                })->addColumn('time', function($promotioncode){
+                    $from_time = Carbon::parse($promotioncode->from_time)->format('d-m-Y');
+                    $to_time = Carbon::parse($promotioncode->to_time)->format('d-m-Y');
+                    return $time = $from_time . ' - '. $to_time;
+                })->addColumn('value',function($promotioncode){
+                    $value = $promotioncode->value. ' ' .$promotioncode->value_type;
+                    return $value;
                 })->editColumn('status', function($promotioncode){
                     $status = $promotioncode->status ? 'checked' : '';
                     $promotioncode_id =$promotioncode->id;
@@ -51,7 +57,7 @@ class promotioncodeCodeController extends Controller
                     return '<img src="'.asset('public/uploads/'.$promotioncode->img_url).'" width="60" class="img-fluid">';
                 })->filter(function($query) use ($request){
                     if (request()->has('name')) {
-                        $query->where('title_vi', 'like', "%{$request->input('name')}%");
+                        $query->where('sku_promotion', 'like', "%{$request->input('name')}%");
                     }
                 })->setRowId('id')->make(true);
         }
@@ -77,22 +83,24 @@ class promotioncodeCodeController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->has('img_url')){
-            $img_url = $this->common->getPath($request->input('img_url'));
-        }else{
-            $img_url = '';
-        }
-        $order = $this->promotioncode->getOrder();
+        $from = Carbon::createFromFormat('d-m-Y', $request->input('from_time'))->format('Y-m-d');
+        $to = Carbon::createFromFormat('d-m-Y', $request->input('to_time'))->format('Y-m-d');
+
 
         $data = [
-            'title_vi' => $request->input('title_vi'),
-            'title_en' => $request->input('title_en'),
-            'slug' => \LP_lib::unicode($request->input('title_vi')),
-            'content_vi' => $request->input('content_vi'),
-            'content_en' => $request->input('content_en'),
-            'img_url' => $img_url,
-            'order' => $order,
+            'name' => $request->input('name'),
+            'slug' => $request->input('name'),
+            'sku_promotion' => strtoupper(str_replace(' ', '', $request->input('sku_promotion'))) ,
+            'description' => $request->input('description'),
+            'type' => 'discount',
+            'target' => 'subtotal',
+            'value' => intval(str_replace(',','',$request->value)),
+            'value_type' => $request->input('value_type'),
+            'quantity' => intval(str_replace(',','',$request->quantity)),
+            'from_time' =>$from,
+            'to_time' => $to,
         ];
+
         $promotioncode = $this->promotioncode->create($data);
 
         if($request->has('seo_checking')){
@@ -143,25 +151,28 @@ class promotioncodeCodeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $img_url = $this->common->getPath($request->input('img_url'));
+        $from = Carbon::createFromFormat('d-m-Y', $request->input('from_time'))->format('Y-m-d');
+        $to = Carbon::createFromFormat('d-m-Y', $request->input('to_time'))->format('Y-m-d');
+
         $data = [
-            'title_vi' => $request->input('title_vi'),
-            'title_en' => $request->input('title_en'),
-            'slug' => \LP_lib::unicode($request->input('title_vi')),
-            'content_vi' => $request->input('content_vi'),
-            'content_en' => $request->input('content_en'),
-            'img_url' => $img_url,
-            'order' => $request->input('order'),
-            'status' => $request->input('status'),
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug'),
+            'sku_promotion' => strtoupper(str_replace(' ', '', $request->input('sku_promotion'))) ,
+            'description' => $request->input('description'),
+            'type' => 'discount',
+            'target' => 'subtotal',
+            'value' => intval(str_replace(',','',$request->value)),
+            'value_type' => $request->input('value_type'),
+            'quantity' => intval(str_replace(',','',$request->quantity)),
+            'from_time' =>$from,
+            'to_time' => $to,
+            'status' => $request->input('status')
         ];
+
         $promotioncode = $this->promotioncode->update($data, $id);
 
         if($request->has('seo_checking')){
-            if($request->has('meta_img')){
-                $img_meta = $this->common->getPath($request->input('meta_img'));
-            }else{
-                $img_meta = '';
-            }
+            $img_meta = $this->common->getPath($request->input('meta_img'));
             $data_seo = [
                 'meta_keyword' => $request->input('keywords'),
                 'meta_description' => $request->input('description'),

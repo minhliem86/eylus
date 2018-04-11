@@ -32,6 +32,15 @@
             <li class="nav-item ">
                 <a href="{!! route('admin.product.index') !!}" class="nav-link {!! LP_lib::setActive('2','product') !!}"><i class="icon-drop"></i> Sản Phẩm</a>
             </li>
+            <li class="nav-item ">
+                <a href="{!! route('admin.promotioncode.index') !!}" class="nav-link {!! LP_lib::setActive('2','promotioncode') !!}"><i class="icon-drop"></i> Mã Khuyến Mãi</a>
+            </li>
+            <li class="nav-item ">
+                <a href="{!! route('admin.order.index') !!}" class="nav-link {!! LP_lib::setActive('2','order') !!}"><i class="icon-drop"></i> Quản Lý Đơn Hàng</a>
+            </li>
+            <li class="nav-item ">
+                <a href="{!! route('admin.customer.index') !!}" class="nav-link {!! LP_lib::setActive('2','customer') !!}"><i class="icon-drop"></i> Quản Lý Khách Hàng</a>
+            </li>
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-bell"></i> Notifications</a>
                 <ul class="nav-dropdown-items">

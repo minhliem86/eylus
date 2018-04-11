@@ -119,7 +119,7 @@
                                             <i class="fa fa-picture-o"></i> Chọn
                                         </a>
                                     </span>
-                                        {{Form::hidden('meta_img',$inst->metas()->count() ? old($inst->metas()->first()->meta_img) : '', ['class'=>'form-control', 'id'=>'thumbnail_meta' ])}}
+                                        {{Form::hidden('meta_img',$inst->metas()->count() ? $inst->metas()->first()->meta_img : '', ['class'=>'form-control', 'id'=>'thumbnail_meta' ])}}
 
                                     </div>
 

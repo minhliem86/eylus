@@ -101,6 +101,25 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
             Route::post('ship-cost/postAjaxUpdateOrder', ['as' => 'admin.ship-cost.postAjaxUpdateOrder', 'uses' => 'ShipController@postAjaxUpdateOrder']);
             Route::resource('ship-cost', 'ShipController');
 
+            /*PROMOTION CODE*/
+            Route::post('promotioncode/deleteAll', ['as' => 'admin.promotioncode.deleteAll', 'uses' => 'PromotionCodeController@deleteAll']);
+            Route::post('promotioncode/updateStatus', ['as' => 'admin.promotioncode.updateStatus', 'uses' => 'PromotionCodeController@updateStatus']);
+            Route::post('promotioncode/postAjaxUpdateOrder', ['as' => 'admin.promotioncode.postAjaxUpdateOrder', 'uses' => 'PromotionCodeController@postAjaxUpdateOrder']);
+            Route::resource('promotioncode', 'PromotionCodeController');
+
+            /*ORDER*/
+            Route::post('order/deleteAll', ['as' => 'admin.order.deleteAll', 'uses' => 'OrderController@deleteAll']);
+            Route::post('order/updateStatus', ['as' => 'admin.order.updateStatus', 'uses' => 'OrderController@updateStatus']);
+            Route::post('order/postAjaxUpdateOrder', ['as' => 'admin.order.postAjaxUpdateOrder', 'uses' => 'OrderController@postAjaxUpdateOrder']);
+            Route::resource('order', 'OrderController');
+
+            /*CUSTOMER*/
+            Route::post('customer/deleteAll', ['as' => 'admin.customer.deleteAll', 'uses' => 'CustomerController@deleteAll']);
+            Route::get('customer/order/{id}', ['as' => 'admin.customer.order', 'uses' => 'CustomerController@getOrderCustomer'])->where('id','[0-9A-Za-z._\-]+');
+            Route::post('customer/updateStatus', ['as' => 'admin.customer.updateStatus', 'uses' => 'CustomerController@updateStatus']);
+            Route::post('customer/postAjaxUpdateOrder', ['as' => 'admin.customer.postAjaxUpdateOrder', 'uses' => 'CustomerController@postAjaxUpdateOrder']);
+            Route::resource('customer', 'CustomerController');
+
 
         });
     });
