@@ -115,6 +115,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
 
             /*CUSTOMER*/
             Route::post('customer/deleteAll', ['as' => 'admin.customer.deleteAll', 'uses' => 'CustomerController@deleteAll']);
+            Route::get('customer/order/{id}', ['as' => 'admin.customer.order', 'uses' => 'CustomerController@getOrderCustomer'])->where('id','[0-9A-Za-z._\-]+');
             Route::post('customer/updateStatus', ['as' => 'admin.customer.updateStatus', 'uses' => 'CustomerController@updateStatus']);
             Route::post('customer/postAjaxUpdateOrder', ['as' => 'admin.customer.postAjaxUpdateOrder', 'uses' => 'CustomerController@postAjaxUpdateOrder']);
             Route::resource('customer', 'CustomerController');

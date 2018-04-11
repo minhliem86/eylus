@@ -40,7 +40,13 @@ class OrderController extends Controller
                 })->editColumn('paymentmethod_id', function($order){
                     $payment = $order->paymentmethods->name_vi;
                     return $payment;
-                })->editColumn('shipstatus_id','Admin::datatables.shipstatus_option', compact('abc'))
+                })->editColumn('shipstatus_id',function($order){
+                    $data_list = \DB::table('ship_statuses')->lists('description','id');
+                    $item_id = $order->shipstatus_id;
+                    $view = view('Admin::datatables.select', compact('data_list', 'item_id'))->render();
+                    return $view;
+
+                })
                 ->editColumn('created_at',function($order){
                     return $time = Carbon::parse($order->created_at)->format('d/m/Y');
                 })->filter(function($query) use ($request){

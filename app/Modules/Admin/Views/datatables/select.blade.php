@@ -1,0 +1,1 @@
+{!! Form::select('shipstatus', $data_list, $item_id, ['class'=> 'form-control']) !!}
