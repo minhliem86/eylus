@@ -1,141 +1,158 @@
-@extends('Client::layouts.default')
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @yield('meta')
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=vietnamese" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&amp;subset=vietnamese" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('public/assets/client/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/assets/client/css/style.css')}}">
 
-@section('content')
-    @include('Client::layouts.banner')
+    <script src="{{asset('public/assets/client/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="{{asset('public/assets/client/js/bootstrap.min.js')}}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 
-    @if(!$product->isEmpty())
-    <!--PRODUCT-->
-    <section class="product-container page-section">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="product-inner" data-aos="fade-up">
-                        <h2 class="title-section mx-auto">Tiger-d Products</h2>
+    <!-- SLICK -->
+    <link rel="stylesheet" href="{!! asset('public/assets/client') !!}/js/plugins/slick/slick.css">
+    <script src="{!! asset('public/assets/client') !!}/js/plugins/slick/slick.min.js"></script>
 
-                        <div class="product-body" >
-                            <div class="swiper-container" id="swiper-product">
-                                <div class="swiper-wrapper">
-                                    @foreach($product as $item_product)
-                                        @php
-                                            $slug = $item_product->slug;
-                                        @endphp
-                                        @if($item_product->product_links->isEmpty())
-                                            <div class="swiper-slide">
-                                                <div class="each-product">
-                                                    <figure>
-                                                        <a href="{!! route('client.product', $item_product->slug) !!}"><img src="{!! asset($item_product->img_url) !!}" class="img-fluid mx-auto mb-2" alt="{!! $item_product->name !!}"></a>
-                                                        <figcaption>
-                                                            <p class="product-name"><a href="{!! route('client.product', $item_product->slug) !!}">{!! $item_product->name !!}</a></p>
-                                                            <p class="price {!! $item_product->discount ? 'discount' : null !!}">{!! number_format($item_product->price) !!} VND</p>
-                                                            @if($item_product->discount)
-                                                            <p class="price">{!! number_format($item_product->discount) !!} VND</p>
-                                                            @endif
-                                                            @if(!$item_product->stock <= 0)
-                                                                <button type="button" class="btn btn-outline-default btn-add-to-cart" onclick="addToCartAjax('{!! route("client.cart.addToCartAjax") !!}', {!! $item_product->id !!})">Thêm Giỏ Hàng</button>
-                                                            @else
-                                                                <button type="button" class="btn btn-outline-default btn-add-to-cart" disabled="">Hết Hàng</button>
-                                                            @endif
-                                                        </figcaption>
-                                                    </figure>
-                                                </div>
-                                            </div>
-                                        @else
-                                            @foreach($item_product->product_links as $item_link)
-                                                @php
-                                                    $product_child = App\Models\Product::find($item_link->link_to_product_id);
-                                                @endphp
-                                                @if($product_child->default)
-                                                    <div class="swiper-slide">
-                                                        <div class="each-product">
-                                                            <figure>
-                                                                <a href="{!! route('client.product', $item_product->slug) !!}"><img src="{!! asset($product_child->img_url) !!}" class="img-fluid mx-auto mb-2" alt="{!! $product_child->name !!}"></a>
-                                                                <figcaption>
-                                                                    <p class="product-name"><a href="{!! route('client.product', $item_product->slug) !!}">{!! $item_product->name !!}</a></p>
-                                                                    <p class="price {!! $product_child->discount ? 'discount' : null !!}">{!! number_format($product_child->price) !!} VND</p>
-                                                                    @if($product_child->discount)
-                                                                        <p class="price">{!! number_format($product_child->discount) !!} VND</p>
-                                                                    @endif
-                                                                    @if(!$product_child->stock <= 0)
-                                                                    <a href="{!! route('client.product', $item_product->slug) !!}" class="btn btn-outline-default btn-add-to-cart">Xem Sản Phẩm</a>
-                                                                    @else
-                                                                        <button type="button" class="btn btn-outline-default btn-add-to-cart" disabled="">Hết Hàng</button>
-                                                                    @endif
-                                                                </figcaption>
-                                                            </figure>
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            @endforeach
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <!-- If we need navigation buttons -->
-                                <div class="swiper-button-prev swiper-button"></div>
-                                <div class="swiper-button-next swiper-button"></div>
+    <script>
+        $(document).ready(function(){
+            $('.featured-product-slick').slick({
+                slidesToShow: 3,
+                prevArrow: '<i class="fa fa-angle-left"></i>',
+                nextArrow: '<i class="fa fa-angle-right"></i>',
+            })
+        })
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="page">
+        <div class="pre-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex justify-content-end">
+                            <div class="item-wrap">
+                                 <a href="#"><i class="fa fa-user"></i> Đăng nhập</a>
+                            </div>
+                            <div class="item-wrap">
+                                <a href="#"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                            </div>
+                            <div class="item-wrap">
+                                <a href="#"><img src="{!! asset('public/assets/client') !!}/images/flag-en.png" class="img-fluid" alt="English"></a>
+                                <a href="#"><img src="{!! asset('public/assets/client') !!}/images/flag-vi.png" class="img-fluid" alt="Tiếng Việt"></a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!--END PRODUCT-->
-    @endif
+        <!-- end -->
 
-    <!--VIDEO FANPAGE-->
-    <section class="video-container page-section" data-aos="fade-up">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h2 class="title-section mx-auto">Tiger-D Video</h2>
-                    <div class="video-inner">
-                        <div data-type="youtube" data-video-id="GaW0OYw7OMY"></div>
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="logo-wrapper">
+                            <a href="#"><img src="{!! asset('public/assets/client') !!}/images/logo_bk.png" class="img-fluid" alt="Eylux"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="navbar-wrapper height d-flex justify-content-md-end align-items-md-end">
+                            <nav class="navbar navbar-expand-lg my-navbar ">
+                                <div class="collapse navbar-collapse" id="main-menu">
+                                    <ul class="navbar-nav nav-menu align-content-end">
+                                        <li class="nav-item">
+                                            <a href="#">Trang Chủ</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#">Về Chúng Tôi</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-toggle" href="#" id="submenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Sản Phẩm
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="submenu">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#">Bộ Sưu Tập</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#">Khuyến Mãi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#">Liên Hệ</a>
+                                        </li>
+                                        <li class="nav-item search-item">
+                                            <span data-toggle="collapse" data-target="#search-box" aria-controls="search-box"><i class="fa fa-search"></i></span>
+                                            <div id="search-box" class="collapse">
+                                                <div class="input-group">
+                                                    <input type="text" name="search-key" class="form-control">
+                                                    <button class="input-group-append" type="submit"><i class="fa fa-search"></i></button>
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </header>
+        <!-- end -->
 
-    @if(!$news->isEmpty())
-        <!--NEWS-->
-        <section class="news-container page-section">
+        <section class="banner section">
+            <div class="container-fluid">
+                <div class="row">
+                    <img src="{!! asset('public/assets/client') !!}/images/banner-fair.jpg" class="img-fluid" alt="">
+                </div>
+            </div>
+        </section>
+        <!-- end -->
+
+        <section class="section feature">
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <div class="news-inner" data-aos="fade-up">
-                            <h2 class="title-section mx-auto">Tiger-d News</h2>
-                            <div class="news-body">
-                                <div class="swiper-container" id="swiper-news">
-                                    <div class="swiper-wrapper">
-                                        @foreach($news->chunk(2) as $item_news_chunk)
-                                            <div class="swiper-slide">
-                                                <div class="each-news">
-                                                    @foreach($item_news_chunk as $item_news)
-                                                        <div class="media">
-                                                            <a href="{!! route('client.news.detail', $item_news->slug) !!}"><img src="{!! asset($item_news->img_url) !!}" class="mr-5" alt="{!! $item_news->name !!}"></a>
-                                                            <div class="media-body">
-                                                                <h3 class="news-name"><a href="{!! route('client.news.detail', $item_news->slug) !!}">{!! $item_news->name !!}</a></h3>
-                                                                <p>{!! $item_news->description !!}</p>
-                                                                <a href="{!! route('client.news.detail', $item_news->slug) !!}" class="readmore float-right">Read more ...</a>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
+                        <div class="title-wrapper text-center">
+                            <h2 class="title-section">Featured Product</h2>
+                        </div>
 
-                                    <!-- If we need navigation buttons -->
-                                    <div class="swiper-button-prev swiper-button">
-                                    <span class="btn-news-next">
-                                        <i class="fa fa-chevron-left"></i>
-                                    </span>
-                                    </div>
-                                    <div class="swiper-button-next swiper-button">
-                                    <span class="btn-news-next">
-                                        <i class="fa fa-chevron-right"></i>
-                                    </span>
-                                    </div>
+                        <div class="content-wrapper">
+                            <div class="featured-product-slick">
+                                <div class="item-feature">
+                                    <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                                    <h4 class="title-product">Product 01</h4>
+                                    <p class="price">100.000 vnd</p>
+                                    <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
+                                </div>
+                                <div class="item-feature">
+                                    <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                                    <h4 class="title-product">Product 01</h4>
+                                    <p class="price">100.000 vnd</p>
+                                    <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
                                 </div>
                             </div>
                         </div>
@@ -143,20 +160,221 @@
                 </div>
             </div>
         </section>
-        <!--END NEWS-->
-    @endif
 
-    @include("Client::layouts.fanpage")
+        <section class="section promotion">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="title-wrapper text-center">
+                            <h2 class="title-section">Promotion Product</h2>
+                        </div>
 
-    @include('Client::layouts.testimonial')
-@stop
+                        <div class="content-wrapper">
+                            <div class="promotion-product-slick">
+                                <div class="item-promotion">
+                                    <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                                    <h4 class="title-product">Product 01</h4>
+                                    <p class="price">100.000 vnd</p>
+                                    <a href="#" class="btn-detail-product">Chi tiết</a>
+                                </div>
+                                <div class="item-promotion">
+                                    <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                                    <h4 class="title-product">Product 01</h4>
+                                    <p class="price">100.000 vnd</p>
+                                    <a href="#" class="btn-detail-product">Chi tiết</a>
+                                </div>
+                            </div>
 
-@section('script')
-    <link rel="stylesheet" href="{!! asset('public/assets/client/js/plugins/video/plyr.css') !!}">
-    <script src="{!! asset('public/assets/client/js/plugins/video/plyr.js') !!}"></script>
-    <script>
-        $(document).ready(function(){
-            plyr.setup();
-        })
-    </script>
-@stop
+                            <div class="button-container text-center">
+                                <a href="#" class="btn-more">Xem thêm sản phẩm</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bg-yellow compare-product">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="imageCompare">
+                            <div style="display:none">
+                                <img src="{!! asset('public/assets/client') !!}/images/lego-gray.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div>
+                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="imageCompare">
+                            <div style="display:none">
+                                <img src="{!! asset('public/assets/client') !!}/images/lego-gray.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div>
+                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="imageCompare">
+                            <div style="display:none">
+                                <img src="{!! asset('public/assets/client') !!}/images/lego-gray.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div>
+                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="imageCompare">
+                            <div style="display:none">
+                                <img src="{!! asset('public/assets/client') !!}/images/lego-gray.jpg" class="img-fluid" alt="">
+                            </div>
+                            <div>
+                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end -->
+
+        <section class="section best-seller">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="each-bestSeller">
+                            <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                            <h4 class="title-product">Product 01</h4>
+                            <p class="price">100.000 vnd</p>
+                            <a href="#" class="btn-detail-product">Chi tiết</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="each-bestSeller">
+                            <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                            <h4 class="title-product">Product 01</h4>
+                            <p class="price">100.000 vnd</p>
+                            <a href="#" class="btn-detail-product">Chi tiết</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="each-bestSeller">
+                            <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                            <h4 class="title-product">Product 01</h4>
+                            <p class="price">100.000 vnd</p>
+                            <a href="#" class="btn-detail-product">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end -->
+
+        <section class="section photo-home">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <img src="{!! asset('public/assets/client') !!}/images/img-home.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end -->
+
+        <section class="section video">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="video-container">
+                            <div class="title-wrapper">
+                                <img src="{!! asset('public/assets/client') !!}/images/video.png" class="img-fluid mx-auto" alt="">
+                            </div>
+                            <div class="video-wrapper">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <div class="photo-container">
+                            <div class="title-wrapper">
+                                <img src="{!! asset('public/assets/client') !!}/images/look.png" class="img-fluid mx-auto" alt="">
+                            </div>
+                            <div class="photo-wrapper">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="footer-container">
+                            <ul class="list-footer">
+                                <li class="header">About Eylux</li>
+                                <li class="item-footer"><a href="#">Trang chủ</a></li>
+                                <li class="item-footer"><a href="#">Giới thiệu</a></li>
+                                <li class="item-footer"><a href="#">Khuyến mãi</a></li>
+                                <li class="item-footer"><a href="#">Liên hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer-container">
+                            <ul class="list-footer">
+                                <li class="header">Hướng Dẫn</li>
+                                <li class="item-footer"><a href="#">Hướng dẫn mưa hàng</a></li>
+                                <li class="item-footer"><a href="#">Hướng dẫn thanh toán</a></li>
+                                <li class="item-footer"><a href="#">Hướng dẫn</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer-container">
+                            <ul class="list-footer">
+                                <li class="header">Sản Phẩm</li>
+                                <li class="item-footer"><a href="#">Product 01</a></li>
+                                <li class="item-footer"><a href="#">Product 02</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer-container">
+                            <div class="title-wrapper">
+                                <h3 class="title-footer">ĐĂNG KÝ THÔNG TIN</h3>
+                                <sup>Đăng ký để nhận thông tin.</sup>
+                            </div>
+                            <div class="form-wrapper mb-2">
+                                {!! Form::open(['route' => 'client.home', 'class' => 'form']) !!}
+                                <div class="input-group">
+                                    <input type="text" name="subscribe" class="form-control" placeholder="Your Email ..." ria-describedby="inputAppend" required>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn-submit input-group-text"><i class="fa fa-angle-right"></i></button>
+                                    </div>
+                                </div>
+                                {!! Form::close() !!}
+                            </div>
+                            <div class="icon-footer d-flex justify-content-end">
+                                <a href="#" class="ic-wrapper ic-fb"><i class="fa fa-facebook-f"></i></a>
+                                <a href="#" class="ic-wrapper ic-yt"><i class="fa fa-youtube"></i></a>
+                                <a href="#" class="ic-wrapper ic-tw"><i class="fa fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -5,7 +5,7 @@ Route::group(['middleware'=>['web'],'namespace' => 'App\Modules\Client\Controlle
     /*CONTACT US*/
     Route::get('/lien-he', ['as' => 'client.contact', 'uses' => 'ContactController@getIndex']);
     Route::post('/lien-he', ['as' => 'client.contact.post', 'uses' => 'ContactController@postIndex']);
-    Route::get('/cam-on-khach-hang', ['as' => 'client.contact.thankyou', 'uses' => 'ContactController@getThankyou']);
+    Route::get('/lien-he-thanh-cong', ['as' => 'client.contact.thankyou', 'uses' => 'ContactController@getThankyou']);
 
     /*NEWS*/
     Route::get('/tin-tuc', ['as' => 'client.news', 'uses' => 'NewsController@getIndex']);
@@ -37,7 +37,6 @@ Route::group(['middleware'=>['web'],'namespace' => 'App\Modules\Client\Controlle
     /*SUBCRIBE EMAIL*/
     Route::post('/subcribe',['as' => 'client.subcribe.post', 'uses' => 'ExtensionController@postSubscribe']);
     Route::post('/subcribe-header',['as' => 'client.subcribe-header.post', 'uses' => 'ExtensionController@postSubscribeHeader']);
-
 
     /*SEARCH*/
     Route::post('/search', ['as' => 'client.search.post', 'uses' => 'ExtensionController@postSearch']);
