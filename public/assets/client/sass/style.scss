@@ -39,6 +39,10 @@ a:hover{
   text-decoration: none !important;
 }
 
+.bg-yellow{
+  background:lighten($color-browse, 20%);
+}
+
 /****/
 
 .pre-header{
@@ -103,6 +107,9 @@ header.header{
 
 section{
   padding:5rem 0;
+  &.banner{
+    padding:0;
+  }
   .title-wrapper{
     margin-bottom:3rem;
   }
@@ -127,41 +134,177 @@ section{
   }
   .content-wrapper{
     text-align:center;
-    h4.title-product{
-      text-align:center;
-      font-size: 1.6rem;
-      color:$color-text;
-      text-transform: uppercase;
-      margin-bottom:1.5rem;
+  }
+  img.img-section{
+    margin-bottom:1.2rem;
+  }
+  h4.title-product{
+    text-align:center;
+    font-size: 1.6rem;
+    color:$color-text;
+    text-transform: uppercase;
+    margin-bottom:1.5rem;
+  }
+  p.price{
+    text-align:center;
+    color:$color-browse;
+    margin-bottom:1.5rem;
+    font-weight:600;
+  }
+  a.btn-addcart{
+    display: inline-block;
+    margin:0 auto;
+    padding: 0.3rem 3.5rem;
+    border:1px solid $color-text;
+    border-radius:5px;
+    color:$color-text;
+    text-transform: uppercase;
+    @include transition(all 0.3s);
+    &:hover{
+      background:$color-browse;
+      border-color:white;
+      color:white;
     }
-    p.price{
-      text-align:center;
+  }
+  .btn-control{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:10;
+    cursor:pointer;
+    i{
+      opacity:0.5;
+      font-size:5rem;
       color:$color-browse;
-      margin-bottom:1.5rem;
-      font-weight:600;
     }
-    a.btn-addcart{
-      display: inline-block;
-      margin:0 auto;
-      padding: 0.3rem 3.5rem;
-      border:1px solid $color-text;
-      border-radius:5px;
-      color:$color-text;
-      text-transform: uppercase;
+    &.btn-pre{
+      left:-20px;
     }
-
+    &.btn-next{
+      right:-20px;
+    }
   }
 }
 
 /*FEATURE*/
 .feature{
   .item-feature{
+    padding:0 1.5rem;
     img{
       margin:0 auto 1.2rem;
     }
+    &:focus{
+      outline:none;
+    }
+  }
+}
 
+/*PROMOTION*/
+.promotion{
+  .promotion-slick{
+    margin-bottom:3rem;
+    .item-promotion{
+      padding: 0 1.5rem;
+      &:focus{
+        outline:none;
+      }
+    }
+  }
+  .button-container{
+    padding:1.5rem 0;
+    a.btn-more{
+      font-weight:600;
+      padding:0.8rem 2.5rem;
+      border:1px solid white;
+      background:$color-browse;
+      text-transform: capitalize;
+      font-size:1.5rem;
+      border-radius:5px;
+      color:white;
+      @include transition(all 0.3s);
+      &:hover{
+        background:transparent;
+        border-color:$color-browse;
+        color:$color-browse;
+      }
+
+    }
+  }
+}
+
+/*BEST SELLER*/
+.best-seller{
+  .each-bestSeller{
+    @extend .content-wrapper;
   }
 }
 
 
-
+/*
+FOOTER*/
+footer{
+  padding: 5rem 0 8rem;
+  background:lighten($color-browse, 30%);
+  border-top:4px solid darken($color-browse, 8%);
+  .footer-container{
+      ul.list-footer{
+        list-style: none;
+        li.header{
+          font-size:1.8rem;
+          margin-bottom:1.6rem;
+          font-weight:600;
+        }
+        li{
+          a{
+            display: block;
+            padding:3px 0;
+            font-size: 1.4rem;
+          }
+        }
+      }
+    .title-wrapper{
+      margin-bottom:10px;
+      h3.title-footer{
+        text-transform: uppercase;
+        color:lighten($color-browse, 5%);
+        font-size:1.6rem;
+        line-height: 2rem;
+        margin-bottom:8px;
+      }
+      sup{
+        font-size:1.4rem;
+        color:$color-text;
+      }
+    }
+    .form-wrapper{
+      input{
+        padding:0.4rem 1rem;
+        font-size:1.4rem;
+      }
+      button{
+        padding:0.5rem 1rem;
+        border:none;
+        background:$color-browse;
+        color:white;
+        cursor:pointer;
+        i{
+          font-size:1.6rem
+        }
+      }
+    }
+    .icon-footer{
+      a{
+        font-size:2rem;
+        color:white;
+        margin-left:1.2rem;
+        padding: 10px;
+        borrder-radius:50%;
+        border:1px solid white;
+        background:$color-browse;
+        &:last-child{
+          //margin-left:0;
+        }
+      }
+    }
+  }
+}
