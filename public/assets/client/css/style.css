@@ -75,6 +75,8 @@ header.header {
 
 section {
   padding: 5rem 0; }
+  section.banner {
+    padding: 0; }
   section .title-wrapper {
     margin-bottom: 3rem; }
   section h2.title-section {
@@ -114,10 +116,42 @@ section {
       border: 1px solid #333333;
       border-radius: 5px;
       color: #333333;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s; }
+      section .content-wrapper a.btn-addcart:hover {
+        background: #AA7835;
+        border-color: white;
+        color: white; }
+    section .content-wrapper .btn-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10; }
+      section .content-wrapper .btn-control i {
+        opacity: 0.5;
+        font-size: 5rem;
+        color: #AA7835; }
+      section .content-wrapper .btn-control.btn-pre {
+        left: -20px; }
+      section .content-wrapper .btn-control.btn-next {
+        right: -20px; }
 
 /*FEATURE*/
-.feature .item-feature img {
-  margin: 0 auto 1.2rem; }
+.feature .item-feature {
+  padding: 0 1.5rem; }
+  .feature .item-feature img {
+    margin: 0 auto 1.2rem; }
+  .feature .item-feature:focus {
+    outline: none; }
+
+/*PROMOTION*/
+.promotion .promotion-slick .item-promotion {
+  padding: 0 1.5rem; }
+  .promotion .promotion-slick .item-promotion:focus {
+    outline: none; }
 
 /*# sourceMappingURL=style.css.map */

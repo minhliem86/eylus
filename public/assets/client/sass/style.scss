@@ -103,6 +103,9 @@ header.header{
 
 section{
   padding:5rem 0;
+  &.banner{
+    padding:0;
+  }
   .title-wrapper{
     margin-bottom:3rem;
   }
@@ -148,6 +151,29 @@ section{
       border-radius:5px;
       color:$color-text;
       text-transform: uppercase;
+      @include transition(all 0.3s);
+      &:hover{
+        background:$color-browse;
+        border-color:white;
+        color:white;
+      }
+    }
+    .btn-control{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      z-index:10;
+      i{
+        opacity:0.5;
+        font-size:5rem;
+        color:$color-browse;
+      }
+      &.btn-pre{
+        left:-20px;
+      }
+      &.btn-next{
+        right:-20px;
+      }
     }
 
   }
@@ -156,12 +182,26 @@ section{
 /*FEATURE*/
 .feature{
   .item-feature{
+    padding:0 1.5rem;
     img{
       margin:0 auto 1.2rem;
     }
-
+    &:focus{
+      outline:none;
+    }
   }
 }
 
+/*PROMOTION*/
+.promotion{
+  .promotion-slick{
+    .item-promotion{
+      padding: 0 1.5rem;
+      &:focus{
+        outline:none;
+      }
+    }
+  }
+}
 
 

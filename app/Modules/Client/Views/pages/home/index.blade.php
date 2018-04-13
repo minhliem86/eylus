@@ -32,8 +32,14 @@
         $(document).ready(function(){
             $('.featured-product-slick').slick({
                 slidesToShow: 3,
-                prevArrow: '<i class="fa fa-angle-left"></i>',
-                nextArrow: '<i class="fa fa-angle-right"></i>',
+                prevArrow: '<span class="btn-control btn-pre"><i class="fa fa-angle-left"></i></span>',
+                nextArrow: '<span class="btn-control btn-next"><i class="fa fa-angle-right"></i></span>',
+            })
+
+            $('.promotion-slick').slick({
+                slidesToShow: 4,
+                prevArrow: '<span class="btn-control btn-pre"><i class="fa fa-angle-left"></i></span>',
+                nextArrow: '<span class="btn-control btn-next"><i class="fa fa-angle-right"></i></span>',
             })
         })
     </script>
@@ -154,6 +160,18 @@
                                     <p class="price">100.000 vnd</p>
                                     <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
                                 </div>
+                                <div class="item-feature">
+                                    <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                                    <h4 class="title-product">Product 01</h4>
+                                    <p class="price">100.000 vnd</p>
+                                    <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
+                                </div>
+                                <div class="item-feature">
+                                    <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                                    <h4 class="title-product">Product 01</h4>
+                                    <p class="price">100.000 vnd</p>
+                                    <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -170,18 +188,36 @@
                         </div>
 
                         <div class="content-wrapper">
-                            <div class="promotion-product-slick">
+                            <div class="promotion-slick">
                                 <div class="item-promotion">
                                     <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
                                     <h4 class="title-product">Product 01</h4>
                                     <p class="price">100.000 vnd</p>
-                                    <a href="#" class="btn-detail-product">Chi tiết</a>
+                                    <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
                                 </div>
                                 <div class="item-promotion">
                                     <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
                                     <h4 class="title-product">Product 01</h4>
                                     <p class="price">100.000 vnd</p>
-                                    <a href="#" class="btn-detail-product">Chi tiết</a>
+                                    <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
+                                </div>
+                                <div class="item-promotion">
+                                    <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                                    <h4 class="title-product">Product 01</h4>
+                                    <p class="price">100.000 vnd</p>
+                                    <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
+                                </div>
+                                <div class="item-promotion">
+                                    <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                                    <h4 class="title-product">Product 01</h4>
+                                    <p class="price">100.000 vnd</p>
+                                    <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
+                                </div>
+                                <div class="item-promotion">
+                                    <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                                    <h4 class="title-product">Product 01</h4>
+                                    <p class="price">100.000 vnd</p>
+                                    <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
                                 </div>
                             </div>
 
