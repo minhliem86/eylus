@@ -1,42 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e83dbf9-0157-498a-bc9d-11925666c370" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/images/banner.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/images/big-photo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/images/flag-en.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/images/flag-vi.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/images/img-home.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/images/lego.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/images/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/images/look.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/images/sp01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/images/video.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/plugins/slick/fonts/slick.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/plugins/slick/fonts/slick.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/plugins/slick/fonts/slick.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/css/bootstrap.min.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/css/style.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/bootstrap.bundle.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/bootstrap.bundle.min.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/bootstrap.min.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/jquery-3.3.1.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/plugins/compare/css/images-compare.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/plugins/compare/js/jquery.images-compare.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/plugins/slick/fonts/slick.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/plugins/slick/slick.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/js/plugins/slick/slick.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/sass/style.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/Controllers/HomeController.php" afterPath="$PROJECT_DIR$/app/Modules/Client/Controllers/HomeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/Views/pages/home/index.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Client/Views/pages/home/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/routes.php" afterPath="$PROJECT_DIR$/app/Modules/Client/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/module.php" afterPath="$PROJECT_DIR$/config/module.php" />
-    </list>
+    <list default="true" id="8e83dbf9-0157-498a-bc9d-11925666c370" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -422,7 +387,7 @@
       <workItem from="1523328464014" duration="15972000" />
       <workItem from="1523417880415" duration="18471000" />
       <workItem from="1523461111680" duration="4207000" />
-      <workItem from="1523500536260" duration="16897000" />
+      <workItem from="1523500536260" duration="17340000" />
     </task>
     <task id="LOCAL-00001" summary="up">
       <created>1522252781631</created>
@@ -435,7 +400,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189033000" />
+    <option name="totallyTimeSpent" value="189476000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
