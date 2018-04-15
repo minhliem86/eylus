@@ -19,8 +19,14 @@ class NewsController extends Controller
 
     public function getIndex()
     {
-        $news = $this->news->paginate(8, ['id', 'name', 'slug', 'description', 'content', 'img_url']);
-        return view('Client::pages.news.index', compact('news'));
+        return view('Client::pages.news.index');
+//        $news = $this->news->paginate(8, ['id', 'name', 'slug', 'description', 'content', 'img_url']);
+//        return view('Client::pages.news.index', compact('news'));
+    }
+
+    public function getDetailtest()
+    {
+        return view('Client::pages.news.detail');
     }
 
     public function getDetail($slug)

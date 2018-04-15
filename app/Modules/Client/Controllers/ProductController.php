@@ -9,7 +9,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
-use App\Repositories\AttributeValueRepository;
 use Validator;
 use Cart;
 use Auth;
@@ -20,7 +19,6 @@ use Carbon\Carbon;
 use App\Repositories\PromotionRepository;
 use App\Repositories\PaymentMethodRepository;
 use App\Repositories\OrderRepository;
-use App\Repositories\ShipAddressRepository;
 use App\Repositories\TransactionRepository;
 
 use App\Modules\Client\Events\SendMail;
@@ -38,13 +36,11 @@ class ProductController extends Controller
     protected $access;
     protected $secure;
 
-    public function __construct(CategoryRepository $cate, ProductRepository $product, AttributeValueRepository $value, OrderRepository $order, ShipAddressRepository $ship_address, PromotionRepository $promotion)
+    public function __construct(CategoryRepository $cate, ProductRepository $product,  OrderRepository $order, PromotionRepository $promotion)
     {
         $this->cate = $cate;
         $this->product = $product;
-        $this->value = $value;
         $this->order = $order;
-        $this->ship_address = $ship_address;
         $this->promotion = $promotion;
 
         $this->merchant = env('OP_MERCHANT');
@@ -88,6 +84,16 @@ class ProductController extends Controller
             'ward.required' => 'Vui lòng chọn Phường/Xã',
             'payment_method.required' => 'Vui lòng chọn Phương thức thanh toán',
         ];
+    }
+
+    public function index()
+    {
+        return view('Client::pages.product.index');
+    }
+
+    public function ajaxAddtocart(Request $request)
+    {
+
     }
 
     public function getCategory($slug)

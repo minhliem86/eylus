@@ -1,48 +1,57 @@
-<footer>
+<footer class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-sm-4">
-                <div class="block-footer">
-                    <h3 class="title-footer">About Tigerd</h3>
+            <div class="col-md-3">
+                <div class="footer-container">
                     <ul class="list-footer">
-                        <li><a href="{!! route('client.product.showAll') !!}">Sản Phẩm</a></li>
-                        <li><a href="{!! route('client.news') !!}">Tin Tức</a></li>
-                        <li><a href="{!! route('client.contact') !!}">Liên Hệ</a></li>
+                        <li class="header">About Eylux</li>
+                        <li class="item-footer"><a href="#">Trang chủ</a></li>
+                        <li class="item-footer"><a href="#">Giới thiệu</a></li>
+                        <li class="item-footer"><a href="#">Khuyến mãi</a></li>
+                        <li class="item-footer"><a href="#">Liên hệ</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-4">
-                <div class="block-footer">
-                    <h3 class="title-footer">Guide</h3>
-                    @if(!$page->isEmpty())
-
+            <div class="col-md-3">
+                <div class="footer-container">
                     <ul class="list-footer">
-                        @foreach($page as $item_page)
-                        <li><a href="{!! route('client.single_page', $item_page->slug) !!}">{!! $item_page->name !!}</a></li>
-                        @endforeach
+                        <li class="header">Hướng Dẫn</li>
+                        <li class="item-footer"><a href="#">Hướng dẫn mưa hàng</a></li>
+                        <li class="item-footer"><a href="#">Hướng dẫn thanh toán</a></li>
+                        <li class="item-footer"><a href="#">Hướng dẫn</a></li>
                     </ul>
-                    @endif
                 </div>
             </div>
-            <div class="col-md-6 col-sm-4">
-                <div class="block-subcribe">
-                    <h3 class="title-subcribe">NEWSLETTER SIGN UP</h3>
-                    <p class="sub-title">Sign up to get information and more...</p>
-                    {!! Form::open(['route'=>'client.subcribe.post', 'class' => 'form-subcribe']) !!}
+            <div class="col-md-3">
+                <div class="footer-container">
+                    <ul class="list-footer">
+                        <li class="header">Sản Phẩm</li>
+                        <li class="item-footer"><a href="#">Product 01</a></li>
+                        <li class="item-footer"><a href="#">Product 02</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="footer-container">
+                    <div class="title-wrapper  mb-1">
+                        <h3 class="title-footer">ĐĂNG KÝ THÔNG TIN</h3>
+                        <sup>Đăng ký để nhận thông tin.</sup>
+                    </div>
+                    <div class="form-wrapper mb-4">
+                        {!! Form::open(['route' => 'client.home', 'class' => 'form']) !!}
                         <div class="input-group">
-                            <div class="input-group-prepend">
-                                <input type="email" name="email_subcribe" class="form-control">
-                                <button type="submit" class="btn btn-subcribe"><i class="fa fa-chevron-right"></i></button>
-                                @if($errors->error_subcribe->any())
-                                    <div class="invalid-feedback">
-                                        @foreach($error->error_subcribe->all() as $item_subcribe)
-                                        <p>{!! $item_subcribe !!}</p>
-                                        @endforeach
-                                    </div>
-                                @endif
+                            <input type="text" name="subscribe" class="form-control" placeholder="Your Email ..." ria-describedby="inputAppend" required>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn-submit input-group-text"><i class="fa fa-angle-right"></i></button>
                             </div>
                         </div>
-                    {!! Form::close() !!}
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="icon-footer d-flex justify-content-start">
+                        <a href="#" class="ic-wrapper ic-fb"><i class="fa fa-facebook-square"></i></a>
+                        <a href="#" class="ic-wrapper ic-yt"><i class="fa fa-youtube-square"></i></a>
+                        <a href="#" class="ic-wrapper ic-tw"><i class="fa fa-twitter-square"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

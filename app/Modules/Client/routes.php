@@ -9,14 +9,20 @@ Route::group(['middleware'=>['web'],'namespace' => 'App\Modules\Client\Controlle
 
     /*NEWS*/
     Route::get('/tin-tuc', ['as' => 'client.news', 'uses' => 'NewsController@getIndex']);
-    Route::get('/tin-tuc/{slug}', ['as' => 'client.news.detail', 'uses' => 'NewsController@getDetail'])->where('slug', '[0-9a-zA-Z._\-]+');
+    Route::get('/tin-tuc-chi-tiet', ['as' => 'client.news.detail', 'uses' => 'NewsController@getDetailtest']);
+//    Route::get('/tin-tuc/{slug}', ['as' => 'client.news.detail', 'uses' => 'NewsController@getDetail'])->where('slug', '[0-9a-zA-Z._\-]+');
 
     /*PRODUCT*/
-    Route::get('/danh-muc/{slug}', ['as' => 'client.category', 'uses' => 'ProductController@getCategory'])->where('slug','[0-9a-zA-Z._\-]+');
-    Route::get('/san-pham', ['as' => 'client.product.showAll', 'uses' => 'ProductController@getAllProduct']);
-    Route::get('/san-pham/{slug}', ['as' => 'client.product', 'uses' => 'ProductController@getProduct'])->where('slug','[0-9a-zA-Z._\-]+');
-    Route::post('/san-pham/addToCart', ['as' => 'client.product.addToCart', 'uses' => 'ProductController@addToCart']);
-    Route::post('/ajaxAttributeValue', ['as' => 'client.product.ajaxChangeAttributeValue', 'uses' => 'ProductController@ajaxChangeAttributeValue']);
+//    Route::get('/danh-muc/{slug}', ['as' => 'client.category', 'uses' => 'ProductController@getCategory'])->where('slug','[0-9a-zA-Z._\-]+');
+//    Route::get('/san-pham', ['as' => 'client.product.showAll', 'uses' => 'ProductController@getAllProduct']);
+//    Route::get('/san-pham/{slug}', ['as' => 'client.product', 'uses' => 'ProductController@getProduct'])->where('slug','[0-9a-zA-Z._\-]+');
+//    Route::post('/san-pham/addToCart', ['as' => 'client.product.addToCart', 'uses' => 'ProductController@addToCart']);
+//    Route::post('/ajaxAttributeValue', ['as' => 'client.product.ajaxChangeAttributeValue', 'uses' => 'ProductController@ajaxChangeAttributeValue']);
+
+    Route::get('/danh-muc-san-pham', ['as' => 'client.category', 'uses' => 'CategoryController@index']);
+
+    Route::get('/san-pham', ['as' => 'client.sanpham', 'uses' => 'ProductController@index']);
+    Route::post('/san-pham/addtoCart', ['as' => 'client.addtocart', 'uses' => 'ProductController@ajaxAddtocart']);
 
     Route::get('/gio-hang', ['as' => 'client.cart', 'uses' => 'ProductController@getCart']);
     Route::post('/update-soluong', ['as' => 'client.cart.updateQuantity', 'uses' => 'ProductController@updateQuantityAjax' ]);

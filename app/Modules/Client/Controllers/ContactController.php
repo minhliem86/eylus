@@ -2,12 +2,10 @@
 
 namespace App\Modules\Client\Controllers;
 
-use App\Repositories\CompanyRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Repositories\FeedbackRepository;
 use Validator;
 use Session;
 
@@ -15,10 +13,10 @@ class ContactController extends Controller
 {
     protected $feedback;
 
-    public function __construct(FeedbackRepository $feedback)
-    {
-        $this->feedback = $feedback;
-    }
+//    public function __construct(FeedbackRepository $feedback)
+//    {
+//        $this->feedback = $feedback;
+//    }
 
     private function _rules(){
         return [
@@ -38,10 +36,10 @@ class ContactController extends Controller
         ];
     }
 
-    public function getIndex(CompanyRepository $company)
+    public function getIndex()
     {
-        $info = $company->getFirst(['map']);
-        return view('Client::pages.contact.index', compact('info'));
+//        $info = $company->getFirst(['map']);
+        return view('Client::pages.contact.index');
     }
 
     public function postIndex(Request $request)
