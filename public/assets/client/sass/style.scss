@@ -83,6 +83,21 @@ $color-gray: #BCBEC0;
     }
   }
 }
+
+%button-template{
+  padding:0.4rem 1.4rem;
+  background:$color-browse;
+  border:none;
+  color:white;
+  font-size:1.2rem;
+  font-weight:600;
+  cursor:pointer;
+  text-transform: uppercase;
+  @include transition(all 0.3s);
+  &:hover{
+    background:darken($color-browse, 15%);
+  }
+}
 /*RESET*/
 *{margin:0; padding:0}
 html{
@@ -625,6 +640,18 @@ section{
 
 /*CONTACT*/
 .contact{
+  .map-wrapper{
+    #input-director{
+      input, button{
+        font-size:1.4rem;
+        padding:0.3rem 1rem;
+      }
+      button{
+        background: $color-browse;
+        color:white;
+      }
+    }
+  }
   .info{
     margin-bottom:1.5rem;
     font-size:1.4rem;
@@ -642,6 +669,147 @@ section{
       }
     }
   }
+}
+
+/*LOGIN*/
+.user-template{
+  h3{
+    @extend %title-template;
+    font-size:1.6rem;
+    margin-bottom:1.2rem;
+
+  }
+  label, input, password{
+    font-size: 1.4rem;
+  }
+  button{
+    @extend %button-template;
+  }
+  .login-wrapper{
+    .forget-wrapper{
+      a{
+        font-size:1.3rem;
+        font-style: italic;
+        color:$color-browse;
+        &:hover{
+          font-weight:600;
+        }
+      }
+    }
+  }
+  .line-break{
+    position:relative;
+    height:100%;
+    &:before{
+      content:'';
+      display: block;
+      width:1px;
+      background:$color-browse;
+    }
+    &:after{
+      content: '';
+      display:block;
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      width:30px;
+      height:30px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      background:darken($color-browse,5%);
+      border:5px solid white;
+      box-shadow:0 0 5px #ccc;
+    }
+  }
+}
+
+/*CART TEMPLATE*/
+.cart-template{
+  .cart-wrapper{
+    table{
+      thead tr{
+        background:darken($color-gray,10%);
+        th{
+          font-weight:600;
+          font-size:1.4rem;
+          text-transform: uppercase;
+          color:white
+        }
+      }
+      tbody {
+        tr{
+          td{
+            font-size:1.4rem;
+            padding:0.4rem 1rem;
+            vertical-align: middle;
+          }
+          &:last-child{
+            td{
+              font-weight:600;
+              font-size:1.6rem;
+              text-transform:uppercase;
+            }
+          }
+          button.btn-remove{
+            @extend %button-template;
+            background:darkred;
+          }
+        }
+
+      }
+      tfoot{
+        .btn-cart{
+          @extend %button-template;
+          &.btn-remove{
+            background:#880000;
+          }
+          &.btn-udpate {
+            background:#1ba87e;
+          }
+          &.btn-payment{
+            background:#1c94c4;
+            padding:0.6rem 1.4rem;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+/*PAYMENT*/
+.payment-template{
+  h5.title{
+    @extend %title-template;
+    font-size:1.5rem;
+    color:darken($color-gray, 15%);
+    &:after{
+      width:60%;
+    }
+  }
+  input, button, label{
+    font-size:1.4rem;
+    color:$color-text;
+  }
+  .custom-control{
+    padding-left:1.8rem;
+    label{
+      &:before, &:after{
+        top:5px;
+        width:1.2rem;
+        height:1.2rem;
+      }
+    }
+  }
+
+  .area{
+    padding:1rem;
+    margin-bottom:3rem;
+    box-shadow:1px 2px 4px #ccc
+  }
+
 }
 
 /*

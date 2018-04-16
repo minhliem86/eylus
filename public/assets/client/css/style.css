@@ -1,14 +1,14 @@
 /*VARIABLE*/
 /*MIXIN*/
 /*PLACEHOLDER*/
-.sidebar-template .sidebar-wrapper .box-sidebar h4.title-box, .sidebar-template .main-content .title-content-wrapper h2.title-content, .addtocart-template .information-wrapper h2.title-product {
+.sidebar-template .sidebar-wrapper .box-sidebar h4.title-box, .sidebar-template .main-content .title-content-wrapper h2.title-content, .addtocart-template .information-wrapper h2.title-product, .user-template h3, .payment-template h5.title {
   text-transform: uppercase;
   font-size: 1.8rem;
   color: #BCBEC0;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   position: relative; }
-  .sidebar-template .sidebar-wrapper .box-sidebar h4.title-box:after, .sidebar-template .main-content .title-content-wrapper h2.title-content:after, .addtocart-template .information-wrapper h2.title-product:after {
+  .sidebar-template .sidebar-wrapper .box-sidebar h4.title-box:after, .sidebar-template .main-content .title-content-wrapper h2.title-content:after, .addtocart-template .information-wrapper h2.title-product:after, .user-template h3:after, .payment-template h5.title:after {
     content: '';
     display: block;
     position: absolute;
@@ -18,7 +18,7 @@
     width: 70%;
     background: #e5cdac; }
     @media screen and (max-width: 767px) {
-      .sidebar-template .sidebar-wrapper .box-sidebar h4.title-box:after, .sidebar-template .main-content .title-content-wrapper h2.title-content:after, .addtocart-template .information-wrapper h2.title-product:after {
+      .sidebar-template .sidebar-wrapper .box-sidebar h4.title-box:after, .sidebar-template .main-content .title-content-wrapper h2.title-content:after, .addtocart-template .information-wrapper h2.title-product:after, .user-template h3:after, .payment-template h5.title:after {
         width: 100%; } }
 
 section .content-wrapper img.img-section {
@@ -51,6 +51,23 @@ section .content-wrapper a.btn-addcart {
     background: #AA7835;
     border-color: white;
     color: white; }
+
+.user-template button, .cart-template .cart-wrapper table tbody tr button.btn-remove, .cart-template .cart-wrapper table tfoot .btn-cart {
+  padding: 0.4rem 1.4rem;
+  background: #AA7835;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s; }
+  .user-template button:hover, .cart-template .cart-wrapper table tbody tr button.btn-remove:hover, .cart-template .cart-wrapper table tfoot .btn-cart:hover {
+    background: #704f23; }
 
 /*RESET*/
 * {
@@ -469,6 +486,12 @@ section {
       font-size: 1.4rem; }
 
 /*CONTACT*/
+.contact .map-wrapper #input-director input, .contact .map-wrapper #input-director button {
+  font-size: 1.4rem;
+  padding: 0.3rem 1rem; }
+.contact .map-wrapper #input-director button {
+  background: #AA7835;
+  color: white; }
 .contact .info {
   margin-bottom: 1.5rem;
   font-size: 1.4rem; }
@@ -485,6 +508,88 @@ section {
   transition: background 0.3s; }
   .contact .form-contact-wrapper button:hover {
     background: #976a2f; }
+
+/*LOGIN*/
+.user-template h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem; }
+.user-template label, .user-template input, .user-template password {
+  font-size: 1.4rem; }
+.user-template .login-wrapper .forget-wrapper a {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: #AA7835; }
+  .user-template .login-wrapper .forget-wrapper a:hover {
+    font-weight: 600; }
+.user-template .line-break {
+  position: relative;
+  height: 100%; }
+  .user-template .line-break:before {
+    content: '';
+    display: block;
+    width: 1px;
+    background: #AA7835; }
+  .user-template .line-break:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: #976a2f;
+    border: 5px solid white;
+    box-shadow: 0 0 5px #ccc; }
+
+/*CART TEMPLATE*/
+.cart-template .cart-wrapper table thead tr {
+  background: #a2a5a7; }
+  .cart-template .cart-wrapper table thead tr th {
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    color: white; }
+.cart-template .cart-wrapper table tbody tr td {
+  font-size: 1.4rem;
+  padding: 0.4rem 1rem;
+  vertical-align: middle; }
+.cart-template .cart-wrapper table tbody tr:last-child td {
+  font-weight: 600;
+  font-size: 1.6rem;
+  text-transform: uppercase; }
+.cart-template .cart-wrapper table tbody tr button.btn-remove {
+  background: darkred; }
+.cart-template .cart-wrapper table tfoot .btn-cart.btn-remove {
+  background: #880000; }
+.cart-template .cart-wrapper table tfoot .btn-cart.btn-udpate {
+  background: #1ba87e; }
+.cart-template .cart-wrapper table tfoot .btn-cart.btn-payment {
+  background: #1c94c4;
+  padding: 0.6rem 1.4rem; }
+
+/*PAYMENT*/
+.payment-template h5.title {
+  font-size: 1.5rem;
+  color: #95989b; }
+  .payment-template h5.title:after {
+    width: 60%; }
+.payment-template input, .payment-template button, .payment-template label {
+  font-size: 1.4rem;
+  color: #333333; }
+.payment-template .custom-control {
+  padding-left: 1.8rem; }
+  .payment-template .custom-control label:before, .payment-template .custom-control label:after {
+    top: 5px;
+    width: 1.2rem;
+    height: 1.2rem; }
+.payment-template .area {
+  padding: 1rem;
+  margin-bottom: 3rem;
+  box-shadow: 1px 2px 4px #ccc; }
 
 /*
 FOOTER*/

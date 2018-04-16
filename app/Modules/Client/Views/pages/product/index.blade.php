@@ -69,15 +69,7 @@
                                     officia quas sint ut? Adipisci animi aspernatur beatae, consequatur dignissimos
                                     dolor ducimus error inventore laborum nam nesciunt perspiciatis recusandae rem, sit
                                     totam!</p>
-                                <p>Architecto autem beatae dignissimos dolor expedita hic, in ipsam iure labore libero
-                                    mollitia numquam, provident quisquam recusandae rem saepe veritatis voluptas.
-                                    Aliquam aliquid cumque delectus excepturi placeat quam quasi, sunt.</p>
-                                <p>Accusamus assumenda autem distinctio dolor doloribus, ea exercitationem, facere id
-                                    impedit inventore laborum minima molestiae nam porro possimus quos repellat
-                                    voluptatum. Ab accusamus at eos explicabo fuga ipsam quia recusandae.</p>
-                                <p>Amet, ea laboriosam libero minima nulla optio repudiandae vero voluptatum. Ad, eos,
-                                    ex. Aliquam, animi aut autem blanditiis consectetur debitis deserunt dicta, dolor
-                                    doloremque ducimus quo rem sapiente sequi voluptatum!</p></div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="comment" role="tabpanel">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium alias commodi

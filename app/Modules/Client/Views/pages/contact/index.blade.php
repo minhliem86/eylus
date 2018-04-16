@@ -16,7 +16,7 @@
                     <div class="map-wrapper">
                         <div id="input-director">
                             <div class="input-group">
-                                <input type="text" name="from_gmap" class="form-control">                               <div class="input-group-append">
+                                <input type="text" name="from_gmap" class="form-control" placeholder="Nhập địa chỉ của bạn..">                               <div class="input-group-append">
                                     <button type="button" class="btn btn-director">Tìm Đường</button>
                                 </div>
                             </div>

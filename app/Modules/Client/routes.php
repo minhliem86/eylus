@@ -24,13 +24,14 @@ Route::group(['middleware'=>['web'],'namespace' => 'App\Modules\Client\Controlle
     Route::get('/san-pham', ['as' => 'client.sanpham', 'uses' => 'ProductController@index']);
     Route::post('/san-pham/addtoCart', ['as' => 'client.addtocart', 'uses' => 'ProductController@ajaxAddtocart']);
 
-    Route::get('/gio-hang', ['as' => 'client.cart', 'uses' => 'ProductController@getCart']);
+    Route::get('/gio-hang', ['as' => 'client.cart', 'uses' => 'CartController@index']);
+
     Route::post('/update-soluong', ['as' => 'client.cart.updateQuantity', 'uses' => 'ProductController@updateQuantityAjax' ]);
     Route::post('/remove-item', ['as' => 'client.cart.removeItem', 'uses' => 'ProductController@removeItemCart']);
     Route::post('/them-gio-hang-ajax', ['as' => 'client.cart.addToCartAjax', 'uses' => 'ProductController@addToCartAjax']);
     Route::get('/xoa-gio-hang',['as' => 'client.cart.clear', 'uses' => 'ProductController@clearCart']);
 
-    Route::get('/thanh-toan', ['as' => 'client.payment', 'uses' => 'ProductController@getPayment']);
+    Route::get('/thanh-toan', ['as' => 'client.payment', 'uses' => 'CartController@payment']);
     Route::post('/process-promotion', ['as' => 'client.promotion', 'uses' => 'ProductController@applyPromotion']);
     Route::post('/doPayment', ['as' => 'client.doPayment', 'uses' => 'ProductController@doPayment']);
     Route::get('/responsePayment', ['as' => 'client.responsePayment', 'uses' => 'ProductController@responseFormOnePay']);

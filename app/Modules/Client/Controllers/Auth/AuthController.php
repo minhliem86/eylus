@@ -43,7 +43,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('client_if_logined', ['except' => ['logout']]);
+//        $this->middleware('client_if_logined', ['except' => ['logout']]);
         $this->auth = Auth::guard('customer');
     }
 
