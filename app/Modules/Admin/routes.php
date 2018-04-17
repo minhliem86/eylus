@@ -120,6 +120,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
             Route::post('customer/postAjaxUpdateOrder', ['as' => 'admin.customer.postAjaxUpdateOrder', 'uses' => 'CustomerController@postAjaxUpdateOrder']);
             Route::resource('customer', 'CustomerController');
 
+            /*VIDEO*/
+            Route::post('video/deleteAll', ['as' => 'admin.video.deleteAll', 'uses' => 'VideoController@deleteAll']);
+            Route::get('video/order/{id}', ['as' => 'admin.video.order', 'uses' => 'VideoController@getOrderVideo'])->where('id','[0-9A-Za-z._\-]+');
+            Route::post('video/updateStatus', ['as' => 'admin.video.updateStatus', 'uses' => 'VideoController@updateStatus']);
+            Route::post('video/postAjaxUpdateOrder', ['as' => 'admin.video.postAjaxUpdateOrder', 'uses' => 'VideoController@postAjaxUpdateOrder']);
+            Route::resource('video', 'VideoController');
+
 
         });
     });

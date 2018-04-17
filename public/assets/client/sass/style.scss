@@ -789,7 +789,7 @@ section{
       width:60%;
     }
   }
-  input, button, label{
+  input, button, label, select{
     font-size:1.4rem;
     color:$color-text;
   }
@@ -809,7 +809,37 @@ section{
     margin-bottom:3rem;
     box-shadow:1px 2px 4px #ccc
   }
+  .promotion-wrapper{
+    button{
+      @extend %button-template;
+      background:#1ba87e;
+      &:hover{
+        background:darken(#1ba87e, 10%);
+      }
+    }
 
+  }
+  .wrap-total{
+    p{
+      font-size:1.4rem;
+      font-weight:600;
+      &.price{
+        font-size:1.6rem;
+        color:$color-browse;
+      }
+    }
+  }
+  .wrap-payment{
+    button{
+      @extend %button-template;
+      font-size:1.6rem;
+    }
+  }
+  table.table-product{
+    tfoot{
+      font-weight:600;
+    }
+  }
 }
 
 /*

@@ -168,6 +168,7 @@ return [
         Laratrust\LaratrustServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         App\Modules\ModuleServiceProvider::class,
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
 
     ],
 
@@ -224,6 +225,7 @@ return [
         'Notification' => Krucas\Notification\Facades\Notification::class,
         'Laratrust'   => Laratrust\LaratrustFacade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
 
     ],
 

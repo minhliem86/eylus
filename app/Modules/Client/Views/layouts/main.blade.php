@@ -36,8 +36,8 @@
                             <a href="#"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
                         </div>
                         <div class="item-wrap">
-                            <a href="#"><img src="{!! asset('public/assets/client') !!}/images/flag-en.png" class="img-fluid" alt="English"></a>
-                            <a href="#"><img src="{!! asset('public/assets/client') !!}/images/flag-vi.png" class="img-fluid" alt="Tiếng Việt"></a>
+                            <a href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}"><img src="{!! asset('public/assets/client') !!}/images/flag-en.png" class="img-fluid" alt="English"></a>
+                            <a href="{{ LaravelLocalization::getLocalizedURL('vi', null, [], true) }}"><img src="{!! asset('public/assets/client') !!}/images/flag-vi.png" class="img-fluid" alt="Tiếng Việt"></a>
                         </div>
                     </div>
                 </div>

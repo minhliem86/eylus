@@ -131,16 +131,16 @@
                                     <button class="btn-promotion" type="button">Áp Dụng</button>
                                 </div>
                             </div>
-                            <div class="wrap-code">
+                            <div class="wrap-code mt-4">
                                 <span class="badge badge-primary">DISCOUNT</span>
                             </div>
                         </div>
 
-                        <div class="wrap-total d-flex justify-content-between">
+                        <div class="wrap-total my-3 d-flex justify-content-between">
                             <p>
                                 Tổng cộng
                             </p>
-                            <p>
+                            <p class="price">
                                 700,000 VND
                             </p>
                         </div>

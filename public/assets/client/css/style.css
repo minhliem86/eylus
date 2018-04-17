@@ -52,7 +52,7 @@ section .content-wrapper a.btn-addcart {
     border-color: white;
     color: white; }
 
-.user-template button, .cart-template .cart-wrapper table tbody tr button.btn-remove, .cart-template .cart-wrapper table tfoot .btn-cart {
+.user-template button, .cart-template .cart-wrapper table tbody tr button.btn-remove, .cart-template .cart-wrapper table tfoot .btn-cart, .payment-template .promotion-wrapper button, .payment-template .wrap-payment button {
   padding: 0.4rem 1.4rem;
   background: #AA7835;
   border: none;
@@ -66,7 +66,7 @@ section .content-wrapper a.btn-addcart {
   -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s; }
-  .user-template button:hover, .cart-template .cart-wrapper table tbody tr button.btn-remove:hover, .cart-template .cart-wrapper table tfoot .btn-cart:hover {
+  .user-template button:hover, .cart-template .cart-wrapper table tbody tr button.btn-remove:hover, .cart-template .cart-wrapper table tfoot .btn-cart:hover, .payment-template .promotion-wrapper button:hover, .payment-template .wrap-payment button:hover {
     background: #704f23; }
 
 /*RESET*/
@@ -577,7 +577,7 @@ section {
   color: #95989b; }
   .payment-template h5.title:after {
     width: 60%; }
-.payment-template input, .payment-template button, .payment-template label {
+.payment-template input, .payment-template button, .payment-template label, .payment-template select {
   font-size: 1.4rem;
   color: #333333; }
 .payment-template .custom-control {
@@ -590,6 +590,20 @@ section {
   padding: 1rem;
   margin-bottom: 3rem;
   box-shadow: 1px 2px 4px #ccc; }
+.payment-template .promotion-wrapper button {
+  background: #1ba87e; }
+  .payment-template .promotion-wrapper button:hover {
+    background: #147c5d; }
+.payment-template .wrap-total p {
+  font-size: 1.4rem;
+  font-weight: 600; }
+  .payment-template .wrap-total p.price {
+    font-size: 1.6rem;
+    color: #AA7835; }
+.payment-template .wrap-payment button {
+  font-size: 1.6rem; }
+.payment-template table.table-product tfoot {
+  font-weight: 600; }
 
 /*
 FOOTER*/

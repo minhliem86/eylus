@@ -1,5 +1,5 @@
 <?php
-Route::group(['middleware'=>['web'],'namespace' => 'App\Modules\Client\Controllers'], function(){
+Route::group(['middleware'=>['web'],'prefix'=>LaravelLocalization::setLocale(),'namespace' => 'App\Modules\Client\Controllers'], function(){
     Route::get('/', ['as' => 'client.home', 'uses' => 'HomeController@index']);
 
     /*CONTACT US*/
