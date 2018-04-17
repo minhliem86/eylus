@@ -7,25 +7,26 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Repositories\ProductRepository;
-use App\Repositories\NewsRepository;
+use App\Repositories\VideoRepository;
 
 class HomeController extends Controller
 {
     protected $product;
-    protected $news;
+    protected $video;
 
-    public function __construct(ProductRepository $product, NewsRepository $news)
+    public function __construct(ProductRepository $product, VideoRepository $video)
     {
         $this->product = $product;
-        $this->news = $news;
+        $this->video = $news;
     }
 
     public function index()
     {
-        return view('Client::pages.home.index');
-//        $product = $this->product->getProductHomePage(['id', 'img_url', 'name','slug', 'price', 'discount','category_id', 'default','stock'], ['attributes','product_links']);
-//        $news = $this->news->all(['name','slug', 'description', 'img_url']);
-//
-//        return view('Client::pages.home.index', compact('product', 'news'));
+
+        $feature_p = $this->product->getFeatureProduct(['id', 'img_url', 'name_vi','slug', 'price_vi', 'name_en']);
+        $promotion_p = $this->product->getPromotionProduct(['id', 'img_url', 'name_vi','slug', 'price_vi', 'name_en']);
+        $fav_p = $this->product->getBestProduct(['id', 'img_url', 'name_vi','slug', 'price_vi', 'name_en']);
+        $videos = $this->product->findByField('status',1, ['video_url'])->get();
+        return view('Client::pages.home.index', compact('feature_p'));
     }
 }

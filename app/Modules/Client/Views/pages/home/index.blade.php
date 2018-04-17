@@ -13,36 +13,22 @@
             <div class="row">
                 <div class="col">
                     <div class="title-wrapper text-center">
-                        <h2 class="title-section">Sản Phẩm Nổi Bật</h2>
+                        <h2 class="title-section">{!! trans('home.feature_product') !!}</h2>
                     </div>
 
                     <div class="content-wrapper">
-                        <div class="featured-product-slick">
-                            <div class="item-feature">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
+                        @if(!$feature_p->isEmpty())
+                            <div class="featured-product-slick">
+                                @foreach($feature_p as $item_feature)
+                                <div class="item-feature">
+                                    <img src="{!! asset($item_feature->img_url) !!}" class="img-fluid img-section" alt="{!! $item_feature->name_vi !!}">
+                                    <h4 class="title-product">{!! $item_feature->name_vi !!}</h4>
+                                    <p class="price">{!! number_format($item_feature->price_vi) !!} vnd</p>
+                                    <a href="#" class="btn-detail-product btn-addcart">{!! trans('home.add_cart') !!}</a>
+                                </div>
+                                @endforeach
                             </div>
-                            <div class="item-feature">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
-                            </div>
-                            <div class="item-feature">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
-                            </div>
-                            <div class="item-feature">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -54,7 +40,7 @@
             <div class="row">
                 <div class="col">
                     <div class="title-wrapper text-center">
-                        <h2 class="title-section">Sản Phẩm Khuyến Mãi</h2>
+                        <h2 class="title-section">{!! trans('home.promotion_product') !!}</h2>
                     </div>
 
                     <div class="content-wrapper">
@@ -63,36 +49,12 @@
                                 <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
                                 <h4 class="title-product">Product 01</h4>
                                 <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
-                            </div>
-                            <div class="item-promotion">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
-                            </div>
-                            <div class="item-promotion">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
-                            </div>
-                            <div class="item-promotion">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
-                            </div>
-                            <div class="item-promotion">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
+                                <a href="#" class="btn-detail-promotion btn-addcart">{!! trans('home.add_cart') !!}</a>
                             </div>
                         </div>
 
                         <div class="button-container text-center">
-                            <a href="#" class="btn-more">Xem thêm sản phẩm</a>
+                            <a href="#" class="btn-more">{!! trans('home.readmore') !!}</a>
                         </div>
                     </div>
                 </div>
@@ -153,7 +115,7 @@
             <div class="row">
                 <div class="col">
                     <div class="title-wrapper text-center">
-                        <h2 class="title-section">Sản Phẩm Được Yêu Thích</h2>
+                        <h2 class="title-section">{!! trans('home.fav_product') !!}</h2>
                     </div>
                 </div>
             </div>
@@ -167,28 +129,6 @@
                             <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
                         </div>
 
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="each-bestSeller">
-                        <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                        <h4 class="title-product">Product 01</h4>
-                        <p class="price">100.000 vnd</p>
-                        <div class="button-container text-center">
-                            <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="each-bestSeller">
-                        <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                        <h4 class="title-product">Product 01</h4>
-                        <p class="price">100.000 vnd</p>
-                        <div class="button-container text-center">
-                            <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
-                        </div>
                     </div>
                 </div>
             </div>

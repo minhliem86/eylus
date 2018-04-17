@@ -26,8 +26,11 @@
                 <div class="footer-container">
                     <ul class="list-footer">
                         <li class="header">Sản Phẩm</li>
-                        <li class="item-footer"><a href="#">Product 01</a></li>
-                        <li class="item-footer"><a href="#">Product 02</a></li>
+                        @if(!$brands->isEmpty())
+                            @foreach($brands as $item_brand)
+                                <li class="item-footer"><a href="#">{!! $item_brand->name_vi !!}</a></li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
             </div>

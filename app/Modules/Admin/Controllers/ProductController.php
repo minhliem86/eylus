@@ -38,7 +38,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $product = $this->product->query(['products.id as id', 'products.name_vi as name_vi', 'products.img_url as img_url', 'products.quantity as quantity', 'products.sku as sku', 'products.order as order', 'products.status as status', 'products.hot as hot', 'brand_id', 'brands.name_vi as brand_name'])->join('brands','brands.id', '=', 'products.brand_id');
+            $product = $this->product->query(['products.id as id', 'products.name_vi as name_vi', 'products.img_url as img_url', 'products.quantity as quantity', 'products.sku as sku', 'products.order as order', 'products.status as status', 'products.hot as hot','products.promotion as promotion' , 'brand_id', 'brands.name_vi as brand_name'])->join('brands','brands.id', '=', 'products.brand_id');
 
             return Datatables::of($product)
                 ->addColumn('action', function($product){
@@ -68,6 +68,15 @@ class ProductController extends Controller
                     return '
                   <label class="switch switch-icon switch-success-outline">
                     <input type="checkbox" class="switch-input" name="hot" '.$hot.' data-id="'.$product_id.'">
+                    <span class="switch-label" data-on="" data-off=""></span>
+                    <span class="switch-handle"></span>
+                </label>';
+                })->editColumn('promotion', function($product){
+                    $promotion = $product->promotion ? 'checked' : '';
+                    $product_id =$product->id;
+                    return '
+                  <label class="switch switch-icon switch-success-outline">
+                    <input type="checkbox" class="switch-input" name="promotion" '.$promotion.' data-id="'.$product_id.'">
                     <span class="switch-label" data-on="" data-off=""></span>
                     <span class="switch-handle"></span>
                 </label>';
@@ -310,6 +319,24 @@ class ProductController extends Controller
             $id = $request->input('id');
             $cate = $this->product->find($id);
             $cate->status = $value;
+            $cate->save();
+            return response()->json([
+                'mes' => 'Updated',
+                'error'=> false,
+            ], 200);
+        }
+    }
+
+    /*CHANGE PROMOTION*/
+    public function updatePromotion(Request $request)
+    {
+        if(!$request->ajax()){
+            abort('404', 'Not Access');
+        }else{
+            $value = $request->input('value');
+            $id = $request->input('id');
+            $cate = $this->product->find($id);
+            $cate->promotion = $value;
             $cate->save();
             return response()->json([
                 'mes' => 'Updated',

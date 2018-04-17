@@ -26,8 +26,11 @@
                                         Sản Phẩm
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="submenu">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
+                                        @if(!$brands->isEmpty())
+                                            @foreach($brands as $item_brand)
+                                                <a class="dropdown-item" href="#">{!! $item_brand->name_vi !!}</a>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </li>
                                 <li class="nav-item">
