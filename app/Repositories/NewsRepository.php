@@ -11,6 +11,11 @@ class NewsRepository extends BaseRepository implements RestfulInterface{
     {
         return News::class;
     }
+
+    public function getRelate($not_id,$column= ['*'])
+    {
+        return $this->model->where('status',1)->whereNotIn('id',[$not_id])->inRandomOrder()->limit(5)->get($column);
+    }
     // END
 
 }

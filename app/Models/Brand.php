@@ -17,7 +17,7 @@ class Brand extends Model
 
     public function products()
     {
-        return $this->hasMany('App\Models\Product','product_id');
+        return $this->hasMany('App\Models\Product');
     }
 
     public function metas()

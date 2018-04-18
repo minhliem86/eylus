@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
-class CustomerSeeder extends Seeder
+class PromotionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class CustomerSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Customer::class, 10)->create();
+        factory(App\Models\Promotion::class,10)->create();
     }
 }

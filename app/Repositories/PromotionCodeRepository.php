@@ -11,6 +11,7 @@ class PromotionCodeRepository extends BaseRepository implements RestfulInterface
     {
         return PromotionCode::class;
     }
+
     // END
 
 }

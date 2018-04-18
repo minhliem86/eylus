@@ -44,6 +44,7 @@
                                 <th width="10%">Sắp xếp</th>
                                 <th width="10%">Trạng thái</th>
                                 <th width="10%">Nổi Bật</th>
+                                <th width="10%">Khuyến Mãi</th>
                                 <th width="15%"></th>
                             </tr>
                     </table>
@@ -86,6 +87,7 @@
                     {data: 'order', name: 'order'},
                     {data: 'status', name: 'status', 'orderable': false},
                     {data: 'hot', name: 'hot', 'title': 'Nổi Bật', 'orderable': false},
+                    {data: 'promotion', name: 'promotion', 'title': 'SP Khuyến Mãi', 'orderable': false},
                     {data: 'action', name: 'action', 'orderable': false}
                 ],
                 initComplete: function(){
@@ -136,8 +138,8 @@
                         })
                     })
 
-                    $('input[name="status"]').change(function(){
-                        let value = 0;
+                    $('table.table').on('change','input[name=status]', function(){
+                        var value = 0;
                         if($(this).is(':checked')){
                             value = 1;
                         }
@@ -155,14 +157,14 @@
                             }
                         })
                     })
-                    $('input[name="hot"]').change(function(){
+                    $('table.table').on('change','input[name=promotion]', function(){
                         var value = 0;
                         if($(this).is(':checked')){
                             value = 1;
                         }
                         const id_item = $(this).data('id');
                         $.ajax({
-                            url: "{{route('admin.product.updateHotProduct')}}",
+                            url: "{{route('admin.product.updatePromotionProduct')}}",
                             type : 'POST',
                             data: {value: value, id: id_item, _token:$('meta[name="csrf-token"]').attr('content')},
                             success: function(data){

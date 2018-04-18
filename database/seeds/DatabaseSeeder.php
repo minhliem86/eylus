@@ -9,7 +9,13 @@ class DatabaseSeeder extends Seeder
         [
             'customers',
             'payment_methods',
-            'ship_statuses'
+            'ship_statuses',
+            'news',
+            'promotions',
+            'categories',
+            'brands',
+            'products',
+            'companies'
 
         ];
 
@@ -17,7 +23,12 @@ class DatabaseSeeder extends Seeder
         [
             CustomerSeeder::class,
             PaymentMethodSeeder::class,
-            ShipStatusSeeder::class
+            ShipStatusSeeder::class,
+            NewsSeeder::class,
+            PromotionSeeder::class,
+            CompanySeeder::class,
+            CategorySeeder::class
+
         ];
 
     /**

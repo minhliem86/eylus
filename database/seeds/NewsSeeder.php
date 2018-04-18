@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 
-class CustomerSeeder extends Seeder
+class NewsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +11,6 @@ class CustomerSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Customer::class, 10)->create();
+        factory(App\Models\News::class, 10)->create();
     }
 }

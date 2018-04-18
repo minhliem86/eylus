@@ -13,36 +13,22 @@
             <div class="row">
                 <div class="col">
                     <div class="title-wrapper text-center">
-                        <h2 class="title-section">Sản Phẩm Nổi Bật</h2>
+                        <h2 class="title-section">{!! trans('home.feature_product') !!}</h2>
                     </div>
 
                     <div class="content-wrapper">
-                        <div class="featured-product-slick">
-                            <div class="item-feature">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
+                        @if(!$feature_p->isEmpty())
+                            <div class="featured-product-slick">
+                                @foreach($feature_p as $item_feature)
+                                <div class="item-feature">
+                                    <img src="{!! asset('public/uploads/').$item_feature->img_url !!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_feature->$title : null !!}">
+                                    <h4 class="title-product">{!! ($title = trans('variable.title') ) ? $item_feature->$title : null !!}</h4>
+                                    <p class="price">{!! ($price = trans('variable.price') ) ? $item_feature->$price : null !!} {!! trans('variable.currency') !!}</p>
+                                    <a href="#" class="btn-detail-product btn-addcart">{!! trans('home.add_cart') !!}</a>
+                                </div>
+                                @endforeach
                             </div>
-                            <div class="item-feature">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
-                            </div>
-                            <div class="item-feature">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
-                            </div>
-                            <div class="item-feature">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -54,47 +40,26 @@
             <div class="row">
                 <div class="col">
                     <div class="title-wrapper text-center">
-                        <h2 class="title-section">Sản Phẩm Khuyến Mãi</h2>
+                        <h2 class="title-section">{!! trans('home.promotion_product') !!}</h2>
                     </div>
-
+                    @if(!$promotion_p->isEmpty())
                     <div class="content-wrapper">
+                        @foreach($promotion_p as $item_promotion)
                         <div class="promotion-slick">
                             <div class="item-promotion">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
-                            </div>
-                            <div class="item-promotion">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
-                            </div>
-                            <div class="item-promotion">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
-                            </div>
-                            <div class="item-promotion">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
-                            </div>
-                            <div class="item-promotion">
-                                <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                                <h4 class="title-product">Product 01</h4>
-                                <p class="price">100.000 vnd</p>
-                                <a href="#" class="btn-detail-promotion btn-addcart">Chi tiết</a>
+                                <img src="{!! asset('public/uploads/').$item_promotion->img_url !!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}">
+                                <h4 class="title-product">{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}</h4>
+                                <p class="price">{!! ($price = trans('variable.price') ) ? $item_promotion->$price : null !!} {!! trans('variable.currency') !!}</p>
+                                <a href="#" class="btn-detail-promotion btn-addcart">{!! trans('home.add_cart') !!}</a>
                             </div>
                         </div>
+                        @endforeach
 
                         <div class="button-container text-center">
-                            <a href="#" class="btn-more">Xem thêm sản phẩm</a>
+                            <a href="#" class="btn-more">{!! trans('home.readmore') !!}</a>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -153,45 +118,26 @@
             <div class="row">
                 <div class="col">
                     <div class="title-wrapper text-center">
-                        <h2 class="title-section">Sản Phẩm Được Yêu Thích</h2>
+                        <h2 class="title-section">{!! trans('home.fav_product') !!}</h2>
                     </div>
                 </div>
             </div>
+            @if(!$fav_p->isEmpty())
             <div class="row">
+                @foreach($fav_p as $item_fav)
                 <div class="col-md-4">
                     <div class="each-bestSeller">
-                        <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                        <h4 class="title-product">Product 01</h4>
-                        <p class="price">100.000 vnd</p>
+                        <img src="{!! asset('public/uploads/').$item_fav->img_url !!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_fav->$title : null !!}">
+                        <h4 class="title-product">{!! ($title = trans('variable.title') ) ? $item_fav->$title : null !!}</h4>
+                        <p class="price">{!! ($price = trans('variable.price') ) ? $item_fav->$price : null !!} {!! trans('variable.currency') !!}</p>
                         <div class="button-container text-center">
-                            <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="each-bestSeller">
-                        <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                        <h4 class="title-product">Product 01</h4>
-                        <p class="price">100.000 vnd</p>
-                        <div class="button-container text-center">
-                            <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
+                            <a href="" class="btn-detail-product btn-addcart">{!! trans('home.add_cart') !!}</a>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="each-bestSeller">
-                        <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid img-section" alt="">
-                        <h4 class="title-product">Product 01</h4>
-                        <p class="price">100.000 vnd</p>
-                        <div class="button-container text-center">
-                            <a href="#" class="btn-detail-product btn-addcart">Chi tiết</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
+            @endif
         </div>
     </section>
     <!-- end -->
@@ -216,7 +162,15 @@
                             <img src="{!! asset('public/assets/client') !!}/images/video.png" class="img-fluid mx-auto" alt="">
                         </div>
                         <div class="video-wrapper">
-
+                            @if(!$videos->isEmpty())
+                                @foreach($videos as $item_video)
+                                <div class="video-slick">
+                                    <div class="each-video">
+                                        <div id="player" data-plyr-provider="youtube" data-plyr-embed-id="{!! $item_video->video_url !!}"></div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
 
@@ -236,6 +190,7 @@
         </div>
     </section>
     <!-- end -->
+
 @stop
 
 @section("script")
@@ -244,6 +199,9 @@
     <link rel="stylesheet" href="{!! asset('public/assets/client') !!}/js/plugins/slick/slick-theme.css">
     <script src="{!! asset('public/assets/client') !!}/js/plugins/slick/slick.min.js"></script>
 
+    <!-- VIDEO -->
+    <link rel="stylesheet" href="{!! asset('public/assets/client') !!}/js/plugins/video/plyr.css">
+    <script src="{!! asset('public/assets/client') !!}/js/plugins/video/plyr.min.js"></script>
 
     <!-- IMAGE COMPARE -->
     <link rel="stylesheet" href="{!! asset('public/assets/client') !!}/js/plugins/compare/css/images-compare.css">
@@ -254,6 +212,23 @@
         $(document).ready(function(){
             $('.featured-product-slick').slick({
                 slidesToShow: 3,
+                prevArrow: '<span class="btn-control btn-pre"><i class="fa fa-angle-left"></i></span>',
+                nextArrow: '<span class="btn-control btn-next"><i class="fa fa-angle-right"></i></span>',
+                responsive: [
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: false,
+                            dots  : true
+                        }
+                    }
+                ]
+            })
+
+            $('.video-slick').slick({
+                slidesToShow: 1,
                 prevArrow: '<span class="btn-control btn-pre"><i class="fa fa-angle-left"></i></span>',
                 nextArrow: '<span class="btn-control btn-next"><i class="fa fa-angle-right"></i></span>',
                 responsive: [
@@ -287,6 +262,9 @@
             })
 
             $('.imageCompare').imagesCompare()
+
+            /** VIDEO **/
+            const player = new Plyr('#player');
         })
     </script>
 @stop

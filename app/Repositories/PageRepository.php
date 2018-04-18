@@ -11,6 +11,11 @@ class PageRepository extends BaseRepository implements RestfulInterface{
     {
         return Page::class;
     }
+
+    public function getRelate($not_id,$column= ['*'])
+    {
+        return $this->model->where('type','other')->whereNotIn('id',[$not_id])->inRandomOrder()->limit(5)->get($column);
+    }
     // END
 
 }

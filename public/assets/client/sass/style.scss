@@ -347,6 +347,7 @@ section{
 /*BEST SELLER*/
 .best-seller{
   .each-bestSeller{
+    @extend %product-wrapper;
     @include media{
       margin-bottom:1.5rem;
     }

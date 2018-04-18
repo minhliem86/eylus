@@ -5,7 +5,7 @@
 @stop
 
 @section("title")
-    {!! ( $title = trans('variable.title') ) ? $news->$title : null !!}
+    {!! ( $title = trans('variable.title') ) ? $promotions->$title : null !!}
 @stop
 
 @section('content')
@@ -18,10 +18,10 @@
                     <div class="main-content">
                         <div class="row no-gutters">
                             <div class="title-content-wrapper">
-                                <h2 class="title-content">{!! ($title = trans('variable.title') ) ? $news->$title : null !!}</h2>
+                                <h2 class="title-content">{!! ($title = trans('variable.title') ) ? $promotions->$title : null !!}</h2>
                                 <div class="news-info mb-4 d-flex justify-content-between">
                                     <div>
-                                        <p>Ngày đăng: <i>{!! \Carbon\Carbon::parse($news->created_at)->format('d/m/Y') !!}</i></p>
+                                        <p>Ngày đăng: <i>{!! \Carbon\Carbon::parse($promotions->created_at)->format('d/m/Y') !!}</i></p>
                                     </div>
                                     <div class="socical">
 
@@ -32,7 +32,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="content-detail">
-                                    {!! ($content = trans('variable.content') ) ? $news->$content : null !!}
+                                    {!! ($content = trans('variable.content') ) ? $promotions->$content : null !!}
                                 </div>
                             </div>
                         </div>
@@ -41,10 +41,10 @@
                 <div class="col-md-4">
                     <div class="sidebar-wrapper">
                         <div class="box-sidebar">
-                            <h4 class="title-box">Tin Tức Khác</h4>
-                            @if(!$relate_news->isEmpty())
+                            <h4 class="title-box">Tin Khuyến Mãi Khác</h4>
+                            @if(!$relate_promotions->isEmpty())
                             <div class="content-box">
-                                @foreach($relate_news as $item_relate)
+                                @foreach($relate_promotions as $item_relate)
                                 <div class="media">
                                     <a href="#"><img class="mr-3" src="{!! asset('public/uploads/').$item_relate->img_url !!}" alt="{!! ($title = trans('variable.title') ) ? $item_relate->$title : null !!}"></a>
                                     <div class="media-body">
@@ -62,17 +62,17 @@
                         </div>
 
                         <div class="box-sidebar">
-                            <h4 class="title-box">Tin Tức</h4>
-                            @if(!$promotions->isEmpty())
+                            <h4 class="title-box">Tin Khuyến Mãi</h4>
+                            @if(!$news->isEmpty())
                                 <div class="content-box">
-                                    @foreach($promotions as $item_promotion)
+                                    @foreach($news as $item_news)
                                         <div class="media">
-                                            <a href="#"><img class="mr-3" src="{!! asset('public/uploads/').$item_promotion->img_url !!}" alt="{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}"></a>
+                                            <a href="#"><img class="mr-3" src="{!! asset('public/uploads/').$item_news->img_url !!}" alt="{!! ($title = trans('variable.title') ) ? $item_news->$title : null !!}"></a>
                                             <div class="media-body">
-                                                <h5 class="mb-3"><a href="#">{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}</a></h5>
+                                                <h5 class="mb-3"><a href="#">{!! ($title = trans('variable.title') ) ? $item_news->$title : null !!}</a></h5>
                                                 <div class="media-content">
                                                     <a href="#">
-                                                        <p>{!! ($content = trans('variable.content') ) ? Str::words($item_promotion->$content, 30) : null !!}</p>
+                                                        <p>{!! ($content = trans('variable.content') ) ? Str::words($item_news->$content, 30) : null !!}</p>
                                                     </a>
                                                 </div>
                                             </div>

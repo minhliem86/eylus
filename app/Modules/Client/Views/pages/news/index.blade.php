@@ -19,110 +19,50 @@
                                 <h2 class="title-content">Tin Tức</h2>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="each-template">
-                                    <a href="#"><img src="https://picsum.photos/350/200" class="img-fluid mb-4" alt="Generic placeholder image"></a>
-                                    <div class="media-body">
-                                        <h5 class="mb-3"><a href="#">Media heading</a></h5>
-                                        <div class="media-content">
-                                            <a href="#">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aliquid, animi aspernatur consequatur, deleniti eum minima nam necessitatibus nobis odio perspiciatis quam quos ratione reiciendis rerum suscipit tempora ullam!</p>
-                                            </a>
+                        @if(!$news->isEmpty())
+                            @foreach($news->chunk(2) as $chunk)
+                            <div class="row">
+                                @foreach($chunk as $item_news)
+                                <div class="col-md-6">
+                                    <div class="each-template">
+                                        <a href="{!! route('client.news.detail', $item_news->slug) !!}"><img src="{!! asset('public/uploads/'.$item_news->img_url) !!}" class="img-fluid mb-4" alt="{!! ($title = trans('variable.title')) ? $item_news->$title : null !!}"></a>
+                                        <div class="media-body">
+                                            <h5 class="mb-3"><a href="{!! route('client.news.detail', $item_news->slug) !!}">{!! ($title = trans('variable.title')) ? $item_news->$title : null !!}</a></h5>
+                                            <div class="media-content">
+                                                <a href="{!! route('client.news.detail', $item_news->slug) !!}">
+                                                    {!! ($content = trans('variable.content')) ? Str::words($item_news->$content, 30) : null !!}
+                                                </a>
+                                            </div>
                                         </div>
-                                        <a href="#" class="btn-more my-2 d-block">Xem thêm</a>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
-                            <div class="col-md-6">
-                                <div class="each-template">
-                                    <a href="#"><img src="https://picsum.photos/350/200" class="img-fluid mb-4" alt="Generic placeholder image"></a>
-                                    <div class="media-body">
-                                        <h5 class="mb-3"><a href="#">Media heading</a></h5>
-                                        <div class="media-content">
-                                            <a href="#">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aliquid, animi aspernatur consequatur, deleniti eum minima nam necessitatibus nobis odio perspiciatis quam quos ratione reiciendis rerum suscipit tempora ullam!</p>
-                                            </a>
-                                        </div>
-                                        <a href="#" class="btn-more my-2 d-block">Xem thêm</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="each-template">
-                                    <a href="#"><img src="https://picsum.photos/350/200" class="img-fluid mb-4" alt="Generic placeholder image"></a>
-                                    <div class="media-body">
-                                        <h5 class="mb-3"><a href="#">Media heading</a></h5>
-                                        <div class="media-content">
-                                            <a href="#">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aliquid, animi aspernatur consequatur, deleniti eum minima nam necessitatibus nobis odio perspiciatis quam quos ratione reiciendis rerum suscipit tempora ullam!</p>
-                                            </a>
-                                        </div>
-                                        <a href="#" class="btn-more my-2 d-block">Xem thêm</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="sidebar-wrapper">
                         <div class="box-sidebar">
                             <h4 class="title-box">Tin Khuyến Mãi</h4>
+                            @if(!$promotions->isEmpty())
                             <div class="content-box">
+                                @foreach($promotions as $item_promotion)
                                 <div class="media">
-                                    <a href="#"><img class="mr-3" src="https://picsum.photos/80" alt="Generic placeholder image"></a>
+                                    <a href="{!! route('client.promotion_news.detail', $item_promotion->slug) !!}"><img class="mr-3" src="{!! asset('public/uploads/').$item_promotion->img_url !!}" alt="{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}"></a>
                                     <div class="media-body">
-                                        <h5 class="mb-3"><a href="#">Media heading</a></h5>
+                                        <h5 class="mb-3"><a href="{!! route('client.promotion_news.detail', $item_promotion->slug) !!}">{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}</a></h5>
                                         <div class="media-content">
-                                            <a href="#">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A animi consequatur deleniti dignissimos eligendi, enim excepturi fuga id maiores mollitia nam neque nesciunt nihil nobis officiis quisquam, sed, sunt tempore.</p>
+                                            <a href="{!! route('client.promotion_news.detail', $item_promotion->slug) !!}">
+                                                {!! ($content = trans('variable.content') ) ? Str::words($item_promotion->$content, 30) : null !!}
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="media">
-                                    <a href="#"><img class="mr-3" src="https://picsum.photos/80" alt="Generic placeholder image"></a>
-                                    <div class="media-body">
-                                        <h5 class="mb-3"><a href="#">Media heading</a></h5>
-                                        <div class="media-content">
-                                            <a href="#">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A animi consequatur deleniti dignissimos eligendi, enim excepturi fuga id maiores mollitia nam neque nesciunt nihil nobis officiis quisquam, sed, sunt tempore.</p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
-                        </div>
-
-                        <div class="box-sidebar">
-                            <h4 class="title-box">Tin Khuyến Mãi</h4>
-                            <div class="content-box">
-                                <div class="media">
-                                    <a href="#"><img class="mr-3" src="https://picsum.photos/80" alt="Generic placeholder image"></a>
-                                    <div class="media-body">
-                                        <h5 class="mb-3"><a href="#">Media heading</a></h5>
-                                        <div class="media-content">
-                                            <a href="#">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A animi consequatur deleniti dignissimos eligendi, enim excepturi fuga id maiores mollitia nam neque nesciunt nihil nobis officiis quisquam, sed, sunt tempore.</p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="media">
-                                    <a href="#"><img class="mr-3" src="https://picsum.photos/80" alt="Generic placeholder image"></a>
-                                    <div class="media-body">
-                                        <h5 class="mb-3"><a href="#">Media heading</a></h5>
-                                        <div class="media-content">
-                                            <a href="#">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A animi consequatur deleniti dignissimos eligendi, enim excepturi fuga id maiores mollitia nam neque nesciunt nihil nobis officiis quisquam, sed, sunt tempore.</p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

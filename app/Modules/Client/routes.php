@@ -9,8 +9,11 @@ Route::group(['middleware'=>['web'],'prefix'=>LaravelLocalization::setLocale(),'
 
     /*NEWS*/
     Route::get('/tin-tuc', ['as' => 'client.news', 'uses' => 'NewsController@getIndex']);
-    Route::get('/tin-tuc-chi-tiet', ['as' => 'client.news.detail', 'uses' => 'NewsController@getDetailtest']);
-//    Route::get('/tin-tuc/{slug}', ['as' => 'client.news.detail', 'uses' => 'NewsController@getDetail'])->where('slug', '[0-9a-zA-Z._\-]+');
+    Route::get('/tin-tuc/{slug}', ['as' => 'client.news.detail', 'uses' => 'NewsController@getDetail'])->where('slug', '[0-9a-zA-Z._\-]+');
+
+    /*PROMOTION*/
+    Route::get('/tin-khuyen-mai', ['as' => 'client.promotion_news', 'uses' => 'PromotionController@getIndex']);
+    Route::get('/tin-khuyen-mai/{slug}', ['as' => 'client.promotion_news.detail', 'uses' => 'PromotionController@getDetail'])->where('slug', '[0-9a-zA-Z._\-]+');
 
     /*PRODUCT*/
 //    Route::get('/danh-muc/{slug}', ['as' => 'client.category', 'uses' => 'ProductController@getCategory'])->where('slug','[0-9a-zA-Z._\-]+');
@@ -70,5 +73,8 @@ Route::group(['middleware'=>['web'],'prefix'=>LaravelLocalization::setLocale(),'
 
     Route::post('/payment/getDistrict', ['as' => 'client.post.getDistrict', 'uses' => 'ProductController@getDistrict']);
     Route::post('/payment/getWard', ['as' => 'client.post.getWard', 'uses' => 'ProductController@getWard']);
+
+    /*SINGLE*/
+    Route::get('/{slug}', ['as' => 'client.single_page','uses' => 'PageController@getPage'])->where('slug', '[0-9a-zA-Z._\-]+');
 
 });
