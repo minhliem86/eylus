@@ -1,5 +1,9 @@
 <?php
-Route::group(['middleware'=>['web'],'prefix'=>LaravelLocalization::setLocale(),'namespace' => 'App\Modules\Client\Controllers'], function(){
+Route::group([
+    'middleware'=>['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],
+    'prefix'=>LaravelLocalization::setLocale(),
+    'namespace' => 'App\Modules\Client\Controllers'], function(){
+
     Route::get('/', ['as' => 'client.home', 'uses' => 'HomeController@index']);
 
     /*CONTACT US*/
@@ -16,13 +20,12 @@ Route::group(['middleware'=>['web'],'prefix'=>LaravelLocalization::setLocale(),'
     Route::get('/tin-khuyen-mai/{slug}', ['as' => 'client.promotion_news.detail', 'uses' => 'PromotionController@getDetail'])->where('slug', '[0-9a-zA-Z._\-]+');
 
     /*PRODUCT*/
-//    Route::get('/danh-muc/{slug}', ['as' => 'client.category', 'uses' => 'ProductController@getCategory'])->where('slug','[0-9a-zA-Z._\-]+');
-//    Route::get('/san-pham', ['as' => 'client.product.showAll', 'uses' => 'ProductController@getAllProduct']);
-//    Route::get('/san-pham/{slug}', ['as' => 'client.product', 'uses' => 'ProductController@getProduct'])->where('slug','[0-9a-zA-Z._\-]+');
-//    Route::post('/san-pham/addToCart', ['as' => 'client.product.addToCart', 'uses' => 'ProductController@addToCart']);
-//    Route::post('/ajaxAttributeValue', ['as' => 'client.product.ajaxChangeAttributeValue', 'uses' => 'ProductController@ajaxChangeAttributeValue']);
-
-    Route::get('/danh-muc-san-pham', ['as' => 'client.category', 'uses' => 'CategoryController@index']);
+    Route::get('/danh-muc-san-pham/{slug}', ['as' => 'client.category', 'uses' => 'CategoryController@getCategory'])->where('slug','[0-9a-zA-Z._\-]+');
+    Route::get('/thuong-hieu-san-pham/{slug}', ['as' => 'client.brand', 'uses' => 'BrandController@getBrand'])->where('slug','[0-9a-zA-Z._\-]+');
+    Route::get('/san-pham', ['as' => 'client.product.showAll', 'uses' => 'ProductController@getAllProduct']);
+    Route::get('/san-pham/{slug}', ['as' => 'client.product', 'uses' => 'ProductController@getProduct'])->where('slug','[0-9a-zA-Z._\-]+');
+    Route::post('/san-pham/addToCart', ['as' => 'client.product.addToCart', 'uses' => 'ProductController@addToCart']);
+    Route::post('/ajaxAttributeValue', ['as' => 'client.product.ajaxChangeAttributeValue', 'uses' => 'ProductController@ajaxChangeAttributeValue']);
 
     Route::get('/san-pham', ['as' => 'client.sanpham', 'uses' => 'ProductController@index']);
     Route::post('/san-pham/addtoCart', ['as' => 'client.addtocart', 'uses' => 'ProductController@ajaxAddtocart']);

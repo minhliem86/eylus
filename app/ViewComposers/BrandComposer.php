@@ -2,20 +2,20 @@
 namespace App\ViewComposers;
 
 use Illuminate\View\View;
-use App\Repositories\BrandRepository;
+use App\Repositories\CategoryRepository;
 class BrandComposer{
 
-    protected $brand;
-    public function __construct(BrandRepository $brand)
+    protected $cate;
+    public function __construct(CategoryRepository $cate)
     {
         // TODO: integrate instance
-        $this->brand = $brand;
+        $this->cate = $cate;
     }
 
     public function compose(View $view)
     {
         // TODO: Bind data to view
-        $brands = $this->brand->all(['id','slug','name_vi','name_en']);
-        $view->with(compact('brands'));
+        $category = $this->cate->all(['id','slug','name_vi','name_en']);
+        $view->with(compact('category'));
     }
 }

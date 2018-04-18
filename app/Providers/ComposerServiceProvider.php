@@ -13,6 +13,7 @@ class ComposerServiceProvider extends ServiceProvider{
 //        view()->composer('Client::layouts.navigation', 'App\ViewComposers\NavigationComposer');
         view()->composer(['Client::layouts.header', 'Client::layouts.footer'], 'App\ViewComposers\BrandComposer');
         view()->composer(['Client::layouts.header', 'Client::layouts.footer'], 'App\ViewComposers\StaticComposer');
+        view()->composer(['Client::layouts.left_sidebar'], 'App\ViewComposers\ProductSidebarComposer');
     }
 
     /*REGISTER FUNCTION*/

@@ -16,7 +16,7 @@
                         <div class="collapse navbar-collapse" id="main-menu">
                             <ul class="navbar-nav nav-menu align-content-end">
                                 <li class="nav-item">
-                                    <a href="">Trang Chủ</a>
+                                    <a href="{!! route('client.home') !!}">Trang Chủ</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{!! route('client.single_page', $static_page->slug) !!}">Giới Thiệu</a>
@@ -26,9 +26,9 @@
                                         Sản Phẩm
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="submenu">
-                                        @if(!$brands->isEmpty())
-                                            @foreach($brands as $item_brand)
-                                                <a class="dropdown-item" href="#">{!! $item_brand->name_vi !!}</a>
+                                        @if(!$category->isEmpty())
+                                            @foreach($category as $item_cate)
+                                                <a class="dropdown-item" href="{!! route('client.category', $item_cate->slug) !!}">{!! ($name = trans('variable.name')) ? $item_cate->$name : null !!}</a>
                                             @endforeach
                                         @endif
                                     </div>

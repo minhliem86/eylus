@@ -17,5 +17,4 @@ class PageRepository extends BaseRepository implements RestfulInterface{
         return $this->model->where('type','other')->whereNotIn('id',[$not_id])->inRandomOrder()->limit(5)->get($column);
     }
     // END
-
 }

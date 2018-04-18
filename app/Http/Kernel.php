@@ -51,6 +51,12 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'guest.admin' => \App\Modules\Admin\Middlewares\AdminRedirectIfAuthMiddleware::class,
         'can_login' => \App\Modules\Admin\Middlewares\CheckCanLoginMiddleware::class,
-        'check_admin' => \App\Modules\Admin\Middlewares\CheckIsAdminMiddleware::class
+        'check_admin' => \App\Modules\Admin\Middlewares\CheckIsAdminMiddleware::class,
+
+        /** LANGUAGE MIDDLEWARE **/
+        'localize' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+        'localizationRedirect' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+        'localeSessionRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
+        'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class
     ];
 }

@@ -4,8 +4,9 @@
 
 @stop
 
-@section("title","Danh Mục Sản Phẩm")
-
+@section("title")
+    Thương Hiệu Sản Phẩm
+@stop
 @section("content")
     @include('Client::layouts.banner')
 
@@ -16,16 +17,16 @@
                     @include("Client::layouts.left_sidebar")
                 </div>
                 <div class="col-md-8">
-                    @if(!$cate->isEmpty())
-                        @foreach($cate->chunk(3) as $chunk)
+                    @if(!$brand->isEmpty())
+                        @foreach($brand->chunk(3) as $chunk)
                     <div class="row">
-                        @foreach($chunk as $item_cate)
+                        @foreach($chunk as $item_brand)
                         <div class="col-md-4">
                             <div class="each-element">
                                 <div class="content-wrapper">
                                     <div class="item-element">
                                         <div class="img-wrapper">
-                                            <img src="{!! asset('public/uploads/').$item_cate->img_url !!}" class="img-fluid img-section" alt="{!! ($name = trans('variable.name')) ? $item_cate->$name : null !!}">
+                                            <img src="{!! asset('public/uploads/').$item_brand->img_url !!}" class="img-fluid img-section" alt="{!! ($name = trans('variable.name')) ? $item_brand->$name : null !!}">
                                             <div class="mask"></div>
                                             <div class="wrap-btn justify-content-center align-items-center d-md-flex flex-column">
                                                 <a href="#" class="btn-detail-product btn-template">Chi tiết</a>
@@ -33,7 +34,7 @@
                                             </div>
                                         </div>
 
-                                        <h4 class="title-product"><a href="#">{!! ($name = trans('variable.name')) ? $item_cate->$name : null !!}</a></h4>
+                                        <h4 class="title-product"><a href="#">{!! ($name = trans('variable.name')) ? $item_brand->$name : null !!}</a></h4>
                                         {{--<p class="price">100.000 vnd</p>--}}
                                     </div>
                                 </div>
@@ -44,7 +45,7 @@
                         @endforeach
                         <div class="row">
                             <div class="col">
-                                @include('Client::pagination.boot4', ['paginator' => $cate])
+                                @include('Client::pagination.boot4', ['paginator' => $brand])
                             </div>
                         </div>
                     @endif

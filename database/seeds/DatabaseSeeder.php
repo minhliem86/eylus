@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
             'categories',
             'brands',
             'products',
-            'companies'
+            'companies',
+            'pages'
 
         ];
 
@@ -27,7 +28,8 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,
             PromotionSeeder::class,
             CompanySeeder::class,
-            CategorySeeder::class
+            CategorySeeder::class,
+            PageSeeder::class
 
         ];
 

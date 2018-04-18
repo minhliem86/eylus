@@ -23,7 +23,7 @@
 $factory->define(App\Models\Category::class, function(Faker\Generator  $faker){
     return [
         'name_vi' => $faker->words(5, true),
-        'slug' => $faker->words(5, true),
+        'slug' => \LP_lib::unicode($faker->words(2, true)),
         'name_en' => $faker->words(5, true),
         'content_vi' => $faker->paragraph(5,true),
         'content_en' => $faker->paragraph(5, true),
@@ -34,7 +34,7 @@ $factory->define(App\Models\Category::class, function(Faker\Generator  $faker){
 $factory->define(App\Models\Brand::class, function(Faker\Generator  $faker){
     return [
         'name_vi' => $faker->words(5, true),
-        'slug' => $faker->words(5, true),
+        'slug' => \LP_lib::unicode($faker->words(2, true)),
         'name_en' => $faker->words(5, true),
         'content_vi' => $faker->paragraph(5, true),
         'content_en' => $faker->paragraph(5, true),
@@ -45,7 +45,7 @@ $factory->define(App\Models\Brand::class, function(Faker\Generator  $faker){
 $factory->define(App\Models\Product::class, function(Faker\Generator  $faker){
     return [
         'name_vi' => $faker->words(5, true),
-        'slug' => $faker->words(5, true),
+        'slug' => \LP_lib::unicode($faker->words(2, true)),
         'name_en' => $faker->words(5, true),
         'sku' => strtoupper($faker->words(5, true)),
         'quantity' => 100,
@@ -80,7 +80,7 @@ $factory->define(App\Models\Customer::class, function(Faker\Generator  $faker){
 $factory->define(App\Models\News::class, function(Faker\Generator  $faker){
     return [
         'title_vi' => $faker->sentence(),
-        'slug' => $faker->words(5,true),
+        'slug' => \LP_lib::unicode($faker->words(2, true)),
         'title_en' => $faker->sentence(),
         'content_vi' => $faker->paragraph(5, true),
         'content_en' => $faker->paragraph(5, true),
@@ -91,7 +91,7 @@ $factory->define(App\Models\News::class, function(Faker\Generator  $faker){
 $factory->define(App\Models\Promotion::class, function(Faker\Generator  $faker){
     return [
         'title_vi' => $faker->sentence(),
-        'slug' => $faker->words(5, true),
+        'slug' => \LP_lib::unicode($faker->words(2, true)),
         'title_en' => $faker->sentence(),
         'content_vi' => $faker->paragraph(5, true),
         'content_en' => $faker->paragraph(5, true),

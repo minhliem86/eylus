@@ -28,9 +28,9 @@
                 <div class="footer-container">
                     <ul class="list-footer">
                         <li class="header">Sản Phẩm</li>
-                        @if(!$brands->isEmpty())
-                            @foreach($brands as $item_brand)
-                                <li class="item-footer"><a href="#">{!! $item_brand->name_vi !!}</a></li>
+                        @if(!$category->isEmpty())
+                            @foreach($category as $item_cate)
+                                <li class="item-footer"><a href="{!! route('client.category', $item_cate->slug) !!}">{!! ($name = trans('variable.name')) ? $item_cate->$name : null !!}</a></li>
                             @endforeach
                         @endif
                     </ul>
