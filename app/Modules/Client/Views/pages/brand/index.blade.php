@@ -17,24 +17,29 @@
                     @include("Client::layouts.left_sidebar")
                 </div>
                 <div class="col-md-8">
-                    @if(!$brand->isEmpty())
-                        @foreach($brand->chunk(3) as $chunk)
                     <div class="row">
-                        @foreach($chunk as $item_brand)
+                        <div class="col">
+                            <h4 class="title">{!! ($name = trans('variable.name') ) ? $brand->$name : null !!}</h4>
+                        </div>
+                    </div>
+                    @if(count($brand))
+                        @foreach($brand->products()->paginate(15)->chunk(3) as $chunk)
+                    <div class="row">
+                        @foreach($chunk as $item_product)
                         <div class="col-md-4">
                             <div class="each-element">
                                 <div class="content-wrapper">
                                     <div class="item-element">
                                         <div class="img-wrapper">
-                                            <img src="{!! asset('public/uploads/').$item_brand->img_url !!}" class="img-fluid img-section" alt="{!! ($name = trans('variable.name')) ? $item_brand->$name : null !!}">
+                                            <img src="{!! asset('public/uploads/').$item_product->img_url !!}" class="img-fluid img-section" alt="{!! ($name = trans('variable.name')) ? $item_product->$name : null !!}">
                                             <div class="mask"></div>
                                             <div class="wrap-btn justify-content-center align-items-center d-md-flex flex-column">
-                                                <a href="#" class="btn-detail-product btn-template">Chi tiết</a>
-                                                {{--<a href="#" class="btn-template btn-cart">Mua Ngay</a>--}}
+                                                <a href="{!! route('client.product',$item_product->slug) !!}" class="btn-detail-product btn-template">Chi tiết</a>
+                                                <a href="{!! route('client.product',$item_product->slug) !!}" class="btn-template btn-cart">Mua Ngay</a>
                                             </div>
                                         </div>
 
-                                        <h4 class="title-product"><a href="#">{!! ($name = trans('variable.name')) ? $item_brand->$name : null !!}</a></h4>
+                                        <h4 class="title-product"><a href="{!! route('client.product',$item_product->slug) !!}">{!! ($name = trans('variable.name')) ? $item_product->$name : null !!}</a></h4>
                                         {{--<p class="price">100.000 vnd</p>--}}
                                     </div>
                                 </div>
@@ -45,7 +50,7 @@
                         @endforeach
                         <div class="row">
                             <div class="col">
-                                @include('Client::pagination.boot4', ['paginator' => $brand])
+                                @include('Client::pagination.boot4', ['paginator' => $brand->products()->paginate(15)])
                             </div>
                         </div>
                     @endif

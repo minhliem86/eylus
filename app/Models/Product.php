@@ -12,7 +12,7 @@ class Product extends Model
 
     public function brands()
     {
-        return $this->belongsTo('App\Models\Brand', 'product_id');
+        return $this->belongsTo('App\Models\Brand', 'brand_id');
     }
 
     public function metas()

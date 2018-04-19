@@ -19,7 +19,7 @@ class BrandController extends Controller
 
     public function getBrand($slug)
     {
-        $brand = $this->brand->findByField('slug', $slug)->paginate(15);
+        $brand = $this->brand->findByField('slug', $slug,['id','name_vi', 'name_en'],['products'])->first();
         return view('Client::pages.brand.index', compact('brand'));
     }
 }

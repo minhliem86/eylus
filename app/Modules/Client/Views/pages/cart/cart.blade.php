@@ -23,24 +23,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Du Học Hè 2018</td>
-                                    <td><img src="{!! asset('public/assets/client') !!}/images/lego.png" class="img-fluid" style="width:80px;" alt=""></td>
-                                    <td ><input type="text" name="quantiy" class="form-control"></td>
-                                    <td class="text-right">700,00 VND</td>
-                                    <td class="text-right"><button type="button" class="btn-remove btn-sm" title="Xóa"><i class="fa fa-trash"></i></button></td>
-                                </tr>
-                            <tr>
-                                <td colspan="4" class="text-right">
-                                    Tổng Cộng
-                                </td>
-                                <td class="text-right">700,000 VND</td>
-                            </tr>
+                                @include("Client::ajax.cart")
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td colspan="3">
-                                        <button class="btn-cart btn-remove " type="button"><i class="fa fa-remove"></i> Xóa giỏ hàng</button>
+                                        <a class="btn-cart btn-remove " href="{!! route('client.cart.clear') !!}"><i class="fa fa-remove"></i> Xóa giỏ hàng</a>
                                         <button class="btn-cart btn-udpate " type="button" ><i class="fa fa-refresh"></i> Cập nhật giỏ hàng</button>
                                     </td>
                                     <td colspan="2" class="text-right">
@@ -59,5 +47,17 @@
 @stop
 
 @section("script")
-
+    <script>
+        $(document).ready(function(){
+            $('.btn-remove').click(function(){
+                var cart_id = $(this).data('id');
+                $.ajax({
+                    url: '{!! route('client.cart.removeItem') !!}'
+                    type: 'POST',
+                    data: {cart_id: cart_id},
+                    suc
+                })
+            })
+        })
+    </script>
 @stop

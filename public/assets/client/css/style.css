@@ -563,13 +563,15 @@ section {
   text-transform: uppercase; }
 .cart-template .cart-wrapper table tbody tr button.btn-remove {
   background: darkred; }
-.cart-template .cart-wrapper table tfoot .btn-cart.btn-remove {
-  background: #880000; }
-.cart-template .cart-wrapper table tfoot .btn-cart.btn-udpate {
-  background: #1ba87e; }
-.cart-template .cart-wrapper table tfoot .btn-cart.btn-payment {
-  background: #1c94c4;
-  padding: 0.6rem 1.4rem; }
+.cart-template .cart-wrapper table tfoot .btn-cart {
+  padding: 0.6rem 1.4rem;
+  line-height: 1.75rem; }
+  .cart-template .cart-wrapper table tfoot .btn-cart.btn-remove {
+    background: #880000; }
+  .cart-template .cart-wrapper table tfoot .btn-cart.btn-udpate {
+    background: #1ba87e; }
+  .cart-template .cart-wrapper table tfoot .btn-cart.btn-payment {
+    background: #1c94c4; }
 
 /*PAYMENT*/
 .payment-template h5.title {

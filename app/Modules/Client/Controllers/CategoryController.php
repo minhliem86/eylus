@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
     public function getCategory($slug)
     {
-        $cate = $this->category->findByField('slug', $slug)->paginate(15);
+        $cate = $this->category->findByField('slug', $slug, ['id', 'name_vi', 'name_en'], ['brands'])->first();
         return view('Client::pages.category.index', compact('cate'));
     }
 }

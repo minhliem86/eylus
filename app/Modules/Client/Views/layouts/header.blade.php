@@ -23,7 +23,7 @@
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="dropdown-toggle" href="#" id="submenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Sản Phẩm
+                                        Bộ Sưu Tập
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="submenu">
                                         @if(!$category->isEmpty())
@@ -34,7 +34,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#">Bộ Sưu Tập</a>
+                                    <a href="{!! route('client.product.index') !!}">Sản Phẩm</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{!! route('client.news') !!}">Tin Tức</a>

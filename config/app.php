@@ -170,6 +170,7 @@ return [
         App\Modules\ModuleServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class
 
     ],
 
@@ -228,6 +229,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'Str' => \Illuminate\Support\Str::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
 
     ],
 

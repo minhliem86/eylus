@@ -19,23 +19,28 @@ Route::group([
     Route::get('/tin-khuyen-mai', ['as' => 'client.promotion_news', 'uses' => 'PromotionController@getIndex']);
     Route::get('/tin-khuyen-mai/{slug}', ['as' => 'client.promotion_news.detail', 'uses' => 'PromotionController@getDetail'])->where('slug', '[0-9a-zA-Z._\-]+');
 
-    /*PRODUCT*/
+    /*PRODUCT & CART*/
     Route::get('/danh-muc-san-pham/{slug}', ['as' => 'client.category', 'uses' => 'CategoryController@getCategory'])->where('slug','[0-9a-zA-Z._\-]+');
     Route::get('/thuong-hieu-san-pham/{slug}', ['as' => 'client.brand', 'uses' => 'BrandController@getBrand'])->where('slug','[0-9a-zA-Z._\-]+');
-    Route::get('/san-pham', ['as' => 'client.product.showAll', 'uses' => 'ProductController@getAllProduct']);
-    Route::get('/san-pham/{slug}', ['as' => 'client.product', 'uses' => 'ProductController@getProduct'])->where('slug','[0-9a-zA-Z._\-]+');
+
+    Route::get('/san-pham', ['as' => 'client.product.index', 'uses' => 'ProductController@getIndex']);
+
+    Route::get('/san-pham/{slug}', ['as' => 'client.product.detail', 'uses' => 'ProductController@getProduct'])->where('slug','[0-9a-zA-Z._\-]+');
+
     Route::post('/san-pham/addToCart', ['as' => 'client.product.addToCart', 'uses' => 'ProductController@addToCart']);
-    Route::post('/ajaxAttributeValue', ['as' => 'client.product.ajaxChangeAttributeValue', 'uses' => 'ProductController@ajaxChangeAttributeValue']);
 
-    Route::get('/san-pham', ['as' => 'client.sanpham', 'uses' => 'ProductController@index']);
-    Route::post('/san-pham/addtoCart', ['as' => 'client.addtocart', 'uses' => 'ProductController@ajaxAddtocart']);
+    Route::post('/san-pham/addtoCartAjax', ['as' => 'client.addtocart', 'uses' => 'ProductController@ajaxAddtocart']);
 
-    Route::get('/gio-hang', ['as' => 'client.cart', 'uses' => 'CartController@index']);
+    Route::get('/gio-hang', ['as' => 'client.cart', 'uses' => 'ProductController@getCart']);
 
     Route::post('/update-soluong', ['as' => 'client.cart.updateQuantity', 'uses' => 'ProductController@updateQuantityAjax' ]);
+
+
     Route::post('/remove-item', ['as' => 'client.cart.removeItem', 'uses' => 'ProductController@removeItemCart']);
-    Route::post('/them-gio-hang-ajax', ['as' => 'client.cart.addToCartAjax', 'uses' => 'ProductController@addToCartAjax']);
+
     Route::get('/xoa-gio-hang',['as' => 'client.cart.clear', 'uses' => 'ProductController@clearCart']);
+
+
 
     Route::get('/thanh-toan', ['as' => 'client.payment', 'uses' => 'CartController@payment']);
     Route::post('/process-promotion', ['as' => 'client.promotion', 'uses' => 'ProductController@applyPromotion']);

@@ -763,6 +763,8 @@ section{
       tfoot{
         .btn-cart{
           @extend %button-template;
+          padding:0.6rem 1.4rem;
+          line-height:1.75rem;
           &.btn-remove{
             background:#880000;
           }
@@ -771,7 +773,7 @@ section{
           }
           &.btn-payment{
             background:#1c94c4;
-            padding:0.6rem 1.4rem;
+
           }
         }
 

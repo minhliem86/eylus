@@ -33,7 +33,7 @@
                             <a href="#"><i class="fa fa-user"></i> Đăng nhập</a>
                         </div>
                         <div class="item-wrap">
-                            <a href="#"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+                            <a href="{!! route('client.cart') !!}"><i class="fa fa-shopping-cart"></i> Giỏ hàng {!! !Cart::isEmpty() ? '<span class="badge badge-danger cart-number">'.Cart::getTotalQuantity().'</span>' : null !!}</a>
                         </div>
                         <div class="item-wrap">
                             <a href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}"><img src="{!! asset('public/assets/client') !!}/images/flag-en.png" class="img-fluid" alt="English"></a>
