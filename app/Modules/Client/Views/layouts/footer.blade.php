@@ -4,18 +4,18 @@
             <div class="col-md-3">
                 <div class="footer-container">
                     <ul class="list-footer">
-                        <li class="header">About Eylux</li>
-                        <li class="item-footer"><a href="#">Trang chủ</a></li>
-                        <li class="item-footer"><a href="#">Giới thiệu</a></li>
-                        <li class="item-footer"><a href="#">Khuyến mãi</a></li>
-                        <li class="item-footer"><a href="#">Liên hệ</a></li>
+                        <li class="header">{!! trans('menu.about') !!}</li>
+                        <li class="item-footer"><a href="#">{!! trans('menu.home') !!}</a></li>
+                        <li class="item-footer"><a href="#">{!! trans('menu.about') !!}</a></li>
+                        <li class="item-footer"><a href="#">{!! trans('menu.promotion') !!}</a></li>
+                        <li class="item-footer"><a href="#">{!! trans('menu.contact') !!}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="footer-container">
                     <ul class="list-footer">
-                        <li class="header">Hướng Dẫn</li>
+                        <li class="header">{!! trans('menu.guild') !!}</li>
                         @if(!$other_page->isEmpty())
                             @foreach($other_page as $item_page)
                             <li class="item-footer"><a href="{!! route('client.single_page',$item_page->slug) !!}">{!! ($name = trans('variable.name') ) ? $item_page->$name : null !!}</a></li>
@@ -27,7 +27,7 @@
             <div class="col-md-3">
                 <div class="footer-container">
                     <ul class="list-footer">
-                        <li class="header">Sản Phẩm</li>
+                        <li class="header">{!! trans('menu.product') !!}</li>
                         @if(!$category->isEmpty())
                             @foreach($category as $item_cate)
                                 <li class="item-footer"><a href="{!! route('client.category', $item_cate->slug) !!}">{!! ($name = trans('variable.name')) ? $item_cate->$name : null !!}</a></li>
@@ -39,8 +39,8 @@
             <div class="col-md-3">
                 <div class="footer-container">
                     <div class="title-wrapper  mb-1">
-                        <h3 class="title-footer">ĐĂNG KÝ THÔNG TIN</h3>
-                        <sup>Đăng ký để nhận thông tin.</sup>
+                        <h3 class="title-footer">{!! trans('menu.subscribe') !!}</h3>
+                        <sup>{!! trans('menu.sub_subscribe') !!}</sup>
                     </div>
                     <div class="form-wrapper mb-4">
                         {!! Form::open(['route' => 'client.home', 'class' => 'form']) !!}

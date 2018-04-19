@@ -21,7 +21,7 @@
                                 <h2 class="title-content">{!! ($title = trans('variable.title') ) ? $news->$title : null !!}</h2>
                                 <div class="news-info mb-4 d-flex justify-content-between">
                                     <div>
-                                        <p>Ngày đăng: <i>{!! \Carbon\Carbon::parse($news->created_at)->format('d/m/Y') !!}</i></p>
+                                        <p>{!! trans('static.create_date') !!}: <i>{!! \Carbon\Carbon::parse($news->created_at)->format('d/m/Y') !!}</i></p>
                                     </div>
                                     <div class="socical">
 
@@ -41,7 +41,7 @@
                 <div class="col-md-4">
                     <div class="sidebar-wrapper">
                         <div class="box-sidebar">
-                            <h4 class="title-box">Tin Tức Khác</h4>
+                            <h4 class="title-box">{!! trans('static.other_news') !!}</h4>
                             @if(!$relate_news->isEmpty())
                             <div class="content-box">
                                 @foreach($relate_news as $item_relate)
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="box-sidebar">
-                            <h4 class="title-box">Tin Tức</h4>
+                            <h4 class="title-box">{!! trans('static.promotion') !!}</h4>
                             @if(!$promotions->isEmpty())
                                 <div class="content-box">
                                     @foreach($promotions as $item_promotion)

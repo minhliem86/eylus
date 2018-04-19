@@ -52,10 +52,13 @@
             $('.btn-remove').click(function(){
                 var cart_id = $(this).data('id');
                 $.ajax({
-                    url: '{!! route('client.cart.removeItem') !!}'
+                    url: '{!! route('client.cart.removeItem') !!}',
                     type: 'POST',
                     data: {cart_id: cart_id},
-                    suc
+                    success: function(data){
+                        $('table tbody').html(data.data);
+                        $('#cart-wrapper').html(data.cart_header);
+                    }
                 })
             })
         })

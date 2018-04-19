@@ -14,13 +14,13 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="photo-wrapper">
-                        <img data-zoom-image="{!! asset('public/uploads/').$product->img_url !!}" src="{!! asset('public/uploads/').$product->img_url !!}" class="img-fluid" id="zoom_photo" alt="{!! ($name = trans('variable.name') ) ? $product->$name : null !!}">
+                        <img data-zoom-image="{!! asset('public/uploads/'.$product->img_url) !!}" src="{!! asset($product->thumb_img_url) !!}" class="img-fluid" id="zoom_photo" alt="{!! ($name = trans('variable.name') ) ? $product->$name : null !!}">
                         @if(!$product->photos->isEmpty())
                         <div id="gallery">
                             @foreach($product->photos as $photo)
                             <div class="item-photo">
-                                <a href="#" data-image="{!! asset('public/assets/client') !!}/images/sp01.png" data-zoom-image="{!! asset('public/assets/client') !!}/images/big-photo.png">
-                                    <img src="{!! asset('public/assets/client') !!}/images/thumb.png" class="img-fluid" id="zoom_photo" />
+                                <a href="#" data-image="{!! asset($photo->img_url) !!}" data-zoom-image="{!! asset($photo->big_url) !!}">
+                                    <img src="{!! asset($photo->thumb_url) !!}" class="img-fluid" id="zoom_photo" />
                                 </a>
                             </div>
                             @endforeach

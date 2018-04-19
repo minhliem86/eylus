@@ -679,20 +679,20 @@
         },
         {
             "name": "kkszymanowski/traitor",
-            "version": "0.2.4",
+            "version": "0.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KKSzymanowski/Traitor.git",
-                "reference": "05462468d0592545448f1a2877d045f5048abea1"
+                "reference": "9770fc7de72ff585601dc9c42b31715d9fc40a24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KKSzymanowski/Traitor/zipball/05462468d0592545448f1a2877d045f5048abea1",
-                "reference": "05462468d0592545448f1a2877d045f5048abea1",
+                "url": "https://api.github.com/repos/KKSzymanowski/Traitor/zipball/9770fc7de72ff585601dc9c42b31715d9fc40a24",
+                "reference": "9770fc7de72ff585601dc9c42b31715d9fc40a24",
                 "shasum": ""
             },
             "require": {
-                "nikic/php-parser": "^1.0|^2.0|^3.0",
+                "nikic/php-parser": "^1.0|^2.0|^3.0|^4.0",
                 "php": ">=5.4"
             },
             "require-dev": {
@@ -720,7 +720,7 @@
                 "php",
                 "trait"
             ],
-            "time": "2017-08-28T11:34:42+00:00"
+            "time": "2018-04-19T12:24:36+00:00"
         },
         {
             "name": "laravel/framework",

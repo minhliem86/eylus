@@ -111,8 +111,10 @@ class ProductController extends Controller
     {
         if($request->has('img_url')){
             $img_url = $this->common->getPath($request->input('img_url'));
+            $thumb = $this->common->createThumbnail(asset('public/uploads/'.$img_url),$this->_thumbnail_path,350, 350, base_path($this->_removePath));
         }else{
           $img_url = "";
+          $thumb = "";
         }
         $order = $this->product->getOrder();
         $data = [
@@ -123,10 +125,11 @@ class ProductController extends Controller
             'description_en' => $request->input('description_en'),
             'content_vi' => $request->input('content_vi'),
             'content_en' => $request->input('content_en'),
-            'sku' => str_replace(' ','', $request->input('sku')),
+            'sku' => strtoupper(str_replace(' ','', $request->input('sku'))),
             'quantity' => $request->input('quantity'),
             'price_vi' => floatval(str_replace(',','',$request->price_vi)),
             'img_url' => $img_url,
+            'thumb_img_url' => $thumb,
             'order' => $order,
             'brand_id' => $request->input('brand_id'),
         ];
@@ -136,14 +139,16 @@ class ProductController extends Controller
         if($sub_photo[0]){
             $data_photo = [];
             foreach($sub_photo as $thumb){
-                $originalSize = $this->common->uploadImage($request, $thumb, $this->_original_path,$resize = false,null,null, base_path($this->_removePath));
-                $smallsize = $this->common->createThumbnail($originalSize,$this->_thumbnail_path,350, 350, base_path($this->_removePath));
+                $bigSize = $this->common->uploadImage($request, $thumb, $this->_original_path,$resize = false,null,null, base_path($this->_removePath));
+                $smallsize = $this->common->createThumbnail($bigSize,$this->_thumbnail_path,350, 350, base_path($this->_removePath));
+                $thumbsize = $this->common->createThumbnail($bigSize,$this->_thumbnail_path,85, 85, base_path($this->_removePath));
                 $order = $this->photo->getOrder();
-                $filename = $this->common->getFileName($originalSize);
+                $filename = $this->common->getFileName($bigSize);
                 $data = new \App\Models\Photo(
                     [
-                        'img_url' => $originalSize,
-                        'thumb_url' => $smallsize,
+                        'img_url' => $smallsize,
+                        'thumb_url' => $thumbsize,
+                        'big_url' => $bigSize,
                         'order'=>$order,
                         'filename' => $filename,
                     ]
@@ -205,6 +210,11 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $img_url = $this->common->getPath($request->input('img_url'));
+        if($img_url){
+            $thumb = $this->common->createThumbnail(asset('public/uploads/'.$img_url),$this->_thumbnail_path,350, 350, base_path($this->_removePath));
+        }else{
+            $thumb = '';
+        }
 
         $data = [
             'name_vi' => $request->input('name_vi'),
@@ -214,10 +224,11 @@ class ProductController extends Controller
             'description_en' => $request->input('description_en'),
             'content_vi' => $request->input('content_vi'),
             'content_en' => $request->input('content_en'),
-            'sku' => str_replace(' ','', $request->input('sku')),
+            'sku' => strtoupper(str_replace(' ','', $request->input('sku'))),
             'quantity' => $request->input('quantity'),
             'price_vi' => floatval(str_replace(',','',$request->price_vi)),
             'img_url' => $img_url,
+            'thumb_img_url' => $thumb,
             'order' => $request->input('order'),
             'brand_id' => $request->input('brand_id'),
             'status' => $request->input('status'),
@@ -230,14 +241,16 @@ class ProductController extends Controller
         if($sub_photo[0]){
             $data_photo = [];
             foreach($sub_photo as $thumb){
-                $originalSize = $this->common->uploadImage($request, $thumb, $this->_original_path,$resize = false,null,null, base_path($this->_removePath));
-                $smallsize = $this->common->createThumbnail($originalSize,$this->_thumbnail_path,350, 350, base_path($this->_removePath));
+                $bigSize = $this->common->uploadImage($request, $thumb, $this->_original_path,$resize = false,null,null, base_path($this->_removePath));
+                $smallsize = $this->common->createThumbnail($bigSize,$this->_thumbnail_path,350, 350, base_path($this->_removePath));
+                $thumbsize = $this->common->createThumbnail($bigSize,$this->_thumbnail_path,85, 85, base_path($this->_removePath));
                 $order = $this->photo->getOrder();
-                $filename = $this->common->getFileName($originalSize);
+                $filename = $this->common->getFileName($bigSize);
                 $data = new \App\Models\Photo(
                     [
-                        'img_url' => $originalSize,
-                        'thumb_url' => $smallsize,
+                        'img_url' => $smallsize,
+                        'thumb_url' => $thumbsize,
+                        'big_url' => $bigSize,
                         'order'=>$order,
                         'filename' => $filename,
                     ]

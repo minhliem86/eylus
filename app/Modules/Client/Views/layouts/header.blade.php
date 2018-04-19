@@ -18,9 +18,11 @@
                                 <li class="nav-item">
                                     <a href="{!! route('client.home') !!}">Trang Chủ</a>
                                 </li>
+                                @if(isset($static_page))
                                 <li class="nav-item">
                                     <a href="{!! route('client.single_page', $static_page->slug) !!}">Giới Thiệu</a>
                                 </li>
+                                @endif
                                 <li class="nav-item dropdown">
                                     <a class="dropdown-toggle" href="#" id="submenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Bộ Sưu Tập

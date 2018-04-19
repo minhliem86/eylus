@@ -16,7 +16,7 @@
                     <div class="main-content">
                         <div class="row no-gutters">
                             <div class="title-content-wrapper">
-                                <h2 class="title-content">Tin Tức</h2>
+                                <h2 class="title-content">{!! trans('static.news') !!}</h2>
                             </div>
                         </div>
                         @if(!$news->isEmpty())
@@ -45,7 +45,7 @@
                 <div class="col-md-4">
                     <div class="sidebar-wrapper">
                         <div class="box-sidebar">
-                            <h4 class="title-box">Tin Khuyến Mãi</h4>
+                            <h4 class="title-box">{!! trans('static.promotion') !!}</h4>
                             @if(!$promotions->isEmpty())
                             <div class="content-box">
                                 @foreach($promotions as $item_promotion)

@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->integer('price_vi')->nullable();
             $table->integer('price_en')->nullable();
             $table->string('img_url')->nullable();
+            $table->string('thumb_img_url')->nullable();
             $table->boolean('hot')->default(0);
             $table->boolean('promotion')->default(0);
             $table->string('show_number')->nullable()->default(0);

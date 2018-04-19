@@ -176,6 +176,26 @@
                             }
                         })
                     })
+
+                    $('table.table').on('change','input[name=hot]', function(){
+                        var value = 0;
+                        if($(this).is(':checked')){
+                            value = 1;
+                        }
+                        const id_item = $(this).data('id');
+                        $.ajax({
+                            url: "{{route('admin.product.updateHotProduct')}}",
+                            type : 'POST',
+                            data: {value: value, id: id_item, _token:$('meta[name="csrf-token"]').attr('content')},
+                            success: function(data){
+                                if(!data.error){
+                                    alertify.success('Cập nhật thành công');
+                                }else{
+                                    alertify.error('Cập nhật thất bại');
+                                }
+                            }
+                        })
+                    })
                 }
             });
             /*SELECT ROW*/
