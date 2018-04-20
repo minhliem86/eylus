@@ -29,7 +29,7 @@
                                 <tr>
                                     <td colspan="3">
                                         <a class="btn-cart btn-remove " href="{!! route('client.cart.clear') !!}"><i class="fa fa-remove"></i> Xóa giỏ hàng</a>
-                                        <button class="btn-cart btn-udpate " type="button" ><i class="fa fa-refresh"></i> Cập nhật giỏ hàng</button>
+                                        <a class="btn-cart btn-udpate " href="{!! route('client.cart.updateQuantity') !!}"><i class="fa fa-refresh"></i> Cập nhật giỏ hàng</a>
                                     </td>
                                     <td colspan="2" class="text-right">
                                         <a href="#" class="btn-cart btn-payment"><i class="fa fa fa-credit-card"></i> Thanh Toán</a>
@@ -52,10 +52,20 @@
             $('.btn-remove').click(function(){
                 var cart_id = $(this).data('id');
                 $.ajax({
-                    url: '{!! route('client.cart.removeItem') !!}'
+                    url: '{!! route('client.cart.removeItem') !!}',
                     type: 'POST',
                     data: {cart_id: cart_id},
-                    suc
+                    success: function(data){
+                        $('table tbody').html(data.data);
+                        $('#cart-wrapper').html(data.cart_header);
+                    }
+                })
+            })
+
+            $(document).on('click', '.btn-udpate', function (){
+                var data = [];
+                $('table .quantity').each(function(){
+                    data.push($(this).data('id'));
                 })
             })
         })

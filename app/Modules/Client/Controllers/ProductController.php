@@ -17,7 +17,6 @@ use Validator;
 use Cart;
 use Auth;
 use Session;
-
 use DB;
 use Carbon\Carbon;
 
@@ -102,8 +101,8 @@ class ProductController extends Controller
                 'quantity' => 1,
                 'attributes' =>$att
             ]);
-            $quantityCart = Cart::getTotalQuantity();
-            return response()->json(['error' => false, 'data'=> $quantityCart]);
+            $cart_header =  view('Client::ajax.cart_header')->render();
+            return response()->json(['error' => false, 'cart_header' => $cart_header]);
         }
     }
 
@@ -111,9 +110,14 @@ class ProductController extends Controller
     public function getCart()
     {
         if(Cart::isEmpty()){
-            return redirect()->route('client.product.showAll')->with('error','Giỏ hàng của bạn đang rỗng. Vui lòng chọn sản phẩm.');
+            return redirect()->route('client.product.index')->with('error','Giỏ hàng của bạn đang rỗng. Vui lòng chọn sản phẩm.');
         }
         return view('Client::pages.cart.cart', compact('cart'));
+    }
+
+    public function updateQuantity(Request $request)
+    {
+        dd($request->input('quantity[]'));
     }
 
     public function updateQuantityAjax(Request $request)
@@ -135,8 +139,8 @@ class ProductController extends Controller
 
     public function clearCart()
     {
-        Cart::clear();
         Cart::clearCartConditions();
+        Cart::clear();
         return redirect()->route('client.product.index')->with('error','Giỏ hàng của bạn đã được xóa.');;
     }
 
@@ -145,9 +149,10 @@ class ProductController extends Controller
         if(!$request->ajax()){
             abort(404);
         }else {
-            Cart::remove($request->input('id'));
-            $subTotal = Cart::getSubTotal();
-            return response()->json(['error' => false, 'data'=>number_format($subTotal)]);
+            Cart::remove($request->input('cart_id'));
+            $view = view('Client::ajax.cart')->render();
+            $cart_header =  view('Client::ajax.cart_header')->render();
+            return response()->json(['error' => false, 'data'=>$view, 'cart_header' => $cart_header]);
         }
     }
 

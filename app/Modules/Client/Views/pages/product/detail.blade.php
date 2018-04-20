@@ -14,13 +14,13 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="photo-wrapper">
-                        <img data-zoom-image="{!! asset('public/uploads/').$product->img_url !!}" src="{!! asset('public/uploads/').$product->img_url !!}" class="img-fluid" id="zoom_photo" alt="{!! ($name = trans('variable.name') ) ? $product->$name : null !!}">
+                        <img data-zoom-image="{!! asset('public/uploads/'.$product->img_url) !!}" src="{!! asset($product->thumb_img_url) !!}" class="img-fluid" id="zoom_photo" alt="{!! ($name = trans('variable.name') ) ? $product->$name : null !!}">
                         @if(!$product->photos->isEmpty())
                         <div id="gallery">
                             @foreach($product->photos as $photo)
                             <div class="item-photo">
-                                <a href="#" data-image="{!! asset('public/assets/client') !!}/images/sp01.png" data-zoom-image="{!! asset('public/assets/client') !!}/images/big-photo.png">
-                                    <img src="{!! asset('public/assets/client') !!}/images/thumb.png" class="img-fluid" id="zoom_photo" />
+                                <a href="#" data-image="{!! asset($photo->img_url) !!}" data-zoom-image="{!! asset($photo->big_url) !!}">
+                                    <img src="{!! asset($photo->thumb_url) !!}" class="img-fluid" id="zoom_photo" />
                                 </a>
                             </div>
                             @endforeach
@@ -34,17 +34,17 @@
                     <div class="information-wrapper">
                         <h2 class="title-product">{!! ($name = trans('variable.name') ) ? $product->$name : null !!}</h2>
                         <div class="info">
-                            <p>Thương Hiệu: <i>{!! ($name = trans('variable.name') ) ? $product->brands->$name : null !!}</i></p>
+                            <p>{!! trans('static.brand') !!}: <i>{!! ($name = trans('variable.name') ) ? $product->brands->$name : null !!}</i></p>
                         </div>
                         <div class="quantity-wrapper">
-                            <label for="quantity">Số lượng:</label>
+                            <label for="quantity">{!! trans('static.quantity') !!}:</label>
                             <input type="number" min="1"  name="quantity" value="1" class="quantity form-control">
                         </div>
                         <div class="price-wrapper">
                             <p class="price">{!! ($price = trans('variable.price') ) ? number_format($product->$price) : null !!} {!! trans('variable.currency') !!}</p>
                         </div>
                         <div class="btn-wrapper">
-                            <button type="submit" class="btn btn-submit">Thêm Vào Giỏ Hàng</button>
+                            <button type="submit" class="btn btn-submit">{!! trans('home.add_cart') !!}</button>
                         </div>
                     </div>
                     {!! Form::close() !!}
@@ -55,10 +55,10 @@
                     <div class="product-description">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" role="tab" aria-controls="description" href="#description">Mô tả sản phẩm</a>
+                                <a class="nav-link active" data-toggle="tab" role="tab" aria-controls="description" href="#description">{!! trans('static.product_description') !!}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" role="tab" aria-controls="comment" href="#comment">Đánh giá sản phẩm</a>
+                                <a class="nav-link" data-toggle="tab" role="tab" aria-controls="comment" href="#comment">{!! trans('static.product_comment') !!}</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">

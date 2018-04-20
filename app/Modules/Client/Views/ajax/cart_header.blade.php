@@ -1,0 +1,1 @@
+<a href="{!! route('client.cart') !!}"><i class="fa fa-shopping-cart"></i> {!! trans('menu.cart') !!} {!! !Cart::isEmpty() ? '<span class="badge badge-danger cart-number">'.Cart::getTotalQuantity().'</span>' : null !!}</a>

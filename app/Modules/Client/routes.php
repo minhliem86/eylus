@@ -1,6 +1,6 @@
 <?php
 Route::group([
-    'middleware'=>['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],
+    'middleware'=>['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'web' ],
     'prefix'=>LaravelLocalization::setLocale(),
     'namespace' => 'App\Modules\Client\Controllers'], function(){
 
@@ -29,11 +29,13 @@ Route::group([
 
     Route::post('/san-pham/addToCart', ['as' => 'client.product.addToCart', 'uses' => 'ProductController@addToCart']);
 
-    Route::post('/san-pham/addtoCartAjax', ['as' => 'client.addtocart', 'uses' => 'ProductController@ajaxAddtocart']);
+    Route::post('/san-pham/addtoCartAjax', ['as' => 'client.addtocart', 'uses' => 'ProductController@addToCartAjax']);
 
     Route::get('/gio-hang', ['as' => 'client.cart', 'uses' => 'ProductController@getCart']);
 
-    Route::post('/update-soluong', ['as' => 'client.cart.updateQuantity', 'uses' => 'ProductController@updateQuantityAjax' ]);
+//    Route::post('/update-soluong', ['as' => 'client.cart.updateQuantity', 'uses' => 'ProductController@updateQuantityAjax' ]);
+
+    Route::get('/update-soluong', ['as' => 'client.cart.updateQuantity', 'uses' => 'ProductController@updateQuantity' ]);
 
 
     Route::post('/remove-item', ['as' => 'client.cart.removeItem', 'uses' => 'ProductController@removeItemCart']);

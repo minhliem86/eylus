@@ -9,7 +9,7 @@
         "laravel/framework": "5.2.*",
         "liemphan/modules": "1.2",
         "mcamara/laravel-localization": "1.2.*",
-        "darryldecode/cart": "3.0.0"
+        "darryldecode/cart": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

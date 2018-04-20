@@ -38,7 +38,7 @@
                 <div class="col-md-4">
                     <div class="sidebar-wrapper">
                         <div class="box-sidebar">
-                            <h4 class="title-box">Các Trang Khác</h4>
+                            <h4 class="title-box">{!! trans('static.other_page') !!}</h4>
                             @if(!$page_relate->isEmpty())
                                 <div class="content-box">
                                     @foreach($page_relate as $item_relate)

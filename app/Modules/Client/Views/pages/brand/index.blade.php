@@ -19,7 +19,7 @@
                 <div class="col-md-8">
                     <div class="row">
                         <div class="col">
-                            <h4 class="title">{!! ($name = trans('variable.name') ) ? $brand->$name : null !!}</h4>
+                            <h4 class="title-brands">{!! ($name = trans('variable.name') ) ? $brand->$name : null !!}</h4>
                         </div>
                     </div>
                     @if(count($brand))
@@ -31,16 +31,16 @@
                                 <div class="content-wrapper">
                                     <div class="item-element">
                                         <div class="img-wrapper">
-                                            <img src="{!! asset('public/uploads/').$item_product->img_url !!}" class="img-fluid img-section" alt="{!! ($name = trans('variable.name')) ? $item_product->$name : null !!}">
+                                            <img src="{!! asset('public/uploads/'.$item_product->img_url) !!}" class="img-fluid img-section" alt="{!! ($name = trans('variable.name')) ? $item_product->$name : null !!}">
                                             <div class="mask"></div>
                                             <div class="wrap-btn justify-content-center align-items-center d-md-flex flex-column">
-                                                <a href="{!! route('client.product',$item_product->slug) !!}" class="btn-detail-product btn-template">Chi tiết</a>
-                                                <a href="{!! route('client.product',$item_product->slug) !!}" class="btn-template btn-cart">Mua Ngay</a>
+                                                <a href="{!! route('client.product.detail',$item_product->slug) !!}" class="btn-detail-product btn-template">Chi tiết</a>
+                                                <button href="{!! route('client.product.detail',$item_product->slug) !!}" class="btn-template btn-cart" data-id="{!! $item_product->id !!}" type="button">Mua Ngay</button>
                                             </div>
                                         </div>
 
-                                        <h4 class="title-product"><a href="{!! route('client.product',$item_product->slug) !!}">{!! ($name = trans('variable.name')) ? $item_product->$name : null !!}</a></h4>
-                                        {{--<p class="price">100.000 vnd</p>--}}
+                                        <h4 class="title-product"><a href="{!! route('client.product.detail',$item_product->slug) !!}">{!! ($name = trans('variable.name')) ? $item_product->$name : null !!}</a></h4>
+                                        <p class="price">{!! ( $price = trans('variable.price') ) ? $item_product->$price : null !!} {!! trans('variable.currency') !!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -75,6 +75,18 @@
         $(document).ready(function(){
             /** VIDEO **/
             const player = new Plyr('.player-sidebar');
+
+            $('.btn-cart').click(function(){
+                var product_id = $(this).data('id');
+                $.ajax({
+                    url: "{!! route('client.addtocart') !!}",
+                    type: 'POST',
+                    data:{id: product_id},
+                    success: function(data){
+                        $('#cart-wrapper').html(data.cart_header);
+                    }
+                })
+            })
         })
     </script>
 @stop

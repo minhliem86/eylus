@@ -1,14 +1,14 @@
 /*VARIABLE*/
 /*MIXIN*/
 /*PLACEHOLDER*/
-.sidebar-template .sidebar-wrapper .box-sidebar h4.title-box, .sidebar-template .main-content .title-content-wrapper h2.title-content, .addtocart-template .information-wrapper h2.title-product, .user-template h3, .payment-template h5.title {
+.sidebar-template .sidebar-wrapper .box-sidebar h4.title-box, .sidebar-template .main-content .title-content-wrapper h2.title-content, .product-template .title-brands, .addtocart-template .information-wrapper h2.title-product, .user-template h3, .payment-template h5.title {
   text-transform: uppercase;
   font-size: 1.8rem;
   color: #BCBEC0;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   position: relative; }
-  .sidebar-template .sidebar-wrapper .box-sidebar h4.title-box:after, .sidebar-template .main-content .title-content-wrapper h2.title-content:after, .addtocart-template .information-wrapper h2.title-product:after, .user-template h3:after, .payment-template h5.title:after {
+  .sidebar-template .sidebar-wrapper .box-sidebar h4.title-box:after, .sidebar-template .main-content .title-content-wrapper h2.title-content:after, .product-template .title-brands:after, .addtocart-template .information-wrapper h2.title-product:after, .user-template h3:after, .payment-template h5.title:after {
     content: '';
     display: block;
     position: absolute;
@@ -18,7 +18,7 @@
     width: 70%;
     background: #e5cdac; }
     @media screen and (max-width: 767px) {
-      .sidebar-template .sidebar-wrapper .box-sidebar h4.title-box:after, .sidebar-template .main-content .title-content-wrapper h2.title-content:after, .addtocart-template .information-wrapper h2.title-product:after, .user-template h3:after, .payment-template h5.title:after {
+      .sidebar-template .sidebar-wrapper .box-sidebar h4.title-box:after, .sidebar-template .main-content .title-content-wrapper h2.title-content:after, .product-template .title-brands:after, .addtocart-template .information-wrapper h2.title-product:after, .user-template h3:after, .payment-template h5.title:after {
         width: 100%; } }
 
 section .content-wrapper img.img-section, .best-seller .each-bestSeller img.img-section {
@@ -354,6 +354,8 @@ section {
 
 /*END*/
 /*PRODUCT TEMPLATE*/
+.product-template .title-brands:after {
+  width: 40%; }
 .product-template .each-element {
   margin-bottom: 1rem; }
   .product-template .each-element .item-element h4.title-product {
@@ -386,7 +388,7 @@ section {
       top: 0;
       left: 0;
       z-index: 3; }
-      .product-template .each-element .img-wrapper .wrap-btn a.btn-template {
+      .product-template .each-element .img-wrapper .wrap-btn a.btn-template, .product-template .each-element .img-wrapper .wrap-btn button.btn-template {
         font-size: 1.2rem;
         padding: 0.2rem 1.4rem;
         border: 1px solid #BCBEC0;
@@ -401,11 +403,12 @@ section {
         -o-transition: transform 0.3s 0.1s, opacity 0.3s 0.1s, background 0.3s;
         transition: transform 0.3s 0.1s, opacity 0.3s 0.1s, background 0.3s;
         opacity: 0; }
-        .product-template .each-element .img-wrapper .wrap-btn a.btn-template:hover {
+        .product-template .each-element .img-wrapper .wrap-btn a.btn-template:hover, .product-template .each-element .img-wrapper .wrap-btn button.btn-template:hover {
           background: rgba(188, 190, 192, 0.3); }
-        .product-template .each-element .img-wrapper .wrap-btn a.btn-template.btn-detail-product {
+        .product-template .each-element .img-wrapper .wrap-btn a.btn-template.btn-detail-product, .product-template .each-element .img-wrapper .wrap-btn button.btn-template.btn-detail-product {
           margin-bottom: 1rem; }
-        .product-template .each-element .img-wrapper .wrap-btn a.btn-template.btn-cart {
+        .product-template .each-element .img-wrapper .wrap-btn a.btn-template.btn-cart, .product-template .each-element .img-wrapper .wrap-btn button.btn-template.btn-cart {
+          cursor: pointer;
           transform: translate(-150px, 150px);
           -webkit-transition: transform 0.3s 0.3s, opacity 0.3s 0.3s, background 0.3s;
           -moz-transition: transform 0.3s 0.3s, opacity 0.3s 0.3s, background 0.3s;
@@ -415,7 +418,7 @@ section {
     .product-template .each-element .img-wrapper:hover .mask {
       transform: translate(0, 0);
       opacity: 1; }
-    .product-template .each-element .img-wrapper:hover a.btn-detail-product, .product-template .each-element .img-wrapper:hover a.btn-cart {
+    .product-template .each-element .img-wrapper:hover a.btn-detail-product, .product-template .each-element .img-wrapper:hover button.btn-cart {
       transform: translate(0, 0) !important;
       opacity: 1; }
 

@@ -1,6 +1,6 @@
 <div class="sidebar-wrapper">
     <div class="box-sidebar">
-        <h4 class="title-box">Danh Mục Sản Phẩm</h4>
+        <h4 class="title-box">{!! trans('menu.category') !!}</h4>
         <div class="content-box">
             @if(!$categories->isEmpty())
             <ul class="list-template">

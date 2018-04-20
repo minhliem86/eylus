@@ -26,7 +26,7 @@ class PageController extends Controller
     {
         $page = $this->page->findByField('slug', $slug, ['id','name_vi', 'name_en', 'content_vi', 'content_en'])->first();
         if(count($page)){
-            $page_relate = $this->page->getRelate($page->id, ['name_vi', 'name_en', 'content_vi', 'content_en']);
+            $page_relate = $this->page->getRelate($page->id, ['name_vi', 'name_en', 'content_vi', 'content_en','slug']);
             return view('Client::pages.single.index', compact('page', 'page_relate'));
         }
     }

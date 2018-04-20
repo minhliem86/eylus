@@ -21,9 +21,9 @@
                             <div class="featured-product-slick">
                                 @foreach($feature_p as $item_feature)
                                 <div class="item-feature">
-                                    <img src="{!! asset('public/uploads/').$item_feature->img_url !!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_feature->$title : null !!}">
-                                    <h4 class="title-product">{!! ($title = trans('variable.title') ) ? $item_feature->$title : null !!}</h4>
-                                    <p class="price">{!! ($price = trans('variable.price') ) ? $item_feature->$price : null !!} {!! trans('variable.currency') !!}</p>
+                                    <img src="{!! asset('public/uploads/'.$item_feature->img_url) !!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_feature->$title : null !!}">
+                                    <h4 class="title-product">{!! ($name = trans('variable.name') ) ? $item_feature->$name : null !!}</h4>
+                                    <p class="price">{!! ($price = trans('variable.price') ) ? number_format($item_feature->$price) : null !!} {!! trans('variable.currency') !!}</p>
                                     <a href="#" class="btn-detail-product btn-addcart">{!! trans('home.add_cart') !!}</a>
                                 </div>
                                 @endforeach
@@ -47,9 +47,9 @@
                         @foreach($promotion_p as $item_promotion)
                         <div class="promotion-slick">
                             <div class="item-promotion">
-                                <img src="{!! asset('public/uploads/').$item_promotion->img_url !!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}">
-                                <h4 class="title-product">{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}</h4>
-                                <p class="price">{!! ($price = trans('variable.price') ) ? $item_promotion->$price : null !!} {!! trans('variable.currency') !!}</p>
+                                <img src="{!! asset('public/uploads/'.$item_promotion->img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}">
+                                <h4 class="title-product">{!! ($name = trans('variable.name') ) ? $item_promotion->$name : null !!}</h4>
+                                <p class="price">{!! ($price = trans('variable.price') ) ? number_format($item_promotion->$price)  : null !!} {!! trans('variable.currency') !!}</p>
                                 <a href="#" class="btn-detail-promotion btn-addcart">{!! trans('home.add_cart') !!}</a>
                             </div>
                         </div>
@@ -127,9 +127,9 @@
                 @foreach($fav_p as $item_fav)
                 <div class="col-md-4">
                     <div class="each-bestSeller">
-                        <img src="{!! asset('public/uploads/').$item_fav->img_url !!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_fav->$title : null !!}">
-                        <h4 class="title-product">{!! ($title = trans('variable.title') ) ? $item_fav->$title : null !!}</h4>
-                        <p class="price">{!! ($price = trans('variable.price') ) ? $item_fav->$price : null !!} {!! trans('variable.currency') !!}</p>
+                        <img src="{!! asset('public/uploads/'.$item_fav->img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_fav->$title : null !!}">
+                        <h4 class="title-product">{!! ($name = trans('variable.name') ) ? $item_fav->$name : null !!}</h4>
+                        <p class="price">{!! ($price = trans('variable.price') ) ? number_format($item_fav->$price)  : null !!} {!! trans('variable.currency') !!}</p>
                         <div class="button-container text-center">
                             <a href="" class="btn-detail-product btn-addcart">{!! trans('home.add_cart') !!}</a>
                         </div>

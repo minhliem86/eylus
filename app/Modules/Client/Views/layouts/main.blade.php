@@ -30,10 +30,10 @@
                 <div class="col">
                     <div class="d-flex justify-content-end ">
                         <div class="item-wrap">
-                            <a href="#"><i class="fa fa-user"></i> Đăng nhập</a>
+                            <a href="#"><i class="fa fa-user"></i> {!! trans('menu.login') !!}</a>
                         </div>
-                        <div class="item-wrap">
-                            <a href="{!! route('client.cart') !!}"><i class="fa fa-shopping-cart"></i> Giỏ hàng {!! !Cart::isEmpty() ? '<span class="badge badge-danger cart-number">'.Cart::getTotalQuantity().'</span>' : null !!}</a>
+                        <div class="item-wrap" id="cart-wrapper">
+                            @include("Client::ajax.cart_header")
                         </div>
                         <div class="item-wrap">
                             <a href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}"><img src="{!! asset('public/assets/client') !!}/images/flag-en.png" class="img-fluid" alt="English"></a>

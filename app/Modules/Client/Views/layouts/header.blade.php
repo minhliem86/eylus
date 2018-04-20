@@ -16,14 +16,16 @@
                         <div class="collapse navbar-collapse" id="main-menu">
                             <ul class="navbar-nav nav-menu align-content-end">
                                 <li class="nav-item">
-                                    <a href="{!! route('client.home') !!}">Trang Chủ</a>
+                                    <a href="{!! route('client.home') !!}">{!! trans('menu.home') !!}</a>
                                 </li>
+                                @if(isset($static_page))
                                 <li class="nav-item">
-                                    <a href="{!! route('client.single_page', $static_page->slug) !!}">Giới Thiệu</a>
+                                    <a href="{!! route('client.single_page', $static_page->slug) !!}">{!! trans('menu.about') !!}</a>
                                 </li>
+                                @endif
                                 <li class="nav-item dropdown">
                                     <a class="dropdown-toggle" href="#" id="submenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Bộ Sưu Tập
+                                        {!! trans('menu.collection') !!}
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="submenu">
                                         @if(!$category->isEmpty())
@@ -34,16 +36,16 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{!! route('client.product.index') !!}">Sản Phẩm</a>
+                                    <a href="{!! route('client.product.index') !!}">{!! trans('menu.product') !!}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{!! route('client.news') !!}">Tin Tức</a>
+                                    <a href="{!! route('client.news') !!}">{!! trans('menu.news') !!}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{!! route('client.promotion_news') !!}">Khuyến Mãi</a>
+                                    <a href="{!! route('client.promotion_news') !!}">{!! trans('menu.promotion') !!}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#">Liên Hệ</a>
+                                    <a href="#">{!! trans('menu.contact') !!}</a>
                                 </li>
                                 <li class="nav-item search-item">
                                     <span data-toggle="collapse" data-target="#search-box" aria-controls="search-box"><i class="fa fa-search"></i></span>

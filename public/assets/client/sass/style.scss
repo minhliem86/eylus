@@ -478,6 +478,12 @@ section{
 
 /*PRODUCT TEMPLATE*/
 .product-template{
+  .title-brands{
+    @extend %title-template;
+    &:after{
+      width:40%;
+    }
+  }
   .each-element{
     margin-bottom:1rem;
     .item-element{
@@ -511,7 +517,7 @@ section{
         top:0;
         left:0;
         z-index:3;
-        a.btn-template{
+        a.btn-template, button.btn-template{
           font-size:1.2rem;
           padding:0.2rem 1.4rem;
           border:1px solid $color-gray;
@@ -529,6 +535,7 @@ section{
             margin-bottom:1rem;
           }
           &.btn-cart{
+            cursor:pointer;
             transform:translate(-150px,150px);
             @include transition(transform 0.3s 0.3s, opacity 0.3s 0.3s,  background 0.3s);
           }
@@ -539,7 +546,7 @@ section{
           transform: translate(0, 0);
           opacity:1;
         }
-        a.btn-detail-product, a.btn-cart
+        a.btn-detail-product, button.btn-cart
         {
           transform:translate(0,0) !important;
           opacity:1;
