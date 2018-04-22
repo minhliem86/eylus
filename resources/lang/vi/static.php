@@ -11,4 +11,5 @@
         'product_comment' => 'Đánh Giá',
         'brand' => 'Thương Hiệu',
         'quantity' => 'Số Lượng',
+        'addToCart' => 'Sản phẩm đã được thêm vào giỏ hàng.'
     ];

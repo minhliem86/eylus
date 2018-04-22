@@ -35,8 +35,6 @@ class ShipController extends Controller
                     <input name="_token" type="hidden" value="'.csrf_token().'">
                                <button class="btn  btn-danger btn-sm" type="button" attrid=" '.route('admin.ship-cost.destroy', $ship->id).' " onclick="confirm_remove(this);" > <i class="fa fa-trash"></i></button>
                </form>' ;
-                })->editColumn('img_url',function($ship){
-                    return '<img src="'.asset('public/uploads/'.$ship->img_url).'" width="60" class="img-fluid">';
                 })->editColumn('price_vi',function($ship){
                     return number_format($ship->price_vi).' VND';
                 })->filter(function($query) use ($request){
@@ -81,7 +79,7 @@ class ShipController extends Controller
             'description_vi' => $request->input('description_vi'),
             'description_en' => $request->input('description_en'),
             'img_url' => $img_url,
-            'price_vi' => floor($request->input('price_vi')),
+            'price_vi' => intval(str_replace(',','',$request->price_vi)),
         ];
         $this->ship->create($data);
         return redirect()->route('admin.ship-cost.index')->with('success','Created !');
@@ -127,7 +125,7 @@ class ShipController extends Controller
             'description_vi' => $request->input('description_vi'),
             'description_en' => $request->input('description_en'),
             'img_url' => $img_url,
-            'price_vi' => floor($request->input('price_vi')),
+            'price_vi' => intval(str_replace(',','',$request->price_vi))
         ];
         $this->ship->update($data, $id);
         return redirect()->route('admin.ship-cost.index')->with('success', 'Updated !');

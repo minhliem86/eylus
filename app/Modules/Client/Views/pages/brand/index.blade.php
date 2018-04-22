@@ -34,8 +34,8 @@
                                             <img src="{!! asset('public/uploads/'.$item_product->img_url) !!}" class="img-fluid img-section" alt="{!! ($name = trans('variable.name')) ? $item_product->$name : null !!}">
                                             <div class="mask"></div>
                                             <div class="wrap-btn justify-content-center align-items-center d-md-flex flex-column">
-                                                <a href="{!! route('client.product.detail',$item_product->slug) !!}" class="btn-detail-product btn-template">Chi tiết</a>
-                                                <button href="{!! route('client.product.detail',$item_product->slug) !!}" class="btn-template btn-cart" data-id="{!! $item_product->id !!}" type="button">Mua Ngay</button>
+                                                <a href="{!! route('client.product.detail',$item_product->slug) !!}" class="btn-detail-product btn-template">{!! trans !!}</a>
+                                                <button href="{!! route('client.product.detail',$item_product->slug) !!}" class="btn-template btn-cart" data-id="{!! $item_product->id !!}" type="button">{!! trans('home.add_cart') !!}</button>
                                             </div>
                                         </div>
 

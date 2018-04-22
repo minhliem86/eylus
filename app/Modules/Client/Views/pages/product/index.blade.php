@@ -29,7 +29,7 @@
                                                         <div class="mask"></div>
                                                         <div class="wrap-btn justify-content-center align-items-center d-md-flex flex-column">
                                                             <a href="{!! route('client.product.detail', $item_product->slug) !!}" class="btn-detail-product btn-template">Chi tiết</a>
-                                                            <a href="#" class="btn-template btn-cart">Mua Ngay</a>
+                                                            <button href="{!! route('client.product.detail',$item_product->slug) !!}" class="btn-template btn-cart" data-id="{!! $item_product->id !!}" type="button">Mua Ngay</button>
                                                         </div>
                                                     </div>
 
@@ -69,6 +69,19 @@
         $(document).ready(function(){
             /** VIDEO **/
             const player = new Plyr('.player-sidebar');
+
+            $('.btn-cart').click(function(){
+                var product_id = $(this).data('id');
+                $.ajax({
+                    url: "{!! route('client.addtocart') !!}",
+                    type: 'POST',
+                    data:{id: product_id,  _token: $('meta[name="csrf-token"]').attr('content')},
+                    success: function(data){
+                        $('#cart-wrapper').html(data.cart_header);
+                        alertify.success(data.message);
+                    }
+                })
+            })
         })
     </script>
 @stop

@@ -11,4 +11,6 @@
         'product_comment' => 'Product Comment',
         'brand' => 'Brand',
         'quantity' => 'Quantity',
+        'addToCart' => 'Product is added to cart.',
+        'detail' => 'Detail',
     ];

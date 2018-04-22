@@ -8,15 +8,17 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
 use Session;
+use App\Repositories\CompanyRepository;
+use App\Repositories\ContactRepository;
 
 class ContactController extends Controller
 {
-    protected $feedback;
+    protected $contact;
 
-//    public function __construct(FeedbackRepository $feedback)
-//    {
-//        $this->feedback = $feedback;
-//    }
+    public function __construct(ContactRepository $contact)
+    {
+        $this->contact = $contact;
+    }
 
     private function _rules(){
         return [
@@ -36,10 +38,10 @@ class ContactController extends Controller
         ];
     }
 
-    public function getIndex()
+    public function getIndex(CompanyRepository $company)
     {
-//        $info = $company->getFirst(['map']);
-        return view('Client::pages.contact.index');
+        $companies = $company->find(1);
+        return view('Client::pages.contact.index', compact('companies'));
     }
 
     public function postIndex(Request $request)
@@ -52,10 +54,10 @@ class ContactController extends Controller
             'fullname' => $request->input('fullname'),
             'phone' => $request->input('phone'),
             'email' => $request->input('email'),
-            'messages' => $request->input('message')
+            'messages' => $request->input('messages')
         ];
 
-        $this->feedback->create($data);
+        $this->contact->create($data);
         return redirect()->route('client.contact.thankyou')->with('status',true);
     }
 

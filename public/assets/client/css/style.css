@@ -52,7 +52,7 @@ section .content-wrapper a.btn-addcart, .best-seller .each-bestSeller a.btn-addc
     border-color: white;
     color: white; }
 
-.user-template button, .cart-template .cart-wrapper table tbody tr button.btn-remove, .cart-template .cart-wrapper table tfoot .btn-cart, .payment-template .promotion-wrapper button, .payment-template .wrap-payment button {
+.user-template button, .cart-template .cart-wrapper table tbody tr button.btn-remove, .cart-template .cart-wrapper table tfoot .btn-cart, .payment-template .promotion-wrapper button, .payment-template .wrap-payment button, section.search-page a.btn-sp {
   padding: 0.4rem 1.4rem;
   background: #AA7835;
   border: none;
@@ -66,7 +66,7 @@ section .content-wrapper a.btn-addcart, .best-seller .each-bestSeller a.btn-addc
   -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s; }
-  .user-template button:hover, .cart-template .cart-wrapper table tbody tr button.btn-remove:hover, .cart-template .cart-wrapper table tfoot .btn-cart:hover, .payment-template .promotion-wrapper button:hover, .payment-template .wrap-payment button:hover {
+  .user-template button:hover, .cart-template .cart-wrapper table tbody tr button.btn-remove:hover, .cart-template .cart-wrapper table tfoot .btn-cart:hover, .payment-template .promotion-wrapper button:hover, .payment-template .wrap-payment button:hover, section.search-page a.btn-sp:hover {
     background: #704f23; }
 
 /*RESET*/
@@ -93,6 +93,10 @@ h1, h2, h3, h4, h5 {
 h1, h2, h3, h4, h5, p, a {
   color: #333333; }
 
+label, input, select, textarea {
+  font-size: 1.4rem !important;
+  height: auto !important; }
+
 a:hover {
   text-decoration: none !important; }
 
@@ -112,6 +116,9 @@ a:hover {
       font-size: 1.4rem; }
     .pre-header .item-wrap:last-child {
       border-right: none; }
+    .pre-header .item-wrap .dropdown p {
+      font-weight: 600;
+      color: #704f23; }
 
 header.header {
   margin-bottom: 1rem; }
@@ -495,9 +502,13 @@ section {
 .contact .map-wrapper #input-director button {
   background: #AA7835;
   color: white; }
+.contact .map-wrapper .map {
+  overflow: hidden; }
 .contact .info {
   margin-bottom: 1.5rem;
   font-size: 1.4rem; }
+  .contact .info p {
+    margin-bottom: 1.2rem; }
 .contact .form-contact-wrapper button {
   font-size: 1.4rem;
   background: #AA7835;
@@ -584,7 +595,8 @@ section {
     width: 60%; }
 .payment-template input, .payment-template button, .payment-template label, .payment-template select {
   font-size: 1.4rem;
-  color: #333333; }
+  color: #333333;
+  height: auto !important; }
 .payment-template .custom-control {
   padding-left: 1.8rem; }
   .payment-template .custom-control label:before, .payment-template .custom-control label:after {
@@ -599,6 +611,9 @@ section {
   background: #1ba87e; }
   .payment-template .promotion-wrapper button:hover {
     background: #147c5d; }
+  .payment-template .promotion-wrapper button:disabled {
+    background: #5a6268;
+    cursor: none; }
 .payment-template .wrap-total p {
   font-size: 1.4rem;
   font-weight: 600; }
@@ -609,6 +624,11 @@ section {
   font-size: 1.6rem; }
 .payment-template table.table-product tfoot {
   font-weight: 600; }
+
+/*SEARCH*/
+section.search-page h4.result-search {
+  font-size: 1.6rem;
+  margin-bottom: 1rem; }
 
 /*
 FOOTER*/

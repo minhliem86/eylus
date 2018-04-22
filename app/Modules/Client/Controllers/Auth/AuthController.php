@@ -43,7 +43,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('client_if_logined', ['except' => ['logout']]);
+        $this->middleware('client_if_logined', ['except' => ['logout']]);
         $this->auth = Auth::guard('customer');
     }
 
@@ -56,7 +56,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'firstname' => 'required|max:255',
+            'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:customers',
             'phone' => 'required',
             'password' => 'required|min:6|confirmed'
@@ -66,20 +66,19 @@ class AuthController extends Controller
     private function validator_create(array $data)
     {
         return Validator::make($data, [
-           'lastname' => 'required',
-            'firstname' => 'required',
+           'fullname' => 'required',
             'phone' => 'required',
             'username' => 'required|unique:customers',
             'email'=> 'required|email|unique:customers',
             'password' => 'required|min:6|confirmed',
         ],[
-            'lastname.required' => 'Vui lòng nhập Họ',
-            'firstname.required' => 'Vui lòng nhập Tên',
+            'fullname.required' => 'Vui lòng nhập tên',
             'phone.required' => 'Vui lòng nhập số điện thoại',
             'email.required' => 'Vui lòng nhập Email',
             'email.email' => 'Định dạng Email: abc@..',
             'email.unique' => 'Email đã tồn tại',
-            'password.required' => 'Vui lòng nhập Password',
+            'password.required' => 'Vui lòng nhập mật khẩu.',
+            'password.confirmed' => 'Xác nhận mật khẩu không chính xác',
             'username.required' => 'Vui lòng nhập Username',
             'username.unique' => 'Username đã tồn tại',
         ]);
@@ -94,8 +93,7 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return Customer::create([
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
+            'name' => $data['fullname'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'username' => $data['username'],
@@ -117,7 +115,7 @@ class AuthController extends Controller
         }
         return redirect()->back()->withInput()->withErrors([
             'error_login' => 'Thông tin đăng nhập không chính xác.',
-        ]);
+        ], 'login');
     }
 
     public function register(Request $request)

@@ -1,138 +1,87 @@
-@extends("Client::layouts.default")
+@extends("Client::layouts.main")
 
 @section("content")
     @include("Client::layouts.banner")
-    <section class="page-section profile-page">
+    <section class="page-section profile-page user-template">
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <h2 class="title-section mx-auto">Thông Tin Khách Hàng</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="profile-wrapper">
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="home" aria-selected="true">Thông Tin Khách Hàng</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#changePassword" role="tab" aria-controls="profile" aria-selected="false">Thay Đổi Mật Khẩu</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#cartHistory" role="tab" aria-controls="contact" aria-selected="false">Lịch Sử Mua Hàng</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="profile-info">
-
-                                        {!! Form::open(['route' => 'client.auth.profile.post', 'class'=>'form-profile form']) !!}
-                                        <fieldset>
-                                            <legend>Thông tin khách hàng</legend>
-                                            <div class="form-group">
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <label for="lastname">Họ</label>
-                                                        {!! Form::text('lastname', Auth::guard('customer')->user()->lastname, ['class' => $errors->error_profile->has('lastname') ? 'is-invalid  form-control' : 'form-control']) !!}
-                                                        @if($errors->error_profile->has('lastname'))
-                                                        <div class="invalid-feedback">
-                                                            {!! $errors->error_profile->first('lastname') !!}
-                                                        </div>
-                                                        @endif
-                                                    </div>
-                                                    <div class="col">
-                                                        <label for="firstname">Tên</label>
-                                                        {!! Form::text('firstname', Auth::guard('customer')->user()->firstname, ['class' => $errors->error_profile->has('firstname') ? 'is-invalid  form-control' : 'form-control']) !!}
-                                                        @if($errors->error_profile->has('firstname'))
-                                                            <div class="invalid-feedback">
-                                                                {!! $errors->error_profile->first('firstname') !!}
-                                                            </div>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-row">
-                                                    <div class="col-md-4">
-                                                        <label for="address">Giới tính</label>
-                                                        {!! Form::select('gender', [0 => 'Mrs.', 1=>'Mr.'],Auth::guard('customer')->user()->gender ,['class'=> 'form-control']) !!}
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label for="phone">Số điện thoại</label>
-                                                        {!! Form::text('phone', Auth::guard('customer')->user()->phone, ['class' => $errors->error_profile->has('phone') ? 'is-invalid  form-control' : 'form-control']) !!}
-                                                        @if($errors->error_profile->has('phone'))
-                                                            <div class="invalid-feedback">
-                                                                {!! $errors->error_profile->first('phone') !!}
-                                                            </div>
-                                                        @endif
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label for="birthday">Ngày Sinh</label>
-                                                        {!! Form::text('birthday', Auth::guard('customer')->user()->birthday, ['class' => 'form-control']) !!}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <label for="address">Địa chỉ (dùng để giao hàng )</label>
-                                                        {!! Form::text('address', Auth::guard('customer')->user()->address, ['class'=>'form-control']) !!}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                        <div class="form-group text-center">
-                                            <button type="submit" class="btn btn-info btn-profile">Lưu Thông Tin</button>
+                <div class="col-md-6">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <h3 class="title-login-page">Thông Tin Khách Hàng</h3>
+                            <div class="profile-info">
+                                {!! Form::open(['route' => 'client.auth.profile.post', 'class'=>'form-profile form']) !!}
+                                <div class="form-group">
+                                    <label for="lastname">{!! trans('payment.name') !!}</label>
+                                    {!! Form::text('name', Auth::guard('customer')->user()->name, ['class' => $errors->error_profile->has('name') ? 'is-invalid  form-control' : 'form-control']) !!}
+                                    @if($errors->error_profile->has('name'))
+                                        <div class="invalid-feedback">
+                                            {!! $errors->error_profile->first('name') !!}
                                         </div>
-                                    {!! Form::close() !!}
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="changePassword" role="tabpanel" aria-labelledby="profile-tab">
-                                <div class="changePassword-wrapper">
-                                    <form action="" method="POST" class="form form-changePassword">
-                                        <div class="form-group">
-                                            <input type="password" name="oldPassword" class="form-control" placeholder="Mật Khẩu Cũ">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="newPassword" class="form-control" placeholder="Mật Khẩu Mới">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="newPassword_confirmation" class="form-control" placeholder="Xác Nhận Mật Khẩu Mới">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="submit" class="btn btn-info btn-changePassword" value="Lưu Thay Đổi">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="cartHistory" role="tabpanel" aria-labelledby="contact-tab">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Mã Đơn Hàng</th>
-                                        <th>Ngày Thanh Toán</th>
-                                        <th>Hóa Đơn Điện Tử</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if(!$order->isEmpty())
-                                        @foreach($order as $item_order)
-                                            <tr>
-                                                <td>{!! $item_order->id !!}</td>
-                                                <td>{!! $item_order->order_name !!}</td>
-                                                <td>{!! Carbon\Carbon::parse($item_order->created_at)->format('d/m/Y H:i') !!}</td>
-                                                <td><a href="{!! route('client.order_detail', $item_order->id) !!}" class="btn btn-outline-secondary btn-order-detail">Chi Tiết</a></td>
-                                            </tr>
-                                        @endforeach
-                                    @else
-                                        <tr>
-                                            <td colspan="4">Hiện chưa cho đơn hàng</td>
-                                        </tr>
                                     @endif
-                                    </tbody>
-                                </table>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">{!! trans('payment.phone') !!}</label>
+                                    {!! Form::text('phone', Auth::guard('customer')->user()->phone, ['class' => $errors->error_profile->has('phone') ? 'is-invalid  form-control' : 'form-control']) !!}
+                                    @if($errors->error_profile->has('phone'))
+                                        <div class="invalid-feedback">
+                                            {!! $errors->error_profile->first('phone') !!}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">{!! trans('payment.address') !!}</label>
+                                    {!! Form::text('address', '', ['class'=>'form-control']) !!}
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <label for="city_id">{!! trans('payment.city') !!}</label>
+                                        {!! Form::select('city_id',[''=> trans('payment.option_city')] + $city,'',['class'=>'form-control']) !!}
+                                    </div>
+                                    <div class="col">
+                                        <label for="district_id">{!! trans('payment.district') !!}</label>
+                                        <div id="wrap-district">
+                                            {!! Form::select('district_id',[],'',['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <label for="wards">{!! trans('payment.ward') !!}</label>
+                                        <div id="wrap-ward">
+                                            {!! Form::select('wards',[],'',['class'=>'form-control']) !!}
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info btn-profile">Lưu Thông Tin</button>
+                                </div>
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <h3 class="title-login-page">Đổi Mật Khẩu</h3>
+                            <div class="changePassword-wrapper">
+                                {!! Form::open(['route'=>'client.auth.changePassword.post', 'class'=> 'form form-changePassword']) !!}
+                                <div class="form-group">
+                                    <label for="oldPassword">Mật khẩu cũ</label>
+                                    <input type="password" name="oldPassword" class="form-control" placeholder="Mật Khẩu Cũ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">Mật khẩu mới</label>
+                                    <input type="password" name="newPassword" class="form-control" placeholder="Mật Khẩu Mới">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword_confirmation">Xác nhận mật khẩu</label>
+                                    <input type="password" name="newPassword_confirmation" class="form-control" placeholder="Xác Nhận Mật Khẩu Mới">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info btn-changePassword">Đổi Mật Khẩu</button>
+                                </div>
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </div>
@@ -148,11 +97,28 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $(document).ready(function(){
-            $('input[name=birthday]').datepicker({
-                dateFormat:'dd/mm/yy',
-                changeMonth: true,
-                changeYear: true,
-                yearRange: '1950:2018',
+            $('select[name=city_id]').on('change', function(){
+                var city_id = $(this).val();
+                $.ajax({
+                    url: "{!! route('client.post.getDistrict') !!}",
+                    type: 'POST',
+                    data: {city_id: city_id},
+                    success: function(data){
+                        $('#wrap-district').html(data.data);
+                    }
+                })
+            })
+
+            $(document).on('change', 'select[name=district_id]', function () {
+                var district_id = $(this).val();
+                $.ajax({
+                    url: "{!! route('client.post.getWard') !!}",
+                    type: 'POST',
+                    data: {district_id: district_id},
+                    success: function(data){
+                        $('#wrap-ward').html(data.data);
+                    }
+                })
             })
         })
     </script>

@@ -1,1 +1,1 @@
-{!! Form::select('ward',['' => 'Chọn Phường/Xã'] + $ward,'',['class' => 'form-control']) !!}
+{!! Form::select('ward_id',['' => trans("payment.option_ward")] + $ward,'',['class' => 'form-control']) !!}

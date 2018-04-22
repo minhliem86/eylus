@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
 use Auth;
+use DB;
 
 class ProfileController extends Controller
 {
@@ -55,8 +56,9 @@ class ProfileController extends Controller
 
     public function getProfile(Request $request)
     {
-        $order = $this->auth->user()->orders;
-        return view('Client::pages.auth.profile', compact('order'));
+//        $order = $this->auth->user()->orders;
+        $city = DB::table('cities')->lists('name_with_type','code');
+        return view('Client::pages.auth.profile', compact('city'));
     }
 
     public function postProfile(Request $request)

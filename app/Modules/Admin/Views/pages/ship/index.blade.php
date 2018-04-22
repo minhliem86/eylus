@@ -32,15 +32,6 @@
                 </div>
                 <div class="card-body">
                     <table class="table table-responsive-sm  table-striped table-sm">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Loại Shipping</th>
-                            <th>Giá</th>
-                            <th width="120">Hình ảnh</th>
-                            <th width="15%"></th>
-                        </tr>
-                        </thead>
                     </table>
                 </div>
             </div>
@@ -75,8 +66,7 @@
             columns: [
                {data: 'id', name: 'id', 'orderable': false, title: '#', visible: false},
                {data: 'name_vi', name: 'name_vi', title: 'Loại ship'},
-               {data: 'price_vi', name: 'Giá', 'orderable': false},
-                {data: 'img_url', name: 'Hình ảnh', 'orderable': false},
+               {data: 'price_vi', name: 'Giá', title: 'Giá', 'orderable': false},
                {data: 'action', name: 'action', 'orderable': false}
            ],
            initComplete: function(){

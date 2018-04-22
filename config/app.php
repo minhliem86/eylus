@@ -230,7 +230,6 @@ return [
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'Str' => \Illuminate\Support\Str::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class
-
     ],
 
 ];

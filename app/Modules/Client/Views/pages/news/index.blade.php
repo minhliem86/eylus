@@ -25,6 +25,7 @@
                                 @foreach($chunk as $item_news)
                                 <div class="col-md-6">
                                     <div class="each-template">
+
                                         <a href="{!! route('client.news.detail', $item_news->slug) !!}"><img src="{!! asset('public/uploads/'.$item_news->img_url) !!}" class="img-fluid mb-4" alt="{!! ($title = trans('variable.title')) ? $item_news->$title : null !!}"></a>
                                         <div class="media-body">
                                             <h5 class="mb-3"><a href="{!! route('client.news.detail', $item_news->slug) !!}">{!! ($title = trans('variable.title')) ? $item_news->$title : null !!}</a></h5>

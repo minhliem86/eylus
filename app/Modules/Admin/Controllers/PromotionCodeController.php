@@ -37,11 +37,11 @@ class PromotionCodeController extends Controller
                                <button class="btn  btn-danger btn-sm" type="button" attrid=" '.route('admin.promotioncode.destroy', $promotioncode->id).' " onclick="confirm_remove(this);" > <i class="fa fa-trash"></i></button>
                </form>' ;
                 })->addColumn('time', function($promotioncode){
-                    $from_time = Carbon::parse($promotioncode->from_time)->format('d-m-Y');
-                    $to_time = Carbon::parse($promotioncode->to_time)->format('d-m-Y');
+                    $from_time = Carbon::parse($promotioncode->from_time)->format('d/m/Y');
+                    $to_time = Carbon::parse($promotioncode->to_time)->format('d/m/Y');
                     return $time = $from_time . ' - '. $to_time;
                 })->addColumn('value',function($promotioncode){
-                    $value = $promotioncode->value. ' ' .$promotioncode->value_type;
+                    $value = $promotioncode->value_type ? $promotioncode->value. ' ' .$promotioncode->value_type : number_format($promotioncode->value). ' VND' ;
                     return $value;
                 })->editColumn('status', function($promotioncode){
                     $status = $promotioncode->status ? 'checked' : '';

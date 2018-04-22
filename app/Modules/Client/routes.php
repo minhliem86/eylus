@@ -1,7 +1,7 @@
 <?php
 Route::group([
-    'middleware'=>['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'web' ],
     'prefix'=>LaravelLocalization::setLocale(),
+    'middleware'=>['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'web' ],
     'namespace' => 'App\Modules\Client\Controllers'], function(){
 
     Route::get('/', ['as' => 'client.home', 'uses' => 'HomeController@index']);
@@ -33,21 +33,23 @@ Route::group([
 
     Route::get('/gio-hang', ['as' => 'client.cart', 'uses' => 'ProductController@getCart']);
 
-//    Route::post('/update-soluong', ['as' => 'client.cart.updateQuantity', 'uses' => 'ProductController@updateQuantityAjax' ]);
-
-    Route::get('/update-soluong', ['as' => 'client.cart.updateQuantity', 'uses' => 'ProductController@updateQuantity' ]);
-
+    Route::post('/cap-nhat-gio-hang', ['as' => 'client.cart.updateQuantity', 'uses' => 'ProductController@updateQuantity' ]);
 
     Route::post('/remove-item', ['as' => 'client.cart.removeItem', 'uses' => 'ProductController@removeItemCart']);
 
-    Route::get('/xoa-gio-hang',['as' => 'client.cart.clear', 'uses' => 'ProductController@clearCart']);
+    Route::get('xoa-gio-hang', function(){
+        Cart::clearCartConditions();
+        Cart::clear();
+        return redirect()->route('client.product.index')->with('success','Giỏ hàng của bạn đã được xóa.');
+    });
 
+    Route::get('/thanh-toan', ['as' => 'client.payment.index', 'uses' => 'ProductController@getPayment']);
 
+    Route::post('/process-promotion-ajax', ['as' => 'client.promotion.ajax', 'uses' => 'ProductController@applyPromotion']);
 
-    Route::get('/thanh-toan', ['as' => 'client.payment', 'uses' => 'CartController@payment']);
-    Route::post('/process-promotion', ['as' => 'client.promotion', 'uses' => 'ProductController@applyPromotion']);
     Route::post('/doPayment', ['as' => 'client.doPayment', 'uses' => 'ProductController@doPayment']);
-    Route::get('/responsePayment', ['as' => 'client.responsePayment', 'uses' => 'ProductController@responseFormOnePay']);
+
+    Route::get('/ngan-luong-pay', ['as' => 'client.payment.checkpay', 'uses'=> 'ProductController@getCheckPay']);
 
     Route::get('/thanh-toan-thanh-cong', ['as' => 'client.payment_success.thank','uses' => 'ProductController@getThankyou']);
 
@@ -70,7 +72,7 @@ Route::group([
     // Password Reset Routes...
     Route::get('password/reset/{token?}',['as'=> 'client.password.reset.getForm', 'uses' => 'Auth\PasswordController@showResetForm']);
     Route::post('password/email',['as' => 'client.password.email.post', 'uses' => 'Auth\PasswordController@sendResetLinkEmail']);
-    Route::post('password/reset', 'Auth\PasswordController@reset');
+    Route::post('password/reset', 'Auth\PasswordController@postReset');
 
     Route::get('/thong-tin-khach-hang', ['as'=> 'client.auth.profile', 'uses' => 'ProfileController@getProfile']);
     Route::post('/update-profile', ['as' => 'client.auth.profile.post', 'uses' => 'ProfileController@postProfile']);
@@ -86,5 +88,8 @@ Route::group([
 
     /*SINGLE*/
     Route::get('/{slug}', ['as' => 'client.single_page','uses' => 'PageController@getPage'])->where('slug', '[0-9a-zA-Z._\-]+');
+
+    /*SEARCH*/
+    Route::post('/search', ['as' => 'client.search.post', 'uses' => 'HomeController@postSearch']);
 
 });

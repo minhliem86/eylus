@@ -248,7 +248,7 @@ class ProductController extends Controller
                                 'name' => $pr->sku_promotion,
                                 'type' => 'discount',
                                 'target' => $pr->target,
-                                'value' => $pr->value_type === '%' ? $pr->value.$pr->value_type : $pr->value,
+                                'value' => $pr->value_type ? $pr->value.$pr->value_type : $pr->value,
                             ]
                         );
                         Cart::condition($cond);

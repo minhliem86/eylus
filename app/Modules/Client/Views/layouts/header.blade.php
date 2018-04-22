@@ -45,15 +45,17 @@
                                     <a href="{!! route('client.promotion_news') !!}">{!! trans('menu.promotion') !!}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#">{!! trans('menu.contact') !!}</a>
+                                    <a href="{!! route('client.contact') !!}">{!! trans('menu.contact') !!}</a>
                                 </li>
                                 <li class="nav-item search-item">
                                     <span data-toggle="collapse" data-target="#search-box" aria-controls="search-box"><i class="fa fa-search"></i></span>
                                     <div id="search-box" class="collapse">
+                                        {!! Form::open(['route'=>'client.search.post']) !!}
                                         <div class="input-group">
                                             <input type="text" name="search-key" class="form-control">
                                             <button class="input-group-append" type="submit"><i class="fa fa-search"></i></button>
                                         </div>
+                                        {!! Form::close() !!}
 
                                     </div>
                                 </li>

@@ -14,36 +14,45 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="map-wrapper">
-                        <div id="input-director">
+                        <div id="input-director" class="mb-4">
                             <div class="input-group">
-                                <input type="text" name="from_gmap" class="form-control" placeholder="Nhập địa chỉ của bạn..">                               <div class="input-group-append">
+                                <input type="text" name="from_gmap" class="form-control" placeholder="Nhập địa chỉ của bạn..">
+                                <div class="input-group-append">
                                     <button type="button" class="btn btn-director">Tìm Đường</button>
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d692.8755259909512!2d106.70259235136976!3d10.773282449928304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zMTYgSHXhu7NuaCBUSMO6YyBLaMOhbmcsIFAuIELhur9uIE5naMOpLCBRLiAxLCBUcC4gSENN!5e0!3m2!1svi!2s!4v1524391186248" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="info">
+                        <p><img src="{!! asset('public/assets/client') !!}/images/logo.png" class="img-fluid" alt="CÔNG TY TNHH THE OFFICE "></p>
+                        @if(isset($companies))
+                            <p><b>Địa chỉ:</b> {!! $companies->address !!}</p>
+                            <p><b>Điện thoại:</b> {!! $companies->phone !!}</p>
+                            <p><b>Email:</b> {!! $companies->email !!}</p>
+                        @endif
                     </div>
                     <div class="form-contact-wrapper">
                         {!! Form::open(['route'=>'client.contact.post']) !!}
                         <div class="form-group">
                             <label for="fullname">Họ và tên</label>
-                            {!! Form::text('fullname', old('fullname'), ['class'=>'form-control']) !!}
+                            {!! Form::text('fullname', old('fullname'), ['class'=>'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
                             <label for="phone">Điện thoại</label>
-                            {!! Form::text('phone', old('phone'), ['class'=>'form-control']) !!}
+                            {!! Form::text('phone', old('phone'), ['class'=>'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
                             {!! Form::text('email', old('email'), ['class'=>'form-control']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="email">Nội dung</label>
-                            {!! Form::textarea('messages', old('message'), ['class'=>'form-control', 'rows'=>10]) !!}
+                            <label for="messages">Nội dung</label>
+                            {!! Form::textarea('messages', old('label'), ['class'=>'form-control', 'rows'=>10]) !!}
                         </div>
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary">Gửi</button>
@@ -55,7 +64,6 @@
             </div>
         </div>
     </section>
-
 
 @stop
 
