@@ -10,144 +10,101 @@
 
     <section class="section cart-template payment-template">
         <div class="container">
-            {!! Form::open(['route' => 'client.promotion', 'class' => 'form-payment']) !!}
+            {!! Form::open(['route' => 'client.doPayment', 'class' => 'form-payment']) !!}
             <div class="row">
                 <div class="col-md-7">
                     <div class="customer-information area">
-                        <h5 class="title">Thông tin giao hàng</h5>
+                        <h5 class="title">{!! trans('payment.info_payment') !!}</h5>
                         <div class="form-group">
-                            <label for="fullname">Họ và Tên</label>
-                            {!! Form::text('fullname', old('fullname'), ['class' => 'form-control', 'required']) !!}
+                            <label for="fullname">{!! trans('payment.name') !!}</label>
+                            {!! Form::text('fullname', $user ? $user->name : null, ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="phone">Số điện thoại</label>
+                            <label for="phone">{!! trans('payment.phone') !!}</label>
                             <small class="form-text text-muted">
-(Nhân viên giao hàng sẽ liên lạc theo số điện thoại này)
+                                {!! trans('payment.phone_sub') !!}
                             </small>
-                            {!! Form::text('phone', old('phone'), ['class' => 'form-control', 'required']) !!}
+                            {!! Form::text('phone', $user ? $user->phone : null, ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            {!! Form::text('email', old('email'), ['class' => 'form-control', 'required']) !!}
+                            {!! Form::text('email', $user ? $user->email : null, ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="address">Địa chỉ khách hàng</label>
+                            <label for="address">{!! trans('payment.address') !!}</label>
                             <small class="form-text text-muted">
-                                (Nhân viên giao hàng sẽ liên lạc theo địa chỉ này)
+                                {!! trans('payment.address_sub') !!}
                             </small>
-                            {!! Form::text('address', old('address'), ['class' => 'form-control', 'required']) !!}
+                            {!! Form::text('address', $user && $user->addresses ? $user->addresses->address : null, ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group row">
                             <div class="col-md-4 mb-sm-3">
-                                <label for="city_id">Thành Phố</label>
-                                {!! Form::select('city_id', [], old('city_id'), ['class' => 'form-control']) !!}
+                                <label for="city_id">{!! trans('payment.city') !!}</label>
+                                {!! Form::select('city_id', [''=> trans("payment.option_city")] + $city, $user && $user->addresses ? $user->addresses->city : null, ['class' => 'form-control']) !!}
                             </div>
                             <div class="col-md-4 mb-sm-3">
-                                <label for="district_id">Quận/Huyện</label>
-                                {!! Form::select('district_id', [], old('district_id'), ['class' => 'form-control']) !!}
+                                <label for="district_id">{!! trans('payment.district') !!}</label>
+                                <div id="wrap-district">
+                                    {!! Form::select('district_id', [], $user && $user->addresses ? $user->addresses->district : null, ['class' => 'form-control']) !!}
+                                </div>
                             </div>
                             <div class="col-md-4">
-                                <label for="ward_id">Phường/Xã</label>
-                                {!! Form::select('ward_id', [], old('ward_id'), ['class' => 'form-control']) !!}
+                                <label for="ward_id">{!! trans('payment.ward') !!}</label>
+                                <div id="wrap-ward">
+                                    {!! Form::select('ward_id', [], $user && $user->addresses ? $user->addresses->ward : null, ['class' => 'form-control']) !!}
+                                </div>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="note">{!! trans('payment.note') !!}</label>
+                            {!! Form::textarea('note',old('note'), ['class'=>'form-control','rows'=>6]) !!}
                         </div>
                     </div>
 
                     <div class="shipmethod-wrapper area">
-                        <h5 class="title">Phương thức giao hàng</h5>
+                        <h5 class="title">{!! trans('payment.shipping_method') !!}</h5>
+                        @if(count($shippingCost))
+                            @foreach($shippingCost as $item_shipping)
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" name="ship_cost" class="custom-control-input" id="standard" required>
-                                <label class="custom-control-label" for="standard">Giao Hàng Tiêu Chuẩn</label>
+                                <input type="radio" value="{!! $item_shipping->id !!}" name="ship_cost" class="custom-control-input" id="{!! $item_shipping->slug !!}" required>
+                                <label class="custom-control-label" for="{!! $item_shipping->slug !!}">{!! ($name = trans('variable.name')) ? $item_shipping->$name : null !!}</label>
                                 <small class="form-text text-muted">
-                                    40.000 VND
-                                </small>
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" name="ship_cost" class="custom-control-input" id="shipfast" required>
-                                <label class="custom-control-label" for="shipfast">Giao Hàng Nhanh</label>
-                                <small class="form-text text-muted">
-                                    50.000 VND
+                                    {!! ($description = trans('variable.description')) ? $item_shipping->$description : null !!}
                                 </small>
                             </div>
                         </div>
+                            @endforeach
+                        @endif
                     </div>
 
                     <div class="paymentmethod-wrapper area">
-                        <h5 class="title">Phương thức thanh toán</h5>
+                        <h5 class="title">{!! trans('payment.payment_method') !!}</h5>
+                        @if(count($payment))
+                            @foreach($payment as $item_payment)
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" name="payment_method" class="custom-control-input" id="cod" required>
-                                <label class="custom-control-label" for="cod">COD (thanh toán khi giao hàng)</label>
+                                <input type="radio" value="{!! $item_payment->id !!}" name="payment_method" class="custom-control-input" id="{!! $item_payment->slug !!}" required>
+                                <label class="custom-control-label" for="{!! $item_payment->slug !!}">{!! ($name = trans('variable.name')) ? $item_payment->$name : null !!} ({!! ($descriotion = trans('variable.description')) ? $item_payment->$descriotion : null !!})</label>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" name="payment_method" class="custom-control-input" id="nganluong" required>
-                                <label class="custom-control-label" for="nganluong">Ngân Lượng</label>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-5">
                     <div class="cart-information area">
-                        <h5 class="title">Đơn hàng của bạn</h5>
-                        <table class="table table-product">
-                            <thead>
-                                <tr>
-                                    <th>Sản phẩm</th>
-                                    <th class="text-center">Số lượng</th>
-                                    <th class="text-right">Đơn giá</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        OSC Du Học
-                                    </td>
-                                    <td class="text-center">
-                                        1
-                                    </td>
-                                    <td class="text-right">
-                                        500,000 vnd
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <td colspan="2">Tạm tính:</td>
-                                <td class="text-right">500,000 VND</td>
-                            </tr>
-                            </tfoot>
-                        </table>
-
-                        <div class="promotion-wrapper">
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="promotion_code" placeholder="Mã khuyến mãi">
-                                <div class="input-group-append">
-                                    <button class="btn-promotion" type="button">Áp Dụng</button>
-                                </div>
-                            </div>
-                            <div class="wrap-code mt-4">
-                                <span class="badge badge-primary">DISCOUNT</span>
-                            </div>
+                        <h5 class="title">{!! trans('payment.order') !!}</h5>
+                        <div id="wrap-cart">
+                            @include('Client::ajax.cart_payment')
                         </div>
-
-                        <div class="wrap-total my-3 d-flex justify-content-between">
-                            <p>
-                                Tổng cộng
-                            </p>
-                            <p class="price">
-                                700,000 VND
-                            </p>
+                        <div id="wrap-promotion">
+                            @include("Client::ajax.promotion_apply")
                         </div>
                     </div>
 
                     <div class="wrap-payment text-right">
-                        <button type="submit" class="btn-submit">Thanh Toán</button>
+                        <button type="submit" class="btn-submit">{!! trans('payment.payment') !!}</button>
                     </div>
                 </div>
             </div>
@@ -162,26 +119,30 @@
 @section('script')
     <script>
         $(document).ready(function(){
-            $('select[name=vpc_SHIP_City]').on('change', function(){
+            @if(!Cart::getConditionsByType('discount')->isEmpty())
+                $('input[name="promotion"]').prop('disabled', true);
+                $('.btn-promotion').prop('disabled',true);
+            @endif
+            $('select[name=city_id]').on('change', function(){
                 var city_id = $(this).val();
                 $.ajax({
                     url: "{!! route('client.post.getDistrict') !!}",
                     type: 'POST',
                     data: {city_id: city_id},
                     success: function(data){
-                        $('.ajax-province').html(data.data);
+                        $('#wrap-district').html(data.data);
                     }
                 })
             })
 
-            $(document).on('change', 'select[name=vpc_SHIP_Provice]', function () {
+            $(document).on('change', 'select[name=district_id]', function () {
                 var district_id = $(this).val();
                 $.ajax({
                     url: "{!! route('client.post.getWard') !!}",
                     type: 'POST',
                     data: {district_id: district_id},
                     success: function(data){
-                        $('.ajax-ward').html(data.data);
+                        $('#wrap-ward').html(data.data);
                     }
                 })
             })
@@ -191,7 +152,7 @@
         {
             var promotion = $('input[name="promotion"]').val();
             $.ajax({
-                url: '{!! route("client.promotion") !!}',
+                url: '{!! route("client.promotion.ajax") !!}',
                 type: 'POST',
                 data: {pr_code: promotion},
                 success: function(data){
@@ -200,11 +161,10 @@
                         $('input[name="promotion"]').val('');
                     }
                     if(!data.error){
+                        $('#wrap-cart').html(data.view);
+                        $('#wrap-promotion').html(data.view_promoition);
                         $('input[name="promotion"]').prop('disabled', true);
-                        $('#btn-payment').prop('disabled',true);
-                        $('.display-promotion').removeClass('d-none');
-                        $('.display-promotion').append(data.view);
-                        $('.total').text(data.total);
+                        $('.btn-promotion').prop('disabled',true);
                         alertify.success(data.message);
                     }
                 }

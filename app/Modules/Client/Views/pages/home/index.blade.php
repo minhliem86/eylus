@@ -21,10 +21,10 @@
                             <div class="featured-product-slick">
                                 @foreach($feature_p as $item_feature)
                                 <div class="item-feature">
-                                    <img src="{!! asset('public/uploads/'.$item_feature->img_url) !!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_feature->$title : null !!}">
-                                    <h4 class="title-product">{!! ($name = trans('variable.name') ) ? $item_feature->$name : null !!}</h4>
+                                    <a href="{!! route('client.product.detail', $item_feature->slug ) !!}"><img src="{!! asset('public/uploads/'.$item_feature->img_url) !!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_feature->$title : null !!}"></a>
+                                    <h4 class="title-product"><a href="{!! route('client.product.detail', $item_feature->slug) !!}">{!! ($name = trans('variable.name') ) ? $item_feature->$name : null !!}</a></h4>
                                     <p class="price">{!! ($price = trans('variable.price') ) ? number_format($item_feature->$price) : null !!} {!! trans('variable.currency') !!}</p>
-                                    <a href="#" class="btn-detail-product btn-addcart">{!! trans('home.add_cart') !!}</a>
+                                    <a href="{!! route('client.product.detail', $item_feature->slug) !!}" class="btn-detail-product btn-addcart">{!! trans('home.add_cart') !!}</a>
                                 </div>
                                 @endforeach
                             </div>
@@ -47,16 +47,16 @@
                         @foreach($promotion_p as $item_promotion)
                         <div class="promotion-slick">
                             <div class="item-promotion">
-                                <img src="{!! asset('public/uploads/'.$item_promotion->img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}">
-                                <h4 class="title-product">{!! ($name = trans('variable.name') ) ? $item_promotion->$name : null !!}</h4>
+                                <a href="{!! route('client.product.detail', $item_promotion->slug) !!}"> <img src="{!! asset('public/uploads/'.$item_promotion->img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}"></a>
+                                <h4 class="title-product"><a href="{!! route('client.product.detail', $item_promotion->slug) !!}">{!! ($name = trans('variable.name') ) ? $item_promotion->$name : null !!}</a></h4>
                                 <p class="price">{!! ($price = trans('variable.price') ) ? number_format($item_promotion->$price)  : null !!} {!! trans('variable.currency') !!}</p>
-                                <a href="#" class="btn-detail-promotion btn-addcart">{!! trans('home.add_cart') !!}</a>
+                                <a href="{!! route('client.product.detail', $item_promotion->slug) !!}" class="btn-detail-promotion btn-addcart">{!! trans('home.add_cart') !!}</a>
                             </div>
                         </div>
                         @endforeach
 
                         <div class="button-container text-center">
-                            <a href="#" class="btn-more">{!! trans('home.readmore') !!}</a>
+                            <a href="{!! route('client.product.index') !!}" class="btn-more">{!! trans('home.readmore') !!}</a>
                         </div>
                     </div>
                     @endif
@@ -127,11 +127,11 @@
                 @foreach($fav_p as $item_fav)
                 <div class="col-md-4">
                     <div class="each-bestSeller">
-                        <img src="{!! asset('public/uploads/'.$item_fav->img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_fav->$title : null !!}">
-                        <h4 class="title-product">{!! ($name = trans('variable.name') ) ? $item_fav->$name : null !!}</h4>
+                        <a href="{!! route('client.product.detail',$item_fav->slug ) !!}"><img src="{!! asset('public/uploads/'.$item_fav->img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_fav->$title : null !!}"></a>
+                        <h4 class="title-product"><a href="{!! route('client.product.detail',$item_fav->slug ) !!}">{!! ($name = trans('variable.name') ) ? $item_fav->$name : null !!}</a></h4>
                         <p class="price">{!! ($price = trans('variable.price') ) ? number_format($item_fav->$price)  : null !!} {!! trans('variable.currency') !!}</p>
                         <div class="button-container text-center">
-                            <a href="" class="btn-detail-product btn-addcart">{!! trans('home.add_cart') !!}</a>
+                            <a href="{!! route('client.product.detail',$item_fav->slug ) !!}" class="btn-detail-product btn-addcart">{!! trans('home.add_cart') !!}</a>
                         </div>
                     </div>
                 </div>
@@ -265,6 +265,18 @@
 
             /** VIDEO **/
             const player = new Plyr('#player');
+
+            $('.btn-cart').click(function(){
+                var product_id = $(this).data('id');
+                $.ajax({
+                    url: "{!! route('client.addtocart') !!}",
+                    type: 'POST',
+                    data:{id: product_id},
+                    success: function(data){
+                        $('#cart-wrapper').html(data.cart_header);
+                    }
+                })
+            })
         })
     </script>
 @stop

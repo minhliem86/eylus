@@ -12,11 +12,15 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&amp;subset=vietnamese" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('public/assets/client/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{!! asset('public/assets/client') !!}/js/plugins/aos/aos.css">
+    <link rel="stylesheet" href="{!! asset('public/assets/client') !!}/js/plugins/alertify/alertify.css">
     <link rel="stylesheet" href="{{asset('public/assets/client/css/style.css')}}">
 
     <!-- SCRIPT -->
     <script src="{{asset('public/assets/client/js/jquery-3.3.1.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="{!! asset('public/assets/client') !!}/js/plugins/aos/aos.js"></script>
+    <script src="{!! asset('public/assets/client') !!}/js/plugins/alertify/alertify.js"></script>
 
     @yield("tracking")
 
@@ -30,7 +34,18 @@
                 <div class="col">
                     <div class="d-flex justify-content-end ">
                         <div class="item-wrap">
-                            <a href="#"><i class="fa fa-user"></i> {!! trans('menu.login') !!}</a>
+                            @if(!Auth::guard('customer')->check())
+                            <a href="{!! route('client.auth.login') !!}"><i class="fa fa-user"></i> {!! trans('menu.login') !!}</a>
+                            @else
+                                <div class="dropdown">
+                                    <p class="dropdown-toggle customer-name"  id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{!! Auth::guard('customer')->user()->name !!}</p>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownProfile">
+                                        <a class="dropdown-item" href="{!! route('client.auth.profile') !!}">{!! trans('user.profile') !!}</a>
+                                        {{--<a class="dropdown-item" href="#">{!! trans('user.order') !!}</a>--}}
+                                        <a class="dropdown-item" href="{!! route('client.auth.logout') !!}">{!! trans('user.logout') !!}</a>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         <div class="item-wrap" id="cart-wrapper">
                             @include("Client::ajax.cart_header")
@@ -57,6 +72,16 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+    $(document).ready(function(){
+        @if(session('success'))
+            alertify.success("{!! session()->get('success') !!}");
+        @endif
+
+        @if(session('error'))
+            alertify.error("{!! session()->get('error') !!}");
+        @endif
+    })
 </script>
 
 @yield("script")

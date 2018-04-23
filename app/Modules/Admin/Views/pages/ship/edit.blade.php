@@ -133,9 +133,8 @@
             //PRICE
             $('.price').priceFormat({
                 prefix: '',
-                centsSeparator: '',
-                thousandsSeparator: '',
-                centsLimit: 2,
+                centsSeparator: '.',
+                centsLimit: 0,
             })
         })
 

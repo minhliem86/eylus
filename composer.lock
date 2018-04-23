@@ -3098,58 +3098,6 @@
             "time": "2015-05-11T14:41:42+00:00"
         },
         {
-            "name": "lukepolo/laracart",
-            "version": "1.1.41",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lukepolo/laracart.git",
-                "reference": "2f2e3e2351877838024906e995ba10b8fc9e2174"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lukepolo/laracart/zipball/2f2e3e2351877838024906e995ba10b8fc9e2174",
-                "reference": "2f2e3e2351877838024906e995ba10b8fc9e2174",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "5.*",
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
-                "mockery/mockery": "^0.9.4",
-                "orchestra/testbench": "~3.1",
-                "phpunit/phpunit": "4.*",
-                "psr/log": "1.0.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "LukePOLO\\LaraCart\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Luke Policinski",
-                    "email": "Luke@LukePOLO.com",
-                    "homepage": "http://LukePOLO.com"
-                }
-            ],
-            "description": "A simple cart for Laravel",
-            "homepage": "https://github.com/lukepolo/laracart",
-            "keywords": [
-                "cart",
-                "laravel",
-                "shopping",
-                "shopping cart"
-            ],
-            "time": "2017-01-03T21:20:29+00:00"
-        },
-        {
             "name": "mockery/mockery",
             "version": "0.9.9",
             "source": {

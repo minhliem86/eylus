@@ -15,14 +15,19 @@
                 <div class="col-md-4">
                     <div class="login-wrapper">
                         <h3>Tài khoản của bạn</h3>
+                        @if($errors->login->first('error_login'))
+                        <div class="alert alert-danger" role="alert">
+                            <p>{!! $errors->login->first('error_login') !!}</p>
+                        </div>
+                        @endif
                         {!! Form::open(['route'=>'client.auth.login', 'class' => 'form-login']) !!}
                             <div class="form-group">
-                                <label for="login">Tên đăng nhập</label>
-                                {!! Form::text('login', old('login'), ['class' => 'form-control']) !!}
+                                <label for="login">Username/Email</label>
+                                {!! Form::text('usernameOrEmail', old('usernameOrEmail'), ['class' => 'form-control', 'required']) !!}
                             </div>
                             <div class="form-group">
                                 <label for="password">Mật khẩu</label>
-                                {!! Form::password('password', ['class' => 'form-control']) !!}
+                                {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
                             </div>
                         <div class="form-group">
                             <button type="submit" class="btn-user-template btn-submit">Đăng Nhập</button>
@@ -40,30 +45,37 @@
                 <div class="col-md-4">
                     <div class="register-wrapper">
                         <h3>Vui lòng điền đầy đủ thông tin </h3>
+                        @if($errors->register_error->any())
+                            <div class="alert alert-danger" role="alert">
+                                @foreach($errors->register_error->all() as $error)
+                                <p>{!! $error !!}</p>
+                                @endforeach
+                            </div>
+                        @endif
                         {!! Form::open(['route'=>'client.auth.register.post', 'class' => 'form-register']) !!}
                         <div class="form-group">
                             <label for="fullname">Họ và Tên khách hàng</label>
-                            {!! Form::text('fullname', old('fullname'), ['class' => 'form-control']) !!}
+                            {!! Form::text('fullname', old('fullname'), ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            {!! Form::text('email', old('email'), ['class' => 'form-control']) !!}
+                            {!! Form::text('email', old('email'), ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
                             <label for="phone">Số điện thoại</label>
-                            {!! Form::text('phone', old('phone'), ['class' => 'form-control']) !!}
+                            {!! Form::text('phone', old('phone'), ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
                             <label for="username">Tên đăng nhập</label>
-                            {!! Form::text('username', old('username'), ['class' => 'form-control']) !!}
+                            {!! Form::text('username', old('username'), ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
                             <label for="password">Mật khẩu</label>
-                            {!! Form::password('password', ['class' => 'form-control']) !!}
+                            {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
                             <label for="password_confirmation">Nhập lại mật khẩu</label>
-                            {!! Form::password('password_confirmation',  ['class' => 'form-control']) !!}
+                            {!! Form::password('password_confirmation',  ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn-user-template btn-submit">Đăng ký</button>

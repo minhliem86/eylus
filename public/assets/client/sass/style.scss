@@ -115,6 +115,10 @@ h1, h2, h3, h4, h5{
 }
 h1, h2, h3, h4, h5, p, a{color:$color-text}
 
+label, input, select, textarea{
+  font-size:1.4rem !important;
+  height:auto !important;
+}
 a:hover{
   text-decoration: none !important;
 }
@@ -137,6 +141,12 @@ a:hover{
     }
     &:last-child{
       border-right:none;
+    }
+    .dropdown{
+      p{
+        font-weight:600;
+        color:darken($color-browse, 15%)
+      }
     }
   }
 }
@@ -659,10 +669,19 @@ section{
         color:white;
       }
     }
+    .map{
+      overflow:hidden;
+      #map-canvas{
+        height:450px
+      }
+    }
   }
   .info{
     margin-bottom:1.5rem;
     font-size:1.4rem;
+    p{
+      margin-bottom:1.2rem;
+    }
   }
   .form-contact-wrapper{
     button{
@@ -802,6 +821,7 @@ section{
   input, button, label, select{
     font-size:1.4rem;
     color:$color-text;
+    height:auto !important;
   }
   .custom-control{
     padding-left:1.8rem;
@@ -825,6 +845,10 @@ section{
       background:#1ba87e;
       &:hover{
         background:darken(#1ba87e, 10%);
+      }
+      &:disabled{
+        background:#5a6268;
+        cursor:none;
       }
     }
 
@@ -852,6 +876,17 @@ section{
   }
 }
 
+
+/*SEARCH*/
+section.search-page{
+  h4.result-search{
+    font-size:1.6rem;
+    margin-bottom:1rem;
+  }
+  a.btn-sp{
+    @extend %button-template;
+  }
+}
 /*
 FOOTER*/
 footer{

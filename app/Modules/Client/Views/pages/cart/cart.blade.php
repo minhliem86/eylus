@@ -12,6 +12,7 @@
             <div class="row">
                 <div class="col">
                     <div class="cart-wrapper">
+                        {!! Form::open(['route'=> 'client.cart.updateQuantity', 'id' => 'form-update']) !!}
                         <table class="table table-cyan">
                             <thead>
                                 <tr>
@@ -28,15 +29,16 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="3">
-                                        <a class="btn-cart btn-remove " href="{!! route('client.cart.clear') !!}"><i class="fa fa-remove"></i> Xóa giỏ hàng</a>
-                                        <a class="btn-cart btn-udpate " href="{!! route('client.cart.updateQuantity') !!}"><i class="fa fa-refresh"></i> Cập nhật giỏ hàng</a>
+                                        <a class="btn-cart btn-remove" href="{!! url('xoa-gio-hang') !!}"><i class="fa fa-remove"></i> Xóa giỏ hàng</a>
+                                        <button class="btn-cart btn-udpate " type="button" href="{!! route('client.cart.updateQuantity') !!}"><i class="fa fa-refresh"></i> Cập nhật giỏ hàng</button>
                                     </td>
                                     <td colspan="2" class="text-right">
-                                        <a href="#" class="btn-cart btn-payment"><i class="fa fa fa-credit-card"></i> Thanh Toán</a>
+                                        <a href="{!! route('client.payment.index') !!}" class="btn-cart btn-payment"><i class="fa fa fa-credit-card"></i> Thanh Toán</a>
                                     </td>
                                 </tr>
                             </tfoot>
                         </table>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
@@ -63,10 +65,7 @@
             })
 
             $(document).on('click', '.btn-udpate', function (){
-                var data = [];
-                $('table .quantity').each(function(){
-                    data.push($(this).data('id'));
-                })
+               $('form#form-update').submit()
             })
         })
     </script>

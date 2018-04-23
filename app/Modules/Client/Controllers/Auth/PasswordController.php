@@ -52,7 +52,7 @@ class PasswordController extends Controller
     /*CUSTOMER RESET ERROR*/
     protected function getResetFailureResponse(Request $request, $response)
     {
-        return redirect()->back()
+        return back()
             ->withInput($request->only('email'))
             ->withErrors(['email' => trans($response)], 'error_reset');
     }

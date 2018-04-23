@@ -1,12 +1,32 @@
-@extends("Client::layouts.default")
+@extends("Client::layouts.main")
 
-@section("content")
-    <section class="page-section login-page">
+@section("meta")
+
+@stop
+
+@section("title","Quên Mật Khẩu")
+
+@section('content')
+    @include("Client::layouts.banner")
+
+    <section class="section user-template">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
+            <div class="row justify-content-around">
+                <div class="col-md-4">
                     <div class="login-wrapper">
                         <h3 class="title-login-page">Quên Mật Khẩu</h3>
+                        @if($errors->error_reset->any())
+                            <div class="alert alert-danger" role="alert">
+                                @foreach($errors->error_reset->all() as $error)
+                                    <p>{!! $error !!}</p>
+                                @endforeach
+                            </div>
+                        @endif
+                        @if(session('status'))
+                            <div class="alert alert-success" role="alert">
+                                <p>{!! session('status') !!}</p>
+                            </div>
+                        @endif
                         {!! Form::open(['route'=> 'client.password.email.post', 'class' => 'login-form']) !!}
                         <div class="form-group">
                             <div class="input-group">
@@ -26,85 +46,57 @@
                         </div>
 
                         {!! Form::close() !!}
-                        @if($errors->error_forget)
-                            <ul class="list-errors">
-                                @foreach($errors->error_forget->all() as $error )
-                                <li>{!! $error !!}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-                        @if(session('status'))
-                            <ul class="list-success">
-                                <li>{!! session('status') !!}</li>
-                            </ul>
-                        @endif
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-md-4">
+                    <div class="line-break d-flex justify-content-center"></div>
+                </div>
+                <div class="col-md-4">
                     <div class="register-wrapper">
-                        <h3 class="title-login-page">Đăng Ký</h3>
+                        <h3>Vui lòng điền đầy đủ thông tin </h3>
+                        @if($errors->register_error->any())
+                            <div class="alert alert-danger" role="alert">
+                                @foreach($errors->register_error->all() as $error)
+                                    <p>{!! $error !!}</p>
+                                @endforeach
+                            </div>
+                        @endif
                         {!! Form::open(['route'=>'client.auth.register.post', 'class' => 'form-register']) !!}
                         <div class="form-group">
-                            <label for="lastname">Họ Khách Hàng</label>
-                            {!! Form::text('lastname',old('lastname'), ['class'=>$errors->register_error->first("lastname") ? 'is-invalid form-control' : 'form-control'  , 'placeholder' => 'Họ Khách Hàng' ]) !!}
-                            @if($errors->register_error->first('lastname'))
-                                <div class="invalid-feedback">
-                                    {!! $errors->register_error->first('lastname') !!}
-                                </div>
-                            @endif
+                            <label for="fullname">Họ và Tên khách hàng</label>
+                            {!! Form::text('fullname', old('fullname'), ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="firstname">Tên Khách Hàng</label>
-                            {!! Form::text('firstname',old('firstname'), ['class'=> $errors->register_error->first("firstname") ? 'is-invalid form-control' : 'form-control' , 'placeholder' => 'Tên Khách Hàng' ]) !!}
-                            @if($errors->register_error->first('firstname'))
-                                <div class="invalid-feedback">
-                                    {!! $errors->register_error->first('firstname') !!}
-                                </div>
-                            @endif
+                            <label for="email">Email</label>
+                            {!! Form::text('email', old('email'), ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="phone">Số Điện Thoại Khách Hàng</label>
-                            {!! Form::text('phone',old('phone'), ['class'=> $errors->register_error->first("phone") ? 'is-invalid form-control' : 'form-control', 'placeholder' => 'Số Điện Thoại Khách Hàng' ]) !!}
-                            @if($errors->register_error->first('phone'))
-                                <div class="invalid-feedback">
-                                    {!! $errors->register_error->first('phone') !!}
-                                </div>
-                            @endif
+                            <label for="phone">Số điện thoại</label>
+                            {!! Form::text('phone', old('phone'), ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="email">Email Khách Hàng</label>
-                            {!! Form::text('email',old('email'), ['class'=>$errors->register_error->first("email") ? 'is-invalid form-control' : 'form-control', 'placeholder' => 'Email Khách Hàng' ]) !!}
-                            @if($errors->register_error->first('email'))
-                                <div class="invalid-feedback">
-                                    {!! $errors->register_error->first('email') !!}
-                                </div>
-                            @endif
+                            <label for="username">Tên đăng nhập</label>
+                            {!! Form::text('username', old('username'), ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
                             <label for="password">Mật khẩu</label>
-                            {!! Form::password('password', ['class'=>$errors->register_error->first("password") ? 'is-invalid form-control' : 'form-control', 'placeholder' => 'Mật khẩu' ]) !!}
-                            @if($errors->register_error->first('password'))
-                                <div class="invalid-feedback">
-                                    {!! $errors->register_error->first('password') !!}
-                                </div>
-                            @endif
+                            {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="password_confirmation">Xác Nhận Mật khẩu</label>
-                            <input type="password" name="password_confirmation" class="form-control" placeholder="Xác NhậnPassword">
+                            <label for="password_confirmation">Nhập lại mật khẩu</label>
+                            {!! Form::password('password_confirmation',  ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-info" value="Đăng Ký">
+                            <button type="submit" class="btn-user-template btn-submit">Đăng ký</button>
                         </div>
                         {!! Form::close() !!}
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    @include("Client::layouts.fanpage")
 @stop
 
 @section("script")
+
 @stop
