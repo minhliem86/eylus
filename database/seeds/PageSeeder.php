@@ -22,7 +22,7 @@ class PageSeeder extends Seeder
                 'type' => 'static',
             ],
             [
-                'name_vi' => $faker->words(3, true),
+                'name_vi' => 'CHÍNH SÁCH BẢO MẬT THÔNG TIN',
                 'name_en' => $faker->words(3, true),
                 'slug' => \LP_lib::unicode($faker->words(3, true)),
                 'content_vi' => $faker->paragraph(),
@@ -30,7 +30,7 @@ class PageSeeder extends Seeder
                 'type' => 'other',
             ],
             [
-                'name_vi' => $faker->words(3, true),
+                'name_vi' => 'QUY ĐỊNH VÀ HÌNH THỨC THANH',
                 'name_en' => $faker->words(3, true),
                 'slug' => \LP_lib::unicode($faker->words(3, true)),
                 'content_vi' => $faker->paragraph(),
