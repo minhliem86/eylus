@@ -71,40 +71,40 @@
                 <div class="col-md-3">
                     <div class="imageCompare">
                         <div style="display:none">
-                            <img src="{!! asset('public/assets/client') !!}/images/lego-gray.jpg" class="img-fluid" alt="Before">
+                            <img src="{!! asset('public/assets/client') !!}/images/before.png" class="img-fluid" alt="Before">
                         </div>
                         <div>
-                            <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="After">
+                            <img src="{!! asset('public/assets/client') !!}/images/after.png" class="img-fluid" alt="After">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="imageCompare">
                         <div style="display:none">
-                            <img src="{!! asset('public/assets/client') !!}/images/lego-gray.jpg" class="img-fluid" alt="">
+                            <img src="{!! asset('public/assets/client') !!}/images/before.png" class="img-fluid" alt="Before">
                         </div>
                         <div>
-                            <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                            <img src="{!! asset('public/assets/client') !!}/images/after.png" class="img-fluid" alt="After">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="imageCompare">
                         <div style="display:none">
-                            <img src="{!! asset('public/assets/client') !!}/images/lego-gray.jpg" class="img-fluid" alt="">
+                            <img src="{!! asset('public/assets/client') !!}/images/before.png" class="img-fluid" alt="Before">
                         </div>
                         <div>
-                            <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                            <img src="{!! asset('public/assets/client') !!}/images/after.png" class="img-fluid" alt="After">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="imageCompare">
                         <div style="display:none">
-                            <img src="{!! asset('public/assets/client') !!}/images/lego-gray.jpg" class="img-fluid" alt="">
+                            <img src="{!! asset('public/assets/client') !!}/images/before.png" class="img-fluid" alt="Before">
                         </div>
                         <div>
-                            <img src="{!! asset('public/assets/client') !!}/images/lego.jpg" class="img-fluid" alt="">
+                            <img src="{!! asset('public/assets/client') !!}/images/after.png" class="img-fluid" alt="After">
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    {{--<img src="{!! asset('public/assets/client') !!}/images/img-home.png" class="img-fluid mx-auto" alt="">--}}
+                    <img src="{!! asset('public/assets/client') !!}/images/img-home.png" class="img-fluid mx-auto" alt="">
                 </div>
             </div>
         </div>

@@ -37,6 +37,7 @@ class CommonRepository{
 
             $thumb_url = $folder.'/'.$item;
 
+
             return $this->getPath($thumb_url, '', $removePath);
         }else{
             return '';

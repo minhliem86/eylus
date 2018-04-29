@@ -28,7 +28,7 @@ class ProductController extends Controller
         $this->photo = $photo;
         $this->_original_path = env('ORIGINAL_PATH');
         $this->_thumbnail_path = env('THUMBNAIL_PATH');
-        $this->_removePath = env('REMOVE_PATH');
+        $this->_removePath = base_path();
     }
     /**
      * Display a listing of the resource.
@@ -243,7 +243,7 @@ class ProductController extends Controller
             foreach($sub_photo as $thumb){
                 $bigSize = $this->common->uploadImage($request, $thumb, $this->_original_path,$resize = false,null,null, base_path($this->_removePath));
                 $smallsize = $this->common->createThumbnail($bigSize,$this->_thumbnail_path,350, 350, base_path($this->_removePath));
-                $thumbsize = $this->common->createThumbnail($bigSize,$this->_thumbnail_path,85, 85, base_path($this->_removePath));
+//                $thumbsize = $this->common->createThumbnail($bigSize,$this->_thumbnail_path,85, 85, base_path($this->_removePath));
                 $order = $this->photo->getOrder();
                 $filename = $this->common->getFileName($bigSize);
                 $data = new \App\Models\Photo(

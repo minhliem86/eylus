@@ -33,10 +33,7 @@
                 <div class="dropdown-header text-center">
                     <strong>Tài Khoản</strong>
                 </div>
-                <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Liên Hệ <span class="badge badge-info">42</span></a>
-                <div class="dropdown-header text-center">
-                    <strong>Cấu Hình</strong>
-                </div>
+
                 <a class="dropdown-item" href="{!! route('admin.profile.index') !!}"><i class="fa fa-user"></i> Profile</a>
                 <a class="dropdown-item" href="{!! route('admin.logout.post') !!}"><i class="fa fa-lock"></i> Logout</a>
             </div>

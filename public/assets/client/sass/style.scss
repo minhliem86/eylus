@@ -671,6 +671,9 @@ section{
     }
     .map{
       overflow:hidden;
+      #map-canvas{
+        height:450px
+      }
     }
   }
   .info{

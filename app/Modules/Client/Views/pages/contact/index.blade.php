@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d692.8755259909512!2d106.70259235136976!3d10.773282449928304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zMTYgSHXhu7NuaCBUSMO6YyBLaMOhbmcsIFAuIELhur9uIE5naMOpLCBRLiAxLCBUcC4gSENN!5e0!3m2!1svi!2s!4v1524391186248" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <div id="map-canvas"></div>
                         </div>
                     </div>
                 </div>
@@ -68,5 +68,70 @@
 @stop
 
 @section("script")
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnRfCExRjCqQ9wa2fmB4lUw6Mtr6KvA8c"></script>
 
+    <script>
+        function MapRoute(lat, lng) {
+            var pointA = new google.maps.LatLng(10.7736594,106.7004169),
+                pointB = new google.maps.LatLng(lat, lng),
+                myOptions = {
+                    zoom: 7,
+                    center: pointA
+                },
+                map = new google.maps.Map(document.getElementById('map-canvas'), myOptions),
+                // Instantiate a directions service.
+                directionsService = new google.maps.DirectionsService,
+                directionsDisplay = new google.maps.DirectionsRenderer({
+                    map: map
+                });
+            // get route from A to B
+            calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+        }
+
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+            directionsService.route({
+                origin: pointA,
+                destination: pointB,
+                travelMode: google.maps.TravelMode.DRIVING
+            }, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+
+
+        function initMap() {
+            var origin =  new google.maps.LatLng(10.7736594,106.7004169),
+            map = new google.maps.Map(document.getElementById('map-canvas'), {
+                center: origin,
+                zoom: 16
+            });
+            markerA = new google.maps.Marker({
+                position: origin,
+                title: "Eyluxlashes",
+                label: "A",
+                map: map
+            });
+        }
+
+        $(document).ready(function(){
+            initMap();
+            $('.btn-director').click(function(){
+                var address = $('input[name=from_gmap]').val();
+                $('#map-canvas').empty();
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode( { 'address': address}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var latitude = results[0].geometry.location.lat();
+                        var longitude = results[0].geometry.location.lng();
+                        MapRoute(latitude,longitude);
+                    }
+                });
+            })
+
+        })
+    </script>
 @stop

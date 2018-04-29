@@ -20,7 +20,8 @@
     <title>CoreUI - Admin Template - @yield('title')</title>
 
     <!-- Icons -->
-    <link href="{!! asset('public/assets/admin') !!}/css/font-awesome.min.css" rel="stylesheet">
+<!--    <link href="{!! asset('public/assets/admin') !!}/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{!! asset('public/assets/admin') !!}/css/fontawesome-all.min.css"  crossorigin="anonymous">
     <link href="{!! asset('public/assets/admin') !!}/css/simple-icon/css/simple-line-icons.css" rel="stylesheet">
     <link href="{!! asset('public/assets/admin') !!}/css/flat-icon/css/flag-icon.min.css" rel="stylesheet">
 

@@ -43,9 +43,9 @@
                         <sup>{!! trans('menu.sub_subscribe') !!}</sup>
                     </div>
                     <div class="form-wrapper mb-4">
-                        {!! Form::open(['route' => 'client.home', 'class' => 'form']) !!}
+                        {!! Form::open(['route' => 'client.subcribe.post', 'class' => 'form']) !!}
                         <div class="input-group">
-                            <input type="text" name="subscribe" class="form-control" placeholder="Your Email ..." ria-describedby="inputAppend" required>
+                            <input type="text" name="email_subcribe" class="form-control" placeholder="Your Email ..." ria-describedby="inputAppend" required>
                             <div class="input-group-append">
                                 <button type="submit" class="btn-submit input-group-text"><i class="fa fa-angle-right"></i></button>
                             </div>

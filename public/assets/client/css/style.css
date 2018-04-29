@@ -504,6 +504,8 @@ section {
   color: white; }
 .contact .map-wrapper .map {
   overflow: hidden; }
+  .contact .map-wrapper .map #map-canvas {
+    height: 450px; }
 .contact .info {
   margin-bottom: 1.5rem;
   font-size: 1.4rem; }

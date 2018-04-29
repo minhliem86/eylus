@@ -8,13 +8,13 @@ use App\Http\Requests;
 use Validator;
 use DB;
 use App\Http\Controllers\Controller;
-use App\Repositories\SubcribeRepository;
+use App\Repositories\EmailSubscribeRepository;
 
 class ExtensionController extends Controller
 {
     protected $subcribe;
 
-    public function __construct(SubcribeRepository $subcribe)
+    public function __construct(EmailSubscribeRepository $subcribe)
     {
         $this->subcribe = $subcribe;
     }
@@ -44,30 +44,5 @@ class ExtensionController extends Controller
         ];
         $this->subcribe->create($data);
         return back()->with('success_subscribe', 'Cảm ơn bạn đã Subscribe website chúng tôi.');
-    }
-    public function postSubscribeHeader(Request $request)
-    {
-        $valid = Validator::make($request->all(), ['email_subcribe_header' => 'required|email'], ['email_subcribe.required'=>'Vui lòng nhập Email', 'email_subcribe.email'=> 'Vui lòng nhập định dạng Email']);
-        if($valid->fails()){
-            return back()->withErrors($valid, 'error_subcribe_header');
-        }
-        $data = [
-            'email' => $request->input('email_subcribe_header'),
-        ];
-        $this->subcribe->create($data);
-        return back()->with('success', 'Cảm ơn bạn đã Subscribe website chúng tôi.');
-    }
-
-    public function postSearch(Request $request)
-    {
-        if(!$request->keywords){
-            return back()->with('error','Vui lòng nhập từ khóa.');
-        }
-
-        $result = DB::table('products')->join('categories', function ($join) use ($request){
-            $join->on('products.category_id', '=', 'categories.id');
-        })->where('categories.name','like','%'.$request->keywords.'%')->orWhere('products.name', 'like', '%'.$request->keywords.'%')->paginate(10);
-
-        return view('Client::pages.extension.search', compact('result'));
     }
 }

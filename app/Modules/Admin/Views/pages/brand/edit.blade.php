@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                {!!  Form::model($inst, ['route'=>['admin.category.update',$inst->id], 'method'=>'put' ])!!}
+                {!!  Form::model($inst, ['route'=>['admin.brand.update',$inst->id], 'method'=>'put' ])!!}
                 <div class="card-header">
                     <strong>THƯƠNG HIỆU</strong>
                 </div>
