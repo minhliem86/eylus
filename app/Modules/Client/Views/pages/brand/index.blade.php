@@ -34,13 +34,13 @@
                                             <img src="{!! asset('public/uploads/'.$item_product->img_url) !!}" class="img-fluid img-section" alt="{!! ($name = trans('variable.name')) ? $item_product->$name : null !!}">
                                             <div class="mask"></div>
                                             <div class="wrap-btn justify-content-center align-items-center d-md-flex flex-column">
-                                                <a href="{!! route('client.product.detail',$item_product->slug) !!}" class="btn-detail-product btn-template">{!! trans !!}</a>
+                                                <a href="{!! route('client.product.detail',$item_product->slug) !!}" class="btn-detail-product btn-template">{!! trans('static.detail') !!}</a>
                                                 <button href="{!! route('client.product.detail',$item_product->slug) !!}" class="btn-template btn-cart" data-id="{!! $item_product->id !!}" type="button">{!! trans('home.add_cart') !!}</button>
                                             </div>
                                         </div>
 
                                         <h4 class="title-product"><a href="{!! route('client.product.detail',$item_product->slug) !!}">{!! ($name = trans('variable.name')) ? $item_product->$name : null !!}</a></h4>
-                                        <p class="price">{!! ( $price = trans('variable.price') ) ? $item_product->$price : null !!} {!! trans('variable.currency') !!}</p>
+                                        <p class="price">{!! ( $price = trans('variable.price') ) ? number_format($item_product->$price) : null !!} {!! trans('variable.currency') !!}</p>
                                     </div>
                                 </div>
                             </div>

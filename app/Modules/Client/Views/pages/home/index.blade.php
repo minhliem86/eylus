@@ -23,8 +23,8 @@
                                 <div class="item-feature">
                                     <a href="{!! route('client.product.detail', $item_feature->slug ) !!}"><img src="{!! asset('public/uploads/'.$item_feature->img_url) !!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_feature->$title : null !!}"></a>
                                     <h4 class="title-product"><a href="{!! route('client.product.detail', $item_feature->slug) !!}">{!! ($name = trans('variable.name') ) ? $item_feature->$name : null !!}</a></h4>
-                                    <p class="price">{!! ($price = trans('variable.price') ) ? number_format($item_feature->$price) : null !!} {!! trans('variable.currency') !!}</p>
-                                    <a href="{!! route('client.product.detail', $item_feature->slug) !!}" class="btn-detail-product btn-addcart">{!! trans('home.add_cart') !!}</a>
+                                    <p class="price">{!! number_format($item_feature->price_vi) !!} vnd</p>
+                                    <a href="{!! route('client.product.detail', $item_feature->slug) !!}" class="btn-detail-product btn-addcart">{!! trans('static.detail') !!}</a>
                                 </div>
                                 @endforeach
                             </div>
@@ -44,19 +44,20 @@
                     </div>
                     @if(!$promotion_p->isEmpty())
                     <div class="content-wrapper">
-                        @foreach($promotion_p as $item_promotion)
+
                         <div class="promotion-slick">
+                            @foreach($promotion_p as $item_promotion)
                             <div class="item-promotion">
                                 <a href="{!! route('client.product.detail', $item_promotion->slug) !!}"> <img src="{!! asset('public/uploads/'.$item_promotion->img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}"></a>
                                 <h4 class="title-product"><a href="{!! route('client.product.detail', $item_promotion->slug) !!}">{!! ($name = trans('variable.name') ) ? $item_promotion->$name : null !!}</a></h4>
-                                <p class="price">{!! ($price = trans('variable.price') ) ? number_format($item_promotion->$price)  : null !!} {!! trans('variable.currency') !!}</p>
-                                <a href="{!! route('client.product.detail', $item_promotion->slug) !!}" class="btn-detail-promotion btn-addcart">{!! trans('home.add_cart') !!}</a>
+                                <p class="price">{!! number_format($item_feature->price_vi) !!} vnd</p>
+                                <a href="{!! route('client.product.detail', $item_promotion->slug) !!}" class="btn-detail-promotion btn-addcart">{!! trans('static.detail') !!}</a>
                             </div>
+                            @endforeach
                         </div>
-                        @endforeach
-
+                        
                         <div class="button-container text-center">
-                            <a href="{!! route('client.product.index') !!}" class="btn-more">{!! trans('home.readmore') !!}</a>
+                            <a href="{!! route('client.product.index') !!}" class="btn-more">{!! trans('static.detail') !!}</a>
                         </div>
                     </div>
                     @endif
@@ -129,9 +130,9 @@
                     <div class="each-bestSeller">
                         <a href="{!! route('client.product.detail',$item_fav->slug ) !!}"><img src="{!! asset('public/uploads/'.$item_fav->img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_fav->$title : null !!}"></a>
                         <h4 class="title-product"><a href="{!! route('client.product.detail',$item_fav->slug ) !!}">{!! ($name = trans('variable.name') ) ? $item_fav->$name : null !!}</a></h4>
-                        <p class="price">{!! ($price = trans('variable.price') ) ? number_format($item_fav->$price)  : null !!} {!! trans('variable.currency') !!}</p>
+                        <p class="price">{!! number_format($item_feature->price_vi) !!} vnd</p>
                         <div class="button-container text-center">
-                            <a href="{!! route('client.product.detail',$item_fav->slug ) !!}" class="btn-detail-product btn-addcart">{!! trans('home.add_cart') !!}</a>
+                            <a href="{!! route('client.product.detail',$item_fav->slug ) !!}" class="btn-detail-product btn-addcart">{!! trans('static.detail') !!}</a>
                         </div>
                     </div>
                 </div>
@@ -156,7 +157,7 @@
     <section class="section video">
         <div class="container">
             <div class="row">
-                <div class="col">
+                <div class="col-md-6">
                     <div class="video-container">
                         <div class="title-wrapper text-center">
                             <img src="{!! asset('public/assets/client') !!}/images/video.png" class="img-fluid mx-auto" alt="">
@@ -175,7 +176,7 @@
                     </div>
 
                 </div>
-                <div class="col">
+                <div class="col-md-6">
                     <div class="photo-container">
                         <div class="title-wrapper text-center">
                             <img src="{!! asset('public/assets/client') !!}/images/look.png" class="img-fluid mx-auto" alt="">

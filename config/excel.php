@@ -167,9 +167,9 @@ return array(
         | The default is based on an estimate, which does its calculation based
         | on the number of characters in the cell value (applying any calculation
         | and format mask, and allowing for wordwrap and rotation) and with an
-        | "arbitrary" adjustment based on the font (Arial, Calibri or Verdana,
-        | defaulting to Calibri if any other font is used) and a proportional
-        | adjustment for the font size.
+        | "arbitrary" adjustment based on the fonts (Arial, Calibri or Verdana,
+        | defaulting to Calibri if any other fonts is used) and a proportional
+        | adjustment for the fonts size.
         |
         | --> PHPExcel_Shared_Font::AUTOSIZE_METHOD_EXACT
         | The second method is more accurate, based on actual style formatting as
@@ -558,7 +558,7 @@ return array(
             |--------------------------------------------------------------------------
             */
             'th'     => [
-                'font' => [
+                'fonts' => [
                     'bold' => true,
                     'size' => 12,
                 ]
@@ -570,7 +570,7 @@ return array(
             |--------------------------------------------------------------------------
             */
             'strong' => [
-                'font' => [
+                'fonts' => [
                     'bold' => true,
                     'size' => 12,
                 ]
@@ -582,7 +582,7 @@ return array(
             |--------------------------------------------------------------------------
             */
             'b'      => [
-                'font' => [
+                'fonts' => [
                     'bold' => true,
                     'size' => 12,
                 ]
@@ -594,7 +594,7 @@ return array(
             |--------------------------------------------------------------------------
             */
             'i'      => [
-                'font' => [
+                'fonts' => [
                     'italic' => true,
                     'size'   => 12,
                 ]
@@ -606,7 +606,7 @@ return array(
             |--------------------------------------------------------------------------
             */
             'h1'     => [
-                'font' => [
+                'fonts' => [
                     'bold' => true,
                     'size' => 24,
                 ]
@@ -618,7 +618,7 @@ return array(
             |--------------------------------------------------------------------------
             */
             'h2'     => [
-                'font' => [
+                'fonts' => [
                     'bold' => true,
                     'size' => 18,
                 ]
@@ -630,7 +630,7 @@ return array(
             |--------------------------------------------------------------------------
             */
             'h3'     => [
-                'font' => [
+                'fonts' => [
                     'bold' => true,
                     'size' => 13.5,
                 ]
@@ -642,7 +642,7 @@ return array(
              |--------------------------------------------------------------------------
              */
             'h4'     => [
-                'font' => [
+                'fonts' => [
                     'bold' => true,
                     'size' => 12,
                 ]
@@ -654,7 +654,7 @@ return array(
              |--------------------------------------------------------------------------
              */
             'h5'     => [
-                'font' => [
+                'fonts' => [
                     'bold' => true,
                     'size' => 10,
                 ]
@@ -666,7 +666,7 @@ return array(
              |--------------------------------------------------------------------------
              */
             'h6'     => [
-                'font' => [
+                'fonts' => [
                     'bold' => true,
                     'size' => 7.5,
                 ]
@@ -678,7 +678,7 @@ return array(
              |--------------------------------------------------------------------------
              */
             'a'      => [
-                'font' => [
+                'fonts' => [
                     'underline' => true,
                     'color'     => ['argb' => 'FF0000FF'],
                 ]

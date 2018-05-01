@@ -33,7 +33,6 @@
                                                 <p>{!! ($content = trans('variable.content')) ? Str::words($item_promotion->$content, 30) : null !!}</p>
                                                 </a>
                                             </div>
-                                            <a href="#" class="btn-more my-2 d-block">{!! trans('home.readmore') !!}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +50,7 @@
                             <div class="content-box">
                                 @foreach($news as $item_news)
                                 <div class="media">
-                                    <a href="{!! route('client.news.detail', $item_news->slug) !!}"><img class="mr-3" src="{!! asset('public/uploads/').$item_news->img_url !!}" alt="{!! ($title = trans('variable.title') ) ? $item_news->$title : null !!}"></a>
+                                    <a href="{!! route('client.news.detail', $item_news->slug) !!}"><img class="mr-3" src="{!! asset('public/uploads').'/'.$item_news->img_url !!}" alt="{!! ($title = trans('variable.title') ) ? $item_news->$title : null !!}"></a>
                                     <div class="media-body">
                                         <h5 class="mb-3"><a href="{!! route('client.news.detail', $item_news->slug) !!}">{!! ($title = trans('variable.title') ) ? $item_news->$title : null !!}</a></h5>
                                         <div class="media-content">

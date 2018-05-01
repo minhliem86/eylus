@@ -46,11 +46,11 @@
                             <div class="content-box">
                                 @foreach($relate_promotions as $item_relate)
                                 <div class="media">
-                                    <a href="#"><img class="mr-3" src="{!! asset('public/uploads/').$item_relate->img_url !!}" alt="{!! ($title = trans('variable.title') ) ? $item_relate->$title : null !!}"></a>
+                                    <a href="{!! route('client.promotion_news.detail', $item_relate->slug) !!}"><img class="mr-3" src="{!! asset('public/uploads').'/'.$item_relate->img_url !!}" alt="{!! ($title = trans('variable.title') ) ? $item_relate->$title : null !!}"></a>
                                     <div class="media-body">
-                                        <h5 class="mb-3"><a href="#">{!! ($title = trans('variable.title') ) ? $item_relate->$title : null !!}</a></h5>
+                                        <h5 class="mb-3"><a href="{!! route('client.promotion_news.detail', $item_relate->slug) !!}">{!! ($title = trans('variable.title') ) ? $item_relate->$title : null !!}</a></h5>
                                         <div class="media-content">
-                                            <a href="#">
+                                            <a href="{!! route('client.promotion_news.detail', $item_relate->slug) !!}">
                                                 {!! ($content = trans('variable.content') ) ? Str::words($item_relate->$content, 20) : null !!}
                                             </a>
                                         </div>
@@ -67,11 +67,11 @@
                                 <div class="content-box">
                                     @foreach($news as $item_news)
                                         <div class="media">
-                                            <a href="#"><img class="mr-3" src="{!! asset('public/uploads/').$item_news->img_url !!}" alt="{!! ($title = trans('variable.title') ) ? $item_news->$title : null !!}"></a>
+                                            <a href="{!! route('client.news.detail', $item_news->slug) !!}"><img class="mr-3" src="{!! asset('public/uploads').'/'.$item_news->img_url !!}" alt="{!! ($title = trans('variable.title') ) ? $item_news->$title : null !!}"></a>
                                             <div class="media-body">
-                                                <h5 class="mb-3"><a href="#">{!! ($title = trans('variable.title') ) ? $item_news->$title : null !!}</a></h5>
+                                                <h5 class="mb-3"><a href="{!! route('client.news.detail', $item_news->slug) !!}">{!! ($title = trans('variable.title') ) ? $item_news->$title : null !!}</a></h5>
                                                 <div class="media-content">
-                                                    <a href="#">
+                                                    <a href="{!! route('client.news.detail', $item_news->slug) !!}">
                                                         <p>{!! ($content = trans('variable.content') ) ? Str::words($item_news->$content, 30) : null !!}</p>
                                                     </a>
                                                 </div>

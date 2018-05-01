@@ -47,6 +47,8 @@
                                 @include('Client::pagination.boot4', ['paginator' => $cate->brands()->paginate(15)])
                             </div>
                         </div>
+                    @else
+                        <h4 class="title">Sản phẩm đang được cập nhật</h4>
                     @endif
                 </div>
             </div>

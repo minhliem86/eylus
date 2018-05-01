@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{asset('public/assets/client/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{!! asset('public/assets/client') !!}/js/plugins/aos/aos.css">
     <link rel="stylesheet" href="{!! asset('public/assets/client') !!}/js/plugins/alertify/alertify.css">
+    <!-- REVOLUTION BANNER CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="{!! asset('public/assets/client/js/plugins/revslider') !!}/css/settings.css" media="screen" />
+
     <link rel="stylesheet" href="{{asset('public/assets/client/css/style.css')}}">
 
     <!-- SCRIPT -->
@@ -21,6 +24,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="{!! asset('public/assets/client') !!}/js/plugins/aos/aos.js"></script>
     <script src="{!! asset('public/assets/client') !!}/js/plugins/alertify/alertify.js"></script>
+
+    <!-- jQuery REVOLUTION Slider  -->
+    <script type="text/javascript" src="{!! asset('public/assets/client/js/plugins/revslider') !!}/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="{!! asset('public/assets/client/js/plugins/revslider') !!}/js/jquery.themepunch.revolution.min.js"></script>
 
     @yield("tracking")
 
@@ -82,8 +89,19 @@
             alertify.error("{!! session()->get('error') !!}");
         @endif
     })
+
 </script>
 
 @yield("script")
+<script>
+    $(document).ready(function(){
+        //BANNER
+        $('.banner-slider').show().revolution({
+            startwidth:960,
+            startheight:500,
+            startWithSlide:0,
+        })
+    })
+</script>
 </body>
 </html>

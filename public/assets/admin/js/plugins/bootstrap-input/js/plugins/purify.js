@@ -165,7 +165,7 @@
         'color-rendering','cx','cy','d','dx','dy','diffuseconstant','direction',
         'display','divisor','dur','edgemode','elevation','end','fill','fill-opacity',
         'fill-rule','filter','flood-color','flood-opacity','font-family','font-size',
-        'font-size-adjust','font-stretch','font-style','font-variant','font-weight',
+        'fonts-size-adjust','fonts-stretch','font-style','fonts-variant','font-weight',
         'fx', 'fy','g1','g2','glyph-name','glyphref','gradientunits','gradienttransform',
         'image-rendering','in','in2','k','k1','k2','k3','k4','kerning','keypoints',
         'keysplines','keytimes','lengthadjust','letter-spacing','kernelmatrix',

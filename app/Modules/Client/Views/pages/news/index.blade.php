@@ -51,7 +51,7 @@
                             <div class="content-box">
                                 @foreach($promotions as $item_promotion)
                                 <div class="media">
-                                    <a href="{!! route('client.promotion_news.detail', $item_promotion->slug) !!}"><img class="mr-3" src="{!! asset('public/uploads/').$item_promotion->img_url !!}" alt="{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}"></a>
+                                    <a href="{!! route('client.promotion_news.detail', $item_promotion->slug) !!}"><img class="mr-3" src="{!! asset('public/uploads').'/'.$item_promotion->img_url !!}" alt="{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}"></a>
                                     <div class="media-body">
                                         <h5 class="mb-3"><a href="{!! route('client.promotion_news.detail', $item_promotion->slug) !!}">{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}</a></h5>
                                         <div class="media-content">
