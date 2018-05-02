@@ -1,5 +1,11 @@
 @extends('Client::layouts.main')
 
+@section("meta")
+
+@stop
+
+@section("title","Liên Hệ")
+
 @section("content")
     <section class="section contact">
         <div class="container ">
@@ -10,19 +16,19 @@
                             <div class="input-group">
                                 <input type="text" name="from_gmap" class="form-control" placeholder="Nhập địa chỉ của bạn..">
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-director">Tìm Đường</button>
+                                    <button type="button" class="btn btn-director">{!! trans('contact.direction') !!}</button>
                                 </div>
                             </div>
                         </div>
                         <div class="map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d692.8755259909512!2d106.70259235136976!3d10.773282449928304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zMTYgSHXhu7NuaCBUSMO6YyBLaMOhbmcsIFAuIELhur9uIE5naMOpLCBRLiAxLCBUcC4gSENN!5e0!3m2!1svi!2s!4v1524391186248" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <div id="map-canvas"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-wrapper thankyou text-center">
-                        <p class="success-inform">Cảm ơn bạn đã gửi thông tin cho chúng tôi.</p>
-                        <p class="success-inform">Chúng tôi sẽ xử lý và phản hồi sớm đến bạn!</p>
+                        <p class="success-inform">{!! trans('contact.success01') !!}</p>
+                        <p class="success-inform">{!! trans('contact.success02') !!}</p>
                     </div>
                 </div>
             </div>
@@ -31,5 +37,24 @@
 @stop
 
 @section("script")
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnRfCExRjCqQ9wa2fmB4lUw6Mtr6KvA8c"></script>
+    <script src="{!! asset('public/assets/client') !!}/js/map.js"></script>
+    <script>
+        $(document).ready(function(){
+            initMap();
+            $('.btn-director').click(function(){
+                var address = $('input[name=from_gmap]').val();
+                $('#map-canvas').empty();
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode( { 'address': address}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var latitude = results[0].geometry.location.lat();
+                        var longitude = results[0].geometry.location.lng();
+                        MapRoute(latitude,longitude);
+                    }
+                });
+            })
 
+        })
+    </script>
 @stop

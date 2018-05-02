@@ -5,10 +5,10 @@
                 <div class="footer-container">
                     <ul class="list-footer">
                         <li class="header">{!! trans('menu.about') !!}</li>
-                        <li class="item-footer"><a href="#">{!! trans('menu.home') !!}</a></li>
-                        <li class="item-footer"><a href="#">{!! trans('menu.about') !!}</a></li>
-                        <li class="item-footer"><a href="#">{!! trans('menu.promotion') !!}</a></li>
-                        <li class="item-footer"><a href="#">{!! trans('menu.contact') !!}</a></li>
+                        <li class="item-footer"><a href="{!! route('client.home') !!}">{!! trans('menu.home') !!}</a></li>
+                        <li class="item-footer"><a href="{!! url('gioi-thieu') !!}">{!! trans('menu.about') !!}</a></li>
+                        <li class="item-footer"><a href="{!! route('client.promotion_news') !!}">{!! trans('menu.promotion') !!}</a></li>
+                        <li class="item-footer"><a href="{!! route('client.contact') !!}">{!! trans('menu.contact') !!}</a></li>
                     </ul>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                         {!! Form::close() !!}
                     </div>
                     <div class="icon-footer d-flex justify-content-start">
-                        <a href="#" class="ic-wrapper ic-fb"><i class="fa fa-facebook-square"></i></a>
+                        <a href="https://www.facebook.com/myhuongeyluxlashes/"  class="ic-wrapper ic-fb"><i class="fa fa-facebook-square"></i></a>
                         <a href="#" class="ic-wrapper ic-yt"><i class="fa fa-youtube-square"></i></a>
                         <a href="#" class="ic-wrapper ic-tw"><i class="fa fa-twitter-square"></i></a>
                     </div>

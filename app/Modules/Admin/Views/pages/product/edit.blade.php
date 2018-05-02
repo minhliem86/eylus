@@ -97,18 +97,18 @@
                                     <li class="nav-item">
                                         <a class="nav-link active show" data-toggle="pill" href="#price_vi" role="tab" aria-controls="pills-price_vi">VI</a>
                                     </li>
-                                    {{--<li class="nav-item">--}}
-                                    {{--<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#price_en" role="tab" aria-controls="pills-price_en">EN</a>--}}
-                                    {{--</li>--}}
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#price_en" role="tab" aria-controls="pills-price_en">EN</a>
+                                    </li>
                                 </ul>
 
                                 <div class="tab-content" id="pills-tabContent">
                                     <div class="tab-pane fade active show" id="price_vi" role="tabpanel" aria-labelledby="pills-price_vi">
                                         {!! Form::text('price_vi', old('price_vi'), ['class'=>'form-control price']) !!}
                                     </div>
-                                    {{--<div class="tab-pane fade" id="price_en" role="tabpanel" aria-labelledby="pills-price_en">--}}
-                                    {{--<input type="text" class="form-control" name="price_en">--}}
-                                    {{--</div>--}}
+                                    <div class="tab-pane fade" id="price_en" role="tabpanel" aria-labelledby="pills-price_en">
+                                        {!! Form::text('price_en', old('price_en'), ['class'=>'form-control price']) !!}
+                                    </div>
                                 </div>
                             </div>
                         </div>

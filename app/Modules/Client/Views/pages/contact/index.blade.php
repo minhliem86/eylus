@@ -4,7 +4,7 @@
 
 @stop
 
-@section("title","Tin Tức")
+@section("title","Liên Hệ")
 
 @section('content')
     @include("Client::layouts.banner")
@@ -18,7 +18,7 @@
                             <div class="input-group">
                                 <input type="text" name="from_gmap" class="form-control" placeholder="Nhập địa chỉ của bạn..">
                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-director">Tìm Đường</button>
+                                    <button type="button" class="btn btn-director">{!! trans('contact.direction') !!}</button>
                                 </div>
                             </div>
                         </div>
@@ -31,19 +31,19 @@
                     <div class="info">
                         <p><img src="{!! asset('public/assets/client') !!}/images/logo.png" class="img-fluid" alt="CÔNG TY TNHH THE OFFICE "></p>
                         @if(isset($companies))
-                            <p><b>Địa chỉ:</b> {!! $companies->address !!}</p>
-                            <p><b>Điện thoại:</b> {!! $companies->phone !!}</p>
+                            <p><b>{!! trans('contact.address') !!}:</b> {!! $companies->address !!}</p>
+                            <p><b>{!! trans('contact.phone') !!}:</b> {!! $companies->phone !!}</p>
                             <p><b>Email:</b> {!! $companies->email !!}</p>
                         @endif
                     </div>
                     <div class="form-contact-wrapper">
                         {!! Form::open(['route'=>'client.contact.post']) !!}
                         <div class="form-group">
-                            <label for="fullname">Họ và tên</label>
+                            <label for="fullname">{!! trans('payment.name') !!}</label>
                             {!! Form::text('fullname', old('fullname'), ['class'=>'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="phone">Điện thoại</label>
+                            <label for="phone">{!! trans('payment.phone') !!}</label>
                             {!! Form::text('phone', old('phone'), ['class'=>'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
@@ -51,11 +51,11 @@
                             {!! Form::text('email', old('email'), ['class'=>'form-control']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="messages">Nội dung</label>
+                            <label for="messages">{!! trans('payment.note') !!}</label>
                             {!! Form::textarea('messages', old('label'), ['class'=>'form-control', 'rows'=>10]) !!}
                         </div>
                         <div class="form-group text-right">
-                            <button type="submit" class="btn btn-primary">Gửi</button>
+                            <button type="submit" class="btn btn-primary">{!! trans('contact.send') !!}</button>
                         </div>
                         {!! Form::close() !!}
 
@@ -69,54 +69,9 @@
 
 @section("script")
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnRfCExRjCqQ9wa2fmB4lUw6Mtr6KvA8c"></script>
+    <script src="{!! asset('public/assets/client') !!}/js/map.js"></script>
 
     <script>
-        function MapRoute(lat, lng) {
-            var pointA = new google.maps.LatLng(10.7736594,106.7004169),
-                pointB = new google.maps.LatLng(lat, lng),
-                myOptions = {
-                    zoom: 7,
-                    center: pointA
-                },
-                map = new google.maps.Map(document.getElementById('map-canvas'), myOptions),
-                // Instantiate a directions service.
-                directionsService = new google.maps.DirectionsService,
-                directionsDisplay = new google.maps.DirectionsRenderer({
-                    map: map
-                });
-            // get route from A to B
-            calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
-        }
-
-        function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
-            directionsService.route({
-                origin: pointA,
-                destination: pointB,
-                travelMode: google.maps.TravelMode.DRIVING
-            }, function(response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    directionsDisplay.setDirections(response);
-                } else {
-                    window.alert('Directions request failed due to ' + status);
-                }
-            });
-        }
-
-
-        function initMap() {
-            var origin =  new google.maps.LatLng(10.7736594,106.7004169),
-            map = new google.maps.Map(document.getElementById('map-canvas'), {
-                center: origin,
-                zoom: 16
-            });
-            markerA = new google.maps.Marker({
-                position: origin,
-                title: "Eyluxlashes",
-                label: "A",
-                map: map
-            });
-        }
-
         $(document).ready(function(){
             initMap();
             $('.btn-director').click(function(){

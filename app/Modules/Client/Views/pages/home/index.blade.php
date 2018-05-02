@@ -4,7 +4,7 @@
 
 @stop
 
-@section("title","abc")
+@section("title","EYLUXLASHES")
 
 @section("content")
     @include("Client::layouts.banner")
@@ -178,11 +178,21 @@
                 </div>
                 <div class="col-md-6">
                     <div class="photo-container">
-                        <div class="title-wrapper text-center">
+                        <div class="title-wrapper  text-center">
                             <img src="{!! asset('public/assets/client') !!}/images/look.png" class="img-fluid mx-auto" alt="">
                         </div>
                         <div class="photo-wrapper">
-
+                            <div class="photo-foot-slick">
+                                <div class="item-photo">
+                                    <img src="{!! asset('public/assets/client') !!}/images/photo-foot/home-photo01.jpg" class="img-fluid mx-auto" alt="">
+                                </div>
+                                <div class="item-photo">
+                                    <img src="{!! asset('public/assets/client') !!}/images/photo-foot/home-photo02.jpg" class="img-fluid mx-auto" alt="">
+                                </div>
+                                <div class="item-photo">
+                                    <img src="{!! asset('public/assets/client') !!}/images/photo-foot/home-photo03.jpg" class="img-fluid mx-auto" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -215,6 +225,23 @@
                 slidesToShow: 3,
                 prevArrow: '<span class="btn-control btn-pre"><i class="fa fa-angle-left"></i></span>',
                 nextArrow: '<span class="btn-control btn-next"><i class="fa fa-angle-right"></i></span>',
+                responsive: [
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: false,
+                            dots  : true
+                        }
+                    }
+                ]
+            })
+
+            $('.photo-foot-slick').slick({
+                slidesToShow: 1,
+                autoplay: true,
+
                 responsive: [
                     {
                         breakpoint: 480,
