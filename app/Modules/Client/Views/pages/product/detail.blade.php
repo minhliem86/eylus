@@ -41,7 +41,7 @@
                             <input type="number" min="1"  name="quantity" value="1" class="quantity form-control">
                         </div>
                         <div class="price-wrapper">
-                            <p class="price">{!! number_format($product->price_vi) !!} vnd</p>
+                            <p class="price">{!! ($price = trans('variable.price') ) ? $product->$price : null !!} {!! trans('variable.currency') !!}</p>
                         </div>
                         <div class="btn-wrapper">
                             <button type="submit" class="btn btn-submit">{!! trans('home.add_cart') !!}</button>

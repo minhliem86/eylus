@@ -16,10 +16,10 @@
                         <table class="table table-cyan">
                             <thead>
                                 <tr>
-                                    <th>Sản Phẩm</th>
-                                    <th>Hình Ảnh</th>
-                                    <th width="200">Số Lượng</th>
-                                    <th class="text-right">Đơn Giá</th>
+                                    <th>{!! trans('menu.product') !!}</th>
+                                    <th>{!! trans('cart.img') !!}</th>
+                                    <th width="200">{!! trans('cart.quantity') !!}</th>
+                                    <th class="text-right">{!! trans('cart.subtotal') !!}</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -29,11 +29,11 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="3">
-                                        <a class="btn-cart btn-remove" href="{!! url('xoa-gio-hang') !!}"><i class="fa fa-remove"></i> Xóa giỏ hàng</a>
-                                        <button class="btn-cart btn-udpate " type="button" href="{!! route('client.cart.updateQuantity') !!}"><i class="fa fa-refresh"></i> Cập nhật giỏ hàng</button>
+                                        <a class="btn-cart btn-remove" href="{!! url('xoa-gio-hang') !!}"><i class="fa fa-remove"></i> {!! trans('cart.clear_cart') !!}</a>
+                                        <button class="btn-cart btn-udpate " type="button" href="{!! route('client.cart.updateQuantity') !!}"><i class="fa fa-refresh"></i> {!! trans('cart.update_cart') !!}</button>
                                     </td>
                                     <td colspan="2" class="text-right">
-                                        <a href="{!! route('client.payment.index') !!}" class="btn-cart btn-payment"><i class="fa fa fa-credit-card"></i> Thanh Toán</a>
+                                        <a href="{!! route('client.payment.index') !!}" class="btn-cart btn-payment"><i class="fa fa fa-credit-card"></i> {!! trans('cart.payment') !!}</a>
                                     </td>
                                 </tr>
                             </tfoot>

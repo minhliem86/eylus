@@ -13,17 +13,16 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'your_acc' => 'Your Account',
-    'your_info' => 'Fill your information',
-    'password' => 'Password',
-    'confirm_password' => 'Password Confirmation',
-    'login' => 'Login',
-    'forgot_pass' => 'Forgot your account.',
-    'fullname' => 'Fullname',
-    'phone' => 'Phone',
-    'username' => 'Username',
-    ''
-
+    'failed' => 'Thông tin đăng nhập không chính xác.',
+    'throttle' => 'Bạn đăng nhập sai quá nhiều. Vui lòng đăng nhập lại sau :seconds giây.',
+    'your_acc' => 'Tài khoản của bạn',
+    'your_info' => 'Vui lòng điền đầy đủ thông tin',
+    'password' => 'Mật khẩu',
+    'confirm_password' => 'Xác nhận lại mật khẩu',
+    'login' => 'Đăng nhập',
+    'forgot_pass' => 'Bạn không nhớ mật khẩu ?',
+    'fullname' => 'Họ và Tên',
+    'phone' => 'Điện thoại',
+    'username' => 'Tên truy cập',
+    'register' => 'Đăng ký'
 ];
