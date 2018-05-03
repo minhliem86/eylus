@@ -84,9 +84,9 @@
                                     <div class="tab-pane fade active show" id="content_vi" role="tabpanel" aria-labelledby="pills-content_vi">
                                         {!! Form::textarea('content_vi',old('content_vi'), ['class' => 'form-control my-editor']) !!}
                                     </div>
-                                    <div class="tab-pane fade" id="content_en" role="tabpanel" aria-labelledby="pills-content_en">
-                                        {!! Form::textarea('content_en',old('content_en'), ['class' => 'form-control my-editor']) !!}
-                                    </div>
+                                    {{--<div class="tab-pane fade" id="content_en" role="tabpanel" aria-labelledby="pills-content_en">--}}
+                                        {{--{!! Form::textarea('content_en',old('content_en'), ['class' => 'form-control my-editor']) !!}--}}
+                                    {{--</div>--}}
                                 </div>
                             </div>
                         </div>
@@ -97,9 +97,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link active show" data-toggle="pill" href="#price_vi" role="tab" aria-controls="pills-price_vi">VI</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#price_en" role="tab" aria-controls="pills-price_en">EN</a>
-                                    </li>
+                                    {{--<li class="nav-item">--}}
+                                        {{--<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#price_en" role="tab" aria-controls="pills-price_en">EN</a>--}}
+                                    {{--</li>--}}
                                 </ul>
 
                                 <div class="tab-content" id="pills-tabContent">

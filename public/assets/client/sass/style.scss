@@ -262,6 +262,17 @@ section{
   }
   &.banner{
     padding:0;
+    .bannercontainer{
+      ul{
+        li:first-child{
+          img.caption-first{
+            @include media(){
+              transform:matrix(0.9,0,0,0.9,0,0)
+            }
+          }
+        }
+      }
+    }
   }
   .title-wrapper{
     margin-bottom:3rem;

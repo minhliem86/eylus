@@ -11,6 +11,7 @@ use App\Repositories\ProductRepository;
 use App\Repositories\PromotionCodeRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\TransactionRepository;
+use App\Repositories\TygiaRepository;
 
 use Mcamara\LaravelLocalization\LaravelLocalization;
 use Validator;
@@ -28,14 +29,16 @@ class ProductController extends Controller
     protected $promotion;
     protected $order;
     protected $transaction;
+    protected $tygia;
 
-    public function __construct(CategoryRepository $category, ProductRepository $product, PromotionCodeRepository $promotion, OrderRepository $order, TransactionRepository $transaction)
+    public function __construct(CategoryRepository $category, ProductRepository $product, PromotionCodeRepository $promotion, OrderRepository $order, TransactionRepository $transaction, TygiaRepository $tygia)
     {
         $this->product = $product;
         $this->promotion = $promotion;
         $this->category = $category;
         $this->order = $order;
         $this->transaction = $transaction;
+        $this->tygia = $tygia->query('value')->first()->value;
         $this->auth = Auth::guard('customer');
     }
 
@@ -97,16 +100,18 @@ class ProductController extends Controller
         return $nl;
     }
 
+
+
     public function getIndex()
     {
         $product = $this->product->query(['id', 'name_vi', 'name_en', 'price_vi', 'price_en', 'img_url', 'slug'])->where('status',1)->paginate(15);
-        return view('Client::pages.product.index', compact('product'));
+        return view('Client::pages.product.index', compact('product'))->with(['tygia' => $this->tygia]);
     }
 
     public function getProduct($slug)
     {
         $product = $this->product->findByField('slug', $slug,['*'], ['photos', 'brands'])->first();
-        return view('Client::pages.product.detail', compact('product'));
+        return view('Client::pages.product.detail', compact('product'))->with(['tygia' => $this->tygia]);
     }
 
     public function addToCart(Request $request)
@@ -123,8 +128,8 @@ class ProductController extends Controller
             ];
             $data = [
                 'id' => $product->id,
-                'name' => $product->name_.\LaravelLocalization::getCurrentLocale(),
-                'price' => $product->price_.\LaravelLocalization::getCurrentLocale(),
+                'name' => \LaravelLocalization::getCurrentLocale() == 'en' ? $product->name_en : $product->name_vi,
+                'price' => $product->price_vi,
                 'quantity' => $request->input('quantity'),
                 'attributes' => $att,
             ];
@@ -147,7 +152,7 @@ class ProductController extends Controller
             ];
             $itemCart = Cart::add([
                 'id'=>$id,
-                'name' => $product->name_vi,
+                'name' => \LaravelLocalization::getCurrentLocale() == 'en' ? $product->name_en : $product->name_vi,
                 'price' => $product->price_vi,
                 'quantity' => 1,
                 'attributes' =>$att
@@ -163,7 +168,7 @@ class ProductController extends Controller
         if(Cart::isEmpty()){
             return redirect()->route('client.product.index')->with('error',trans('product_valid.cart_empty'));
         }
-        return view('Client::pages.cart.cart', compact('cart'));
+        return view('Client::pages.cart.cart')->with(['tygia' => $this->tygia]);
     }
 
     public function updateQuantity(Request $request)
@@ -204,7 +209,7 @@ class ProductController extends Controller
         $shippingCost = DB::table('ship_costs')->get();
         $city = DB::table('cities')->lists('name_with_type', 'code');
         $payment = DB::table('payment_methods')->get();;
-        return view('Client::pages.cart.payment', compact( 'payment', 'city', 'user', 'shippingCost'));
+        return view('Client::pages.cart.payment', compact( 'payment', 'city', 'user', 'shippingCost'))->with(['tygia'=>$this->tygia]);
     }
 
     public function applyPromotion(Request $request)
@@ -285,6 +290,8 @@ class ProductController extends Controller
                 $promotion->save();
             }
             $promotion_id = $promotion->id;
+        }else{
+            $promotion_id = null;
         }
         /** @var  END */
 
@@ -299,7 +306,7 @@ class ProductController extends Controller
                     'shipcost_id' => $ship_cost->id,
                     'total' => Cart::getTotal(),
                     'customer_id' => $customer_id,
-                    'promotion_id' => $promotion_id ? $promotion_id : null,
+                    'promotion_id' => $promotion_id,
                     'paymentmethod_id' => $request->input('payment_method'),
                     'shipstatus_id' => 1,
                     'paymentstatus_id' =>1,
@@ -337,7 +344,7 @@ class ProductController extends Controller
                 Cart::clearCartConditions();
                 Cart::clear();
 
-                return redirect()->route('client.payment_success.thank')->with('success','Đặt hàng thành công.');
+                return redirect()->route('client.payment_success.thank')->with('success',trans('product_valid.order_success'));
                 break;
 
             case 'ngan-luong' :
@@ -348,7 +355,7 @@ class ProductController extends Controller
                     'shipcost_id' => $ship_cost->id,
                     'total' => Cart::getTotal(),
                     'customer_id' => $customer_id,
-                    'promotion_id' => $promotion_id ? $promotion_id : null,
+                    'promotion_id' => $promotion_id,
                     'paymentmethod_id' => $request->input('payment_method'),
                     'shipstatus_id' => 1,
                     'paymentstatus_id' =>1,

@@ -13,4 +13,5 @@
         'quantity' => 'Quantity',
         'addToCart' => 'Product is added to cart.',
         'detail' => 'Detail',
+        'showmore' => 'Show more'
     ];

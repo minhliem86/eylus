@@ -25,7 +25,7 @@
                                 <div class="content-wrapper">
                                     <div class="item-element">
                                         <div class="img-wrapper">
-                                            <img src="{!! asset('public/uploads/'.$item_brand->img_url) !!}" class="img-fluid img-section" alt="{!! ($name = trans('variable.name')) ? $item_brand->$name : null !!}">
+                                            <img src="{!! asset($item_brand->img_url) !!}" class="img-fluid img-section" alt="{!! ($name = trans('variable.name')) ? $item_brand->$name : null !!}">
                                             <div class="mask"></div>
                                             <div class="wrap-btn justify-content-center align-items-center d-md-flex flex-column">
                                                 <a href="{!! route('client.brand', $item_brand->slug) !!}" class="btn-detail-product btn-template">Chi tiết</a>

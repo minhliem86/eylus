@@ -62,6 +62,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
             /* COMPANY */
             Route::any('company/{id?}', ['as' => 'admin.company.index', 'uses' => 'CompanyController@getInformation']);
 
+            /* EXCHANGE RATE */
+            Route::any('exchange/{id?}', ['as' => 'admin.exchange.index', 'uses' => 'TygiaController@getInformation']);
+
 
             /*PRODUCT*/
             Route::post('product/deleteAll', ['as' => 'admin.product.deleteAll', 'uses' => 'ProductController@deleteAll']);

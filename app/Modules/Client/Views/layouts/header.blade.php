@@ -3,13 +3,13 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="logo-wrapper">
-                    <a href="{!! route('client.home') !!}"><img src="{!! asset('public/assets/client') !!}/images/logo_bk.png" class="img-fluid" alt="Eylux"></a>
+                    <a href="{!! route('client.home') !!}"><img src="{!! asset('public/assets/client') !!}/images/logo_bk.png" class="img-fluid" alt="EYLUXLASHES"></a>
                 </div>
             </div>
             <div class="col-md-9">
                 <div class="navbar-wrapper height d-flex justify-content-end align-items-md-end">
                     <nav class="navbar navbar-light navbar-expand-lg my-navbar ">
-                        <a href="{!! route('client.home') !!}" class="navbar-brand">EXLUX</a>
+                        <a href="{!! route('client.home') !!}" class="navbar-brand">EYLUXLASHES</a>
                         <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>

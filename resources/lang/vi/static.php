@@ -13,4 +13,5 @@
         'quantity' => 'Số Lượng',
         'addToCart' => 'Sản phẩm đã được thêm vào giỏ hàng.',
         'detail' => 'Chi tiết',
+        'showmore' => 'Xem thêm sản phẩm'
     ];
