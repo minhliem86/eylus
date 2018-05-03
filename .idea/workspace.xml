@@ -4,34 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/app/Modules/Admin/Controllers/ProductController.php" line="116" mnemonic="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e83dbf9-0157-498a-bc9d-11925666c370" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/fonts/judson/Judson-Regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/fonts/judson/Judson-Regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/fonts/judson/Judson-Regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/fonts/judson/Judson-Regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assets/client/fonts/judson/styles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/lang/en/cart.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/lang/en/product_valid.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/lang/vi/cart.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/lang/vi/product_valid.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/Controllers/ProductController.php" afterPath="$PROJECT_DIR$/app/Modules/Client/Controllers/ProductController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/Views/ajax/cart.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Client/Views/ajax/cart.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/Views/layouts/banner.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Client/Views/layouts/banner.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/Views/layouts/main.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Client/Views/layouts/main.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/Views/pages/auth/login.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Client/Views/pages/auth/login.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/Views/pages/cart/cart.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Client/Views/pages/cart/cart.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/Views/pages/contact/index.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Client/Views/pages/contact/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/Views/pages/home/index.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Client/Views/pages/home/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/Views/pages/product/detail.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Client/Views/pages/product/detail.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Client/Views/pages/product/index.blade.php" afterPath="$PROJECT_DIR$/app/Modules/Client/Views/pages/product/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/client/css/style.css" afterPath="$PROJECT_DIR$/public/assets/client/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/client/css/style.css.map" afterPath="$PROJECT_DIR$/public/assets/client/css/style.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/client/sass/style.scss" afterPath="$PROJECT_DIR$/public/assets/client/sass/style.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/auth.php" afterPath="$PROJECT_DIR$/resources/lang/en/auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/vi/auth.php" afterPath="$PROJECT_DIR$/resources/lang/vi/auth.php" />
-    </list>
+    <list default="true" id="8e83dbf9-0157-498a-bc9d-11925666c370" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -416,7 +389,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32925472" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
