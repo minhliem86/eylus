@@ -1,3 +1,4 @@
+@import "../fonts/judson/styles.css";
 /*VARIABLE*/
 $color-browse: #AA7835;
 $color-text: #333333;
@@ -19,7 +20,8 @@ $color-gray: #BCBEC0;
 }
 
 @mixin font-lob{
-  font-family: 'Lobster', cursive;
+  //font-family: 'Lobster', cursive;
+  font-family: 'Judson-Regular';
 }
 
 @mixin font-title{

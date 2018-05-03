@@ -28,7 +28,7 @@ class ProductController extends Controller
         $this->photo = $photo;
         $this->_original_path = env('ORIGINAL_PATH');
         $this->_thumbnail_path = env('THUMBNAIL_PATH');
-        $this->_removePath = base_path();
+        $this->_removePath = env('REMOVE_PATH');
     }
     /**
      * Display a listing of the resource.
@@ -128,7 +128,6 @@ class ProductController extends Controller
             'sku' => strtoupper(str_replace(' ','', $request->input('sku'))),
             'quantity' => $request->input('quantity'),
             'price_vi' => floatval(str_replace(',','',$request->price_vi)),
-            'price_en' => floatval(str_replace(',','',$request->price_en)),
             'img_url' => $img_url,
             'thumb_img_url' => $thumb,
             'order' => $order,
@@ -143,6 +142,7 @@ class ProductController extends Controller
                 $bigSize = $this->common->uploadImage($request, $thumb, $this->_original_path,$resize = false,null,null, base_path($this->_removePath));
                 $smallsize = $this->common->createThumbnail($bigSize,$this->_thumbnail_path,350, 350, base_path($this->_removePath));
                 $thumbsize = $this->common->createThumbnail($bigSize,$this->_thumbnail_path,85, 85, base_path($this->_removePath));
+
                 $order = $this->photo->getOrder();
                 $filename = $this->common->getFileName($bigSize);
                 $data = new \App\Models\Photo(
@@ -228,7 +228,6 @@ class ProductController extends Controller
             'sku' => strtoupper(str_replace(' ','', $request->input('sku'))),
             'quantity' => $request->input('quantity'),
             'price_vi' => floatval(str_replace(',','',$request->price_vi)),
-            'price_en' => floatval(str_replace(',','',$request->price_en)),
             'img_url' => $img_url,
             'thumb_img_url' => $thumb,
             'order' => $request->input('order'),
@@ -245,7 +244,7 @@ class ProductController extends Controller
             foreach($sub_photo as $thumb){
                 $bigSize = $this->common->uploadImage($request, $thumb, $this->_original_path,$resize = false,null,null, base_path($this->_removePath));
                 $smallsize = $this->common->createThumbnail($bigSize,$this->_thumbnail_path,350, 350, base_path($this->_removePath));
-//                $thumbsize = $this->common->createThumbnail($bigSize,$this->_thumbnail_path,85, 85, base_path($this->_removePath));
+                $thumbsize = $this->common->createThumbnail($bigSize,$this->_thumbnail_path,85, 85, base_path($this->_removePath));
                 $order = $this->photo->getOrder();
                 $filename = $this->common->getFileName($bigSize);
                 $data = new \App\Models\Photo(

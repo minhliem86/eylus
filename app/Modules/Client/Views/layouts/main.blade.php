@@ -96,8 +96,9 @@
 <script>
     $(document).ready(function(){
         //BANNER
-        $('.banner-slider').show().revolution({
-            startwidth:960,
+        $('#banner-slider').show().revolution({
+            sliderLayout: 'auto',
+            startwidth:1920,
             startheight:500,
             startWithSlide:0,
         })

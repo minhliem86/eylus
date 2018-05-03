@@ -20,10 +20,9 @@ return [
     'password' => 'Password',
     'confirm_password' => 'Password Confirmation',
     'login' => 'Login',
-    'forgot_pass' => 'Forgot your account.',
+    'forgot_pass' => 'Forgot your account?',
     'fullname' => 'Fullname',
     'phone' => 'Phone',
     'username' => 'Username',
-    ''
-
+    'register' => 'Register'
 ];

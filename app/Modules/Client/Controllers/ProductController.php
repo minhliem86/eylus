@@ -12,6 +12,7 @@ use App\Repositories\PromotionCodeRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\TransactionRepository;
 
+use Mcamara\LaravelLocalization\LaravelLocalization;
 use Validator;
 use Cart;
 use Auth;
@@ -110,7 +111,7 @@ class ProductController extends Controller
 
     public function addToCart(Request $request)
     {
-        $valid = Validator::make($request->all(),$this->_validateAddToCart(), ['quantity.required' => 'Vui lòng chọn số lượng sản phẩn cần mua.', 'quantity.min' => 'Số lượng tối thiểu là 1.']);
+        $valid = Validator::make($request->all(),$this->_validateAddToCart(), ['quantity.required' => trans('product_valid.quantity_required'), 'quantity.min' => trans('product_valid.quantity_min')]);
         if($valid->fails()){
             return redirect()->back()->withErrors($valid);
         }
@@ -122,15 +123,15 @@ class ProductController extends Controller
             ];
             $data = [
                 'id' => $product->id,
-                'name' => $product->name_vi,
+                'name' => \LaravelLocalization::getCurrentLocale() == 'en' ? $product->name_en : $product->name_vi,
                 'price' => $product->price_vi,
                 'quantity' => $request->input('quantity'),
                 'attributes' => $att,
             ];
             Cart::add($data);
-            return redirect()->back()->with(['success'=>'Sản Phẩm đã được thêm vào giỏ hàng', 'data' => $product, 'attribute' => $att ]);
+            return redirect()->back()->with(['success'=>trans('product_valid.product_added'), 'data' => $product, 'attribute' => $att ]);
         }else{
-            return redirect()->back()->withInput()->with('errors','Sản Phẩm không tồn tại.');
+            return redirect()->back()->withInput()->with('errors',trans("product_valid.product_notavai"));
         }
     }
 
@@ -146,7 +147,7 @@ class ProductController extends Controller
             ];
             $itemCart = Cart::add([
                 'id'=>$id,
-                'name' => $product->name_vi,
+                'name' => \LaravelLocalization::getCurrentLocale() == 'en' ? $product->name_en : $product->name_vi,
                 'price' => $product->price_vi,
                 'quantity' => 1,
                 'attributes' =>$att
@@ -160,7 +161,7 @@ class ProductController extends Controller
     public function getCart()
     {
         if(Cart::isEmpty()){
-            return redirect()->route('client.product.index')->with('error','Giỏ hàng của bạn đang rỗng. Vui lòng chọn sản phẩm.');
+            return redirect()->route('client.product.index')->with('error',trans('product_valid.cart_empty'));
         }
         return view('Client::pages.cart.cart', compact('cart'));
     }
@@ -172,7 +173,7 @@ class ProductController extends Controller
                 Cart::update($k,['quantity'=>['relative' => false,
                     'value' => $v]]);
             }
-            return back()->with('success','Cập nhật thành công');
+            return back()->with('success',trans('product_valid.cart_update'));
         }
     }
 
@@ -193,7 +194,7 @@ class ProductController extends Controller
     {
         Cart::removeConditionsByType('shipping');
         if(Cart::isEmpty()){
-            return redirect()->route('client.home')->with('error','Giỏ hàng của bạn đang rỗng. Vui lòng chọn sản phẩm.');
+            return redirect()->route('client.home')->with('error',trans('product_valid.cart_empty'));
         }
         if($this->auth->check()){
             $user = $this->auth->user();
@@ -217,7 +218,7 @@ class ProductController extends Controller
                 $pr = $this->promotion->query()->where('sku_promotion',$promote_code)->where('status',1)->select('name','sku_promotion', 'num_use','target','value', 'value_type')->first();
                 if(isset($pr)){
                     if(Cart::getCondition($pr->sku_promotion)){
-                        return response()->json(['error'=>true, 'data'=> null, 'message' => 'Mã Khuyến Mãi chỉ được áp dụng 1 lần cho 1 đơn hàng.'], 200);
+                        return response()->json(['error'=>true, 'data'=> null, 'message' => trans('product_valid.promotion_exists')], 200);
                     }else{
                         $cond = new \Darryldecode\Cart\CartCondition(
                             [
@@ -233,10 +234,10 @@ class ProductController extends Controller
                         return response()->json(['error' => false, 'view' => $view, 'view_promoition'=> $view_promotion, 'message' => 'Mã khuyến mãi đã được áp dụng'], 200);
                     }
                 }else{
-                    return response()->json(['error'=>true, 'data'=> null, 'message' => 'Mã khuyến mãi đã hết hạn hoặc không tồn tại'], 200);
+                    return response()->json(['error'=>true, 'data'=> null, 'message' => trans('product_valid.promotion_expire')], 200);
                 }
             }else{
-                return response()->json(['error'=>true, 'data'=> null, 'message' => 'Mỗi Đơn Hàng chỉ sử dụng 1 mã  khuyến mãi'], 200);
+                return response()->json(['error'=>true, 'data'=> null, 'message' => trans('product_valid.promotion_exists')], 200);
             }
         }
     }
@@ -257,6 +258,7 @@ class ProductController extends Controller
         if($valid->fails()){
             return back()->withInput()->withErrors($valid->errors());
         }
+
         /*** ADD SHIPPING COST ***/
         $ship_cost = DB::table('ship_costs')->select('id','price_vi')->find($request->input('ship_cost'));
         $ship_cond = new \Darryldecode\Cart\CartCondition(
@@ -424,9 +426,9 @@ class ProductController extends Controller
             Cart::clearCartConditions();
             Cart::clear();
 
-            return redirect()->route('client.payment_success.thank')->with('success','Đặt hàng thành công.');
+            return redirect()->route('client.payment_success.thank')->with('success',trans('product_valid.order_success'));
         }else{
-            return redirect()->route('client.payment.index')->with('error', 'Có lỗi trong quá trình thanh toán. Vui lòng thử lại.');
+            return redirect()->route('client.payment.index')->with('error', trans('product_valid.order_fails'));
         }
     }
 

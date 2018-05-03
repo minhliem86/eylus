@@ -16,7 +16,7 @@
                     <div class="map-wrapper">
                         <div id="input-director" class="mb-4">
                             <div class="input-group">
-                                <input type="text" name="from_gmap" class="form-control" placeholder="Nhập địa chỉ của bạn..">
+                                <input type="text" name="from_gmap" class="form-control" placeholder="{!! trans('contact.type_address') !!}">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-director">{!! trans('contact.direction') !!}</button>
                                 </div>

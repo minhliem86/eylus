@@ -14,7 +14,7 @@
             <div class="row justify-content-around">
                 <div class="col-md-4">
                     <div class="login-wrapper">
-                        <h3>Tài khoản của bạn</h3>
+                        <h3>{!! trans('auth.your_acc') !!}</h3>
                         @if($errors->login->first('error_login'))
                         <div class="alert alert-danger" role="alert">
                             <p>{!! $errors->login->first('error_login') !!}</p>
@@ -26,16 +26,16 @@
                                 {!! Form::text('usernameOrEmail', old('usernameOrEmail'), ['class' => 'form-control', 'required']) !!}
                             </div>
                             <div class="form-group">
-                                <label for="password">Mật khẩu</label>
+                                <label for="password">{!! trans('auth.password') !!}</label>
                                 {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
                             </div>
                         <div class="form-group">
-                            <button type="submit" class="btn-user-template btn-submit">Đăng Nhập</button>
+                            <button type="submit" class="btn-user-template btn-submit">{!! trans('auth.login') !!}</button>
                         </div>
                         {!! Form::close() !!}
 
                         <div class="forget-wrapper">
-                            <a href="{!! route('client.password.reset.getForm') !!}">Bạn không nhớ mật khẩu ?</a>
+                            <a href="{!! route('client.password.reset.getForm') !!}">{!! trans('auth.forgot_pass') !!}</a>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="register-wrapper">
-                        <h3>Vui lòng điền đầy đủ thông tin </h3>
+                        <h3>{!! trans('auth.your_info') !!}</h3>
                         @if($errors->register_error->any())
                             <div class="alert alert-danger" role="alert">
                                 @foreach($errors->register_error->all() as $error)
@@ -54,7 +54,7 @@
                         @endif
                         {!! Form::open(['route'=>'client.auth.register.post', 'class' => 'form-register']) !!}
                         <div class="form-group">
-                            <label for="fullname">Họ và Tên khách hàng</label>
+                            <label for="fullname">{!! trans('auth.fullname') !!}</label>
                             {!! Form::text('fullname', old('fullname'), ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
@@ -62,23 +62,23 @@
                             {!! Form::text('email', old('email'), ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="phone">Số điện thoại</label>
+                            <label for="phone">{!! trans('auth.phone') !!}</label>
                             {!! Form::text('phone', old('phone'), ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="username">Tên đăng nhập</label>
+                            <label for="username">{!! trans('auth.username') !!}</label>
                             {!! Form::text('username', old('username'), ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="password">Mật khẩu</label>
+                            <label for="password">{!! trans('auth.password') !!}</label>
                             {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <label for="password_confirmation">Nhập lại mật khẩu</label>
+                            <label for="password_confirmation">{!! trans('auth.confirm_password') !!}</label>
                             {!! Form::password('password_confirmation',  ['class' => 'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn-user-template btn-submit">Đăng ký</button>
+                            <button type="submit" class="btn-user-template btn-submit">{!! trans('auth.register') !!}</button>
                         </div>
                         {!! Form::close() !!}
                     </div>

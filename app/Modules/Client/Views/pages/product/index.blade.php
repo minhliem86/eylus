@@ -34,7 +34,7 @@
                                                     </div>
 
                                                     <h4 class="title-product"><a href="{!! route('client.product.detail', $item_product->slug) !!}">{!! ($name = trans('variable.name')) ? $item_product->$name : null !!}</a></h4>
-                                                    <p class="price">{!! number_format($item_product->price_vi) !!} vnd</p>
+                                                    <p class="price">{!! ($price = trans('variable.price') ) ? $item_product->$price : null !!} {!! trans('variable.currency') !!}</p>
                                                 </div>
                                             </div>
                                         </div>

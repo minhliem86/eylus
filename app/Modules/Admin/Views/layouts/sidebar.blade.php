@@ -26,6 +26,9 @@
             <li class="nav-item ">
                 <a href="{!! route('admin.order.index') !!}" class="nav-link {!! LP_lib::setActive('2','order') !!}"><i class="fa fa-shopping-cart"></i> Quản Lý Đơn Hàng</a>
             </li>
+            <li class="nav-item ">
+                <a href="{!! route('admin.exchange.index') !!}" class="nav-link {!! LP_lib::setActive('2','exchange') !!}"><i class="fa fa-money-bill-alt"></i> Tỷ giá quy đổi</a>
+            </li>
             <li class="divider"></li>
 
             <li class="nav-title">

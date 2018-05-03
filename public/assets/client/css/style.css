@@ -1,3 +1,4 @@
+@import url(../fonts/judson/styles.css);
 /*VARIABLE*/
 /*MIXIN*/
 /*PLACEHOLDER*/
@@ -217,7 +218,7 @@ section {
     font-size: 3.5rem;
     position: relative;
     padding: 0 1.5rem 2rem;
-    font-family: 'Lobster', cursive;
+    font-family: 'Judson-Regular';
     color: #BCBEC0; }
     section h2.title-section:before {
       content: '';
