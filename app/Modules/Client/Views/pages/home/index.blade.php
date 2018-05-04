@@ -130,7 +130,7 @@
                     <div class="each-bestSeller">
                         <a href="{!! route('client.product.detail',$item_fav->slug ) !!}"><img src="{!! asset('public/uploads/'.$item_fav->img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_fav->$title : null !!}"></a>
                         <h4 class="title-product"><a href="{!! route('client.product.detail',$item_fav->slug ) !!}">{!! ($name = trans('variable.name') ) ? $item_fav->$name : null !!}</a></h4>
-                        <p class="price">{!! ($price = trans('variable.price') ) ? $item_fav->$price : null !!} {!! trans('variable.currency') !!}</p>
+                            <p class="price">{!! ($price = trans('variable.price') ) ? $item_fav->$price : null !!} {!! trans('variable.currency') !!}</p>
                         <div class="button-container text-center">
                             <a href="{!! route('client.product.detail',$item_fav->slug ) !!}" class="btn-detail-product btn-addcart">{!! trans('static.detail') !!}</a>
                         </div>
