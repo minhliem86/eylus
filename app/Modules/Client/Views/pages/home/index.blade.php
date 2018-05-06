@@ -8,7 +8,7 @@
 
 @section("content")
     @include("Client::layouts.banner")
-    <section class="section feature">
+    <section class="section feature" data-aos="fade-up">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -66,7 +66,7 @@
         </div>
     </section>
 
-    <section class="section bg-yellow compare-product">
+    <section class="section bg-yellow compare-product" >
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -114,7 +114,7 @@
     </section>
     <!-- end -->
 
-    <section class="section best-seller">
+    <section class="section best-seller" data-aos="fade-up">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -143,7 +143,7 @@
     </section>
     <!-- end -->
 
-    <section class="section photo-home">
+    <section class="section photo-home" >
         <div class="container">
             <div class="row">
                 <div class="col text-center">
@@ -158,7 +158,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="video-container">
+                    <div class="video-container" >
                         <div class="title-wrapper text-center">
                             <img src="{!! asset('public/assets/client') !!}/images/video.png" class="img-fluid mx-auto" alt="">
                         </div>

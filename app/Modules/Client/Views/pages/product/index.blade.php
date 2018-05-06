@@ -21,7 +21,7 @@
                             <div class="row">
                                 @foreach($chunk as $item_product)
                                     <div class="col-md-4">
-                                        <div class="each-element">
+                                        <div class="each-element" data-aos="zoom-in">
                                             <div class="content-wrapper">
                                                 <div class="item-element">
                                                     <div class="img-wrapper">

@@ -110,7 +110,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         if($request->has('img_url')){
-            $img_url = $this->common->createThumbnail(asset('public/uploads/'.$this->common->getPath($request->input('img_url')), $this->_original_path,240, 240, base_path($this->_removePath) ));
+            $img_url = $this->common->getPath($request->input('img_url'),'public/uploads/');
             $thumb = $this->common->createThumbnail($img_url,$this->_thumbnail_path,350, 350, base_path($this->_removePath));
         }else{
           $img_url = "";
@@ -210,7 +210,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $img_url = $this->common->createThumbnail(asset('public/uploads/'.$this->common->getPath($request->input('img_url'))), $this->_original_path,240, 240, base_path($this->_removePath) );
+        $img_url = $this->common->getPath($request->input('img_url'),'public/uploads/');
         if($img_url){
             $thumb = $this->common->createThumbnail($img_url,$this->_thumbnail_path,350, 350, base_path($this->_removePath));
         }else{

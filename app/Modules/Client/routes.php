@@ -72,7 +72,7 @@ Route::group([
     // Password Reset Routes...
     Route::get('password/reset/{token?}',['as'=> 'client.password.reset.getForm', 'uses' => 'Auth\PasswordController@showResetForm']);
     Route::post('password/email',['as' => 'client.password.email.post', 'uses' => 'Auth\PasswordController@sendResetLinkEmail']);
-    Route::post('password/reset', 'Auth\PasswordController@postReset');
+    Route::post('password/reset',['as' => 'client.passwords.resetPost','uses' => 'Auth\PasswordController@postReset'] );
 
     Route::get('/thong-tin-khach-hang', ['as'=> 'client.auth.profile', 'uses' => 'ProfileController@getProfile']);
     Route::post('/update-profile', ['as' => 'client.auth.profile.post', 'uses' => 'ProfileController@postProfile']);

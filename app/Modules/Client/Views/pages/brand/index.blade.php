@@ -10,7 +10,7 @@
 @section("content")
     @include('Client::layouts.banner')
 
-    <section class="section product-template sidebar-template">
+    <section class="section product-template sidebar-template" data-aos="fade-up">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">

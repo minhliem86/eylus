@@ -89,13 +89,7 @@
         @if(session('error'))
             alertify.error("{!! session()->get('error') !!}");
         @endif
-    })
 
-</script>
-
-@yield("script")
-<script>
-    $(document).ready(function(){
         //BANNER
         $('#banner-slider').show().revolution({
             sliderLayout: 'auto',
@@ -106,7 +100,15 @@
             gridwidth:[1240, 1024, 778, 480],
             gridheight:[450, 430, 450, 500],
         })
+        /*AOS INIT*/
+        AOS.init({
+            offset: 150,
+            disable: 'mobile',
+            once: true
+        });
     })
+
 </script>
+@yield("script")
 </body>
 </html>

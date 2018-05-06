@@ -12,8 +12,8 @@
         <div class="container">
             {!! Form::open(['route' => 'client.doPayment', 'class' => 'form-payment']) !!}
             <div class="row">
-                <div class="col-md-7">
-                    <div class="customer-information area">
+                <div class="col-md-7" data-aos="slide-right">
+                    <div class="customer-information area" >
                         <h5 class="title">{!! trans('payment.info_payment') !!}</h5>
                         <div class="form-group">
                             <label for="fullname">{!! trans('payment.name') !!}</label>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <div class="cart-information area">
+                    <div class="cart-information area" data-aos="slide-left">
                         <h5 class="title">{!! trans('payment.order') !!}</h5>
                         <div id="wrap-cart">
                             @include('Client::ajax.cart_payment')

@@ -24,5 +24,9 @@ return [
     'fullname' => 'Họ và Tên',
     'phone' => 'Điện thoại',
     'username' => 'Tên truy cập',
-    'register' => 'Đăng ký'
+    'register' => 'Đăng ký',
+    'input_email' => 'Nhập Email để nhận lại mật khẩu',
+    'send_pass' => 'Gửi Lại Mật Khẩu',
+    'fill_info' => 'Reset your password',
+    'reset_password' => 'Khôi phục mật khẩu'
 ];
