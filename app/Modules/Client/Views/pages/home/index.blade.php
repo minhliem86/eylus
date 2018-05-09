@@ -114,7 +114,7 @@
     </section>
     <!-- end -->
 
-    <section class="section best-seller" data-aos="fade-up">
+    <section class="section best-seller"  >
         <div class="container">
             <div class="row">
                 <div class="col">

@@ -216,6 +216,7 @@ header.header{
             right:0;
             top:calc(100% + 0.3rem);
             width:220px;
+            z-index:200;
             @include media{
               width:100%;
               position: static;

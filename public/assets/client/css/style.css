@@ -178,7 +178,8 @@ header.header {
           position: absolute;
           right: 0;
           top: calc(100% + 0.3rem);
-          width: 220px; }
+          width: 220px;
+          z-index: 200; }
           @media screen and (max-width: 767px) {
             header.header .navbar-wrapper ul.nav-menu li.search-item #search-box {
               width: 100%;
