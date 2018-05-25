@@ -28,6 +28,16 @@
     <!-- jQuery REVOLUTION Slider  -->
     <script type="text/javascript" src="{!! asset('public/assets/client/js/plugins/revslider') !!}/js/jquery.themepunch.tools.min.js"></script>
     <script type="text/javascript" src="{!! asset('public/assets/client/js/plugins/revslider') !!}/js/jquery.themepunch.revolution.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119905167-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-119905167-1');
+    </script>
+
 
     @yield("tracking")
 

@@ -166,7 +166,6 @@
                             </div>
                         </div>
                         <div class="seo-container">
-
                             <div class="form-group row">
                                 <label for="" class="col-md-3 col-form-label">Keywords</label>
                                 <div class="col-md-9">

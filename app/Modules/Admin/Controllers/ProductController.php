@@ -404,9 +404,4 @@ class ProductController extends Controller
           ], 200);
       }
     }
-
-    protected function _deletePhoto($filename)
-    {
-
-    }
 }

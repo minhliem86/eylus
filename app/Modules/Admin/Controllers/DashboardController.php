@@ -9,53 +9,71 @@ use App\Http\Controllers\Controller;
 use developeruz\Analytics\Period;
 use developeruz\Analytics\Analytics;
 use Carbon\Carbon;
-//use App\Repositories\ProductRepository;
-//use App\Repositories\SupportRepository;
-//use App\Repositories\ContactRepository;
+use App\Repositories\ProductRepository;
+use App\Repositories\CategoryRepository;
+use App\Repositories\BrandRepository;
+use App\Repositories\CustomerRepository;
+use App\Repositories\ContactRepository;
+use App\Repositories\NewsRepository;
+use App\Repositories\VideoRepository;
 
 class DashboardController extends Controller
 {
     protected $analytic;
     protected $product;
-    protected $support;
     protected $contact;
+    protected $customer;
+    protected $category;
+    protected $brand;
+    protected $news;
+    protected $video;
 
-//    public function __construct(Analytics $analytic, ProductRepository $product, SupportRepository $support, ContactRepository $contact)
-//    {
-//        $this->analytic = $analytic;
-//        $this->product = $product;
-//        $this->support = $support;
-//        $this->contact = $contact;
-//    }
-//
-//    public function index(Request $request)
-//    {
-//
-//
-//        if($request->ajax()){
-//            if($request->has('week')){
-//                 $ga = $this->analytic->fetchTotalVisitorsAndPageViews(Period::days(7));
-//            }else{
-//                $from = $request->input('from');
-//                $to = $request->input('to');
-//
-//                $start_d = Carbon::createFromFormat('d-m-Y', $from);
-//                $to_d = Carbon::createFromFormat('d-m-Y', $to);
-//                $date = Period::create($start_d, $to_d);
-//                $ga = $this->analytic->fetchTotalVisitorsAndPageViews($date);
-//            }
-//            return view('Admin::ajax.ajaxChart', compact('ga'))->render();
-//        }else{
-//            $ga = $this->analytic->fetchTotalVisitorsAndPageViews(Period::days(7));
-//        }
-//        $number_product =$this->product->all()->count();
-//        $number_support =$this->support->all()->count();
-//        $number_contact =$this->contact->all()->count();
-//        return view('Admin::pages.index', compact('ga', 'number_product', 'number_support', 'number_contact'));
-//    }
-
-    public function index ()
+    public function __construct(Analytics $analytic, ProductRepository $product, ContactRepository $contact, CustomerRepository $customer, CategoryRepository $category, BrandRepository $brand, NewsRepository $news, VideoRepository $video )
     {
-        return view('Admin::pages.dashboard.index');
+        $this->analytic = $analytic;
+        $this->product = $product;
+        $this->contact = $contact;
+        $this->customer = $customer;
+        $this->category = $category;
+        $this->brand = $brand;
+        $this->news = $news;
+        $this->video = $video;
+
+    }
+
+    public function index(Request $request)
+    {
+
+
+        if($request->ajax()){
+            if($request->has('week')){
+                 $ga = $this->analytic->fetchTotalVisitorsAndPageViews(Period::days(7));
+            }else{
+                $from = $request->input('from');
+                $to = $request->input('to');
+
+                $start_d = Carbon::createFromFormat('d-m-Y', $from);
+                $to_d = Carbon::createFromFormat('d-m-Y', $to);
+                $date = Period::create($start_d, $to_d);
+                $ga = $this->analytic->fetchTotalVisitorsAndPageViews($date);
+            }
+            return view('Admin::ajax.ajaxChart', compact('ga'))->render();
+        }else{
+            $ga = $this->analytic->fetchTotalVisitorsAndPageViews(Period::days(7));
+        }
+        $number_product =$this->product->query()->count();
+        $number_category =$this->category->query()->count();
+        $number_brand =$this->brand->query()->count();
+        $number_user = $this->customer->query()->count();
+        $number_news = $this->news->query()->count();
+        $number_video = $this->video->query()->count();
+
+        $new_user = $this->_getNewCustomer();
+        return view('Admin::pages.index', compact('ga', 'number_product', 'number_category', 'number_brand', 'number_user', 'number_news', 'number_video', 'new_user'));
+    }
+
+    protected function _getNewCustomer()
+    {
+        $new_user = $this->customer->query(['id','name','username','phone','created_at'])->orderBy('id', 'DESC')->limit(10)->get();
     }
 }
