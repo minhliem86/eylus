@@ -26,6 +26,8 @@
     <link href="{!! asset('public/assets/admin') !!}/css/flat-icon/css/flag-icon.min.css" rel="stylesheet">
 
 
+
+
     @yield('css')
     <!-- Main styles for this application -->
     <link href="{!! asset('public/assets/admin') !!}/css/style.css" rel="stylesheet">
@@ -86,9 +88,6 @@
 <script src="{!! asset('public/assets/admin') !!}/js/bootstrap.min.js"></script>
 <script src="{!! asset('public/assets/admin') !!}/js/pace.min.js"></script>
 
-<!-- Plugins and scripts required by all views -->
-<script src="{!! asset('public/assets/admin') !!}/js/Chart.js"></script>
-
 <!-- CoreUI main scripts -->
 
 <script src="{!! asset('public/assets/admin') !!}/js/app.js"></script>
@@ -107,6 +106,5 @@
 <!-- Custom scripts required by this view -->
 {{--<script src="{!! asset('public/assets/admin') !!}/js/views/main.js"></script>--}}
 @yield("script")
-
 </body>
 </html>

@@ -16,6 +16,7 @@ use App\Repositories\CustomerRepository;
 use App\Repositories\ContactRepository;
 use App\Repositories\NewsRepository;
 use App\Repositories\VideoRepository;
+use App\Repositories\PromotionCodeRepository;
 
 class DashboardController extends Controller
 {
@@ -27,8 +28,9 @@ class DashboardController extends Controller
     protected $brand;
     protected $news;
     protected $video;
+    protected $promotioncode;
 
-    public function __construct(Analytics $analytic, ProductRepository $product, ContactRepository $contact, CustomerRepository $customer, CategoryRepository $category, BrandRepository $brand, NewsRepository $news, VideoRepository $video )
+    public function __construct(Analytics $analytic, ProductRepository $product, ContactRepository $contact, CustomerRepository $customer, CategoryRepository $category, BrandRepository $brand, NewsRepository $news, VideoRepository $video, PromotionCodeRepository $promotioncode )
     {
         $this->analytic = $analytic;
         $this->product = $product;
@@ -38,13 +40,12 @@ class DashboardController extends Controller
         $this->brand = $brand;
         $this->news = $news;
         $this->video = $video;
+        $this->promotioncode = $promotioncode;
 
     }
 
     public function index(Request $request)
     {
-
-
         if($request->ajax()){
             if($request->has('week')){
                  $ga = $this->analytic->fetchTotalVisitorsAndPageViews(Period::days(7));
@@ -57,10 +58,24 @@ class DashboardController extends Controller
                 $date = Period::create($start_d, $to_d);
                 $ga = $this->analytic->fetchTotalVisitorsAndPageViews($date);
             }
-            return view('Admin::ajax.ajaxChart', compact('ga'))->render();
+
+            foreach($ga as $item){
+
+                $arrDate[] = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item['date'])->toDateString();
+                $arrVisitor[] = $item['visitors'];
+                $arrPageview[] = $item['pageViews'];
+            }
+            return view('Admin::ajax.ajaxChart')->with(['j_date' => json_encode($arrDate), 'j_visitor' => json_encode($arrVisitor), 'j_pageview' => json_encode($arrPageview)])->render();
         }else{
             $ga = $this->analytic->fetchTotalVisitorsAndPageViews(Period::days(7));
         }
+        foreach($ga as $item){
+
+            $arrDate[] = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item['date'])->toDateString();
+            $arrVisitor[] = $item['visitors'];
+            $arrPageview[] = $item['pageViews'];
+        }
+
         $number_product =$this->product->query()->count();
         $number_category =$this->category->query()->count();
         $number_brand =$this->brand->query()->count();
@@ -69,11 +84,18 @@ class DashboardController extends Controller
         $number_video = $this->video->query()->count();
 
         $new_user = $this->_getNewCustomer();
-        return view('Admin::pages.index', compact('ga', 'number_product', 'number_category', 'number_brand', 'number_user', 'number_news', 'number_video', 'new_user'));
+        return view('Admin::pages.dashboard.index', compact('number_product', 'number_category', 'number_brand', 'number_user', 'number_news', 'number_video', 'new_user'))->with(['j_date' => json_encode($arrDate), 'j_visitor' => json_encode($arrVisitor), 'j_pageview' => json_encode($arrPageview)]);
     }
 
     protected function _getNewCustomer()
     {
-        $new_user = $this->customer->query(['id','name','username','phone','created_at'])->orderBy('id', 'DESC')->limit(10)->get();
+        $new_user = $this->customer->query(['id','name','username','phone','created_at'])->orderBy('id', 'DESC')->paginate(5);
     }
+
+    protected function _getPromotionStatus()
+    {
+        $arrMonth = ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12"];
+//        $promotion_code = $this->promotioncode->query()->whereMonth('created_at')
+    }
+
 }
