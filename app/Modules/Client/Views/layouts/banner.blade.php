@@ -6,10 +6,16 @@
                     <ul>
                         <!-- THE BOXSLIDE EFFECT EXAMPLES  WITH LINK ON THE MAIN SLIDE EXAMPLE -->
 
-                        <li data-transition="slidingoverlayhorizontal"  data-link="http://www.google.de">
+                        <li data-transition="slidingoverlayhorizontal"  data-link="{!! route('client.home') !!}">
                             <img src="{!! asset('public/assets/client') !!}/images/banner.jpg" class="img-fluid">
-                            <div class="tp-caption" data-frames='[{"delay":1000,"speed":1000,"frame":"0","from":"y:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]' data-type="image"  data-x="left"  data-y="center" data-hoffset="-300">
-                                <img src="{!! asset('public/assets/client') !!}/images/text-banner.png" class="img-fluid" alt="">
+                            <div class="tp-caption"
+                                 data-frames='[{"delay":1000,"speed":1000,"frame":"0","from":"y:-50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
+                                 data-type="image"  data-x="left"  data-y="center"
+                                 data-hoffset="['10', '30', '30', '-5']"
+                                 data-width="['390', '200', '150', '120']"
+                                 data-height="['auto', 'auto', 'auto', 'auto']"
+                            >
+                                <img src="{!! asset('public/assets/client') !!}/images/text-banner.png" class="img-fluid caption-first" alt="">
                             </div>
                         </li>
                         ...

@@ -8,7 +8,7 @@
 
 @section("content")
     @include("Client::layouts.banner")
-    <section class="section feature">
+    <section class="section feature" data-aos="fade-up">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -21,9 +21,9 @@
                             <div class="featured-product-slick">
                                 @foreach($feature_p as $item_feature)
                                 <div class="item-feature">
-                                    <a href="{!! route('client.product.detail', $item_feature->slug ) !!}"><img src="{!! asset('public/uploads/'.$item_feature->img_url) !!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_feature->$title : null !!}"></a>
+                                    <a href="{!! route('client.product.detail', $item_feature->slug ) !!}"><img src="{!! asset($item_feature->thumb_img_url) !!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_feature->$title : null !!}"></a>
                                     <h4 class="title-product"><a href="{!! route('client.product.detail', $item_feature->slug) !!}">{!! ($name = trans('variable.name') ) ? $item_feature->$name : null !!}</a></h4>
-                                    <p class="price">{!! ($price = trans('variable.price') ) ? $item_feature->$price : null !!} {!! trans('variable.currency') !!}</p>
+                                    <p class="price">{!! Helper::_getPrice($item_feature->price_vi, $tygia)!!} {!! trans('variable.currency') !!}</p>
                                     <a href="{!! route('client.product.detail', $item_feature->slug) !!}" class="btn-detail-product btn-addcart">{!! trans('static.detail') !!}</a>
                                 </div>
                                 @endforeach
@@ -48,16 +48,16 @@
                         <div class="promotion-slick">
                             @foreach($promotion_p as $item_promotion)
                             <div class="item-promotion">
-                                <a href="{!! route('client.product.detail', $item_promotion->slug) !!}"> <img src="{!! asset('public/uploads/'.$item_promotion->img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}"></a>
+                                <a href="{!! route('client.product.detail', $item_promotion->slug) !!}"> <img src="{!! asset($item_promotion->thumb_img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_promotion->$title : null !!}"></a>
                                 <h4 class="title-product"><a href="{!! route('client.product.detail', $item_promotion->slug) !!}">{!! ($name = trans('variable.name') ) ? $item_promotion->$name : null !!}</a></h4>
-                                <p class="price">{!! ($price = trans('variable.price') ) ? $item_promotion->$price : null !!} {!! trans('variable.currency') !!}</p>
+                                <p class="price">{!! Helper::_getPrice($item_promotion->price_vi, $tygia)!!} {!! trans('variable.currency') !!}</p>
                                 <a href="{!! route('client.product.detail', $item_promotion->slug) !!}" class="btn-detail-promotion btn-addcart">{!! trans('static.detail') !!}</a>
                             </div>
                             @endforeach
                         </div>
                         
                         <div class="button-container text-center">
-                            <a href="{!! route('client.product.index') !!}" class="btn-more">{!! trans('static.detail') !!}</a>
+                            <a href="{!! route('client.product.index') !!}" class="btn-more">{!! trans('static.showmore') !!}</a>
                         </div>
                     </div>
                     @endif
@@ -66,7 +66,7 @@
         </div>
     </section>
 
-    <section class="section bg-yellow compare-product">
+    <section class="section bg-yellow compare-product" >
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
@@ -114,7 +114,7 @@
     </section>
     <!-- end -->
 
-    <section class="section best-seller">
+    <section class="section best-seller" >
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -128,9 +128,9 @@
                 @foreach($fav_p as $item_fav)
                 <div class="col-md-4">
                     <div class="each-bestSeller">
-                        <a href="{!! route('client.product.detail',$item_fav->slug ) !!}"><img src="{!! asset('public/uploads/'.$item_fav->img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_fav->$title : null !!}"></a>
+                        <a href="{!! route('client.product.detail',$item_fav->slug ) !!}"><img src="{!! asset($item_fav->thumb_img_url )!!}" class="img-fluid img-section" alt="{!! ($title = trans('variable.title') ) ? $item_fav->$title : null !!}"></a>
                         <h4 class="title-product"><a href="{!! route('client.product.detail',$item_fav->slug ) !!}">{!! ($name = trans('variable.name') ) ? $item_fav->$name : null !!}</a></h4>
-                            <p class="price">{!! ($price = trans('variable.price') ) ? $item_fav->$price : null !!} {!! trans('variable.currency') !!}</p>
+                        <p class="price">{!! Helper::_getPrice($item_fav->price_vi, $tygia)!!} {!! trans('variable.currency') !!}</p>
                         <div class="button-container text-center">
                             <a href="{!! route('client.product.detail',$item_fav->slug ) !!}" class="btn-detail-product btn-addcart">{!! trans('static.detail') !!}</a>
                         </div>
@@ -143,7 +143,7 @@
     </section>
     <!-- end -->
 
-    <section class="section photo-home">
+    <section class="section photo-home" >
         <div class="container">
             <div class="row">
                 <div class="col text-center">
@@ -158,7 +158,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="video-container">
+                    <div class="video-container" >
                         <div class="title-wrapper text-center">
                             <img src="{!! asset('public/assets/client') !!}/images/video.png" class="img-fluid mx-auto" alt="">
                         </div>

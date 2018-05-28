@@ -178,7 +178,8 @@ header.header {
           position: absolute;
           right: 0;
           top: calc(100% + 0.3rem);
-          width: 220px; }
+          width: 220px;
+          z-index: 200; }
           @media screen and (max-width: 767px) {
             header.header .navbar-wrapper ul.nav-menu li.search-item #search-box {
               width: 100%;
@@ -210,6 +211,9 @@ section {
     padding: 0; }
   section.banner {
     padding: 0; }
+    @media screen and (max-width: 767px) {
+      section.banner .bannercontainer ul li:first-child img.caption-first {
+        transform: matrix(0.9, 0, 0, 0.9, 0, 0); } }
   section .title-wrapper {
     margin-bottom: 3rem; }
   section h2.title-section {

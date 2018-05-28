@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div class="cart-wrapper">
+                    <div class="cart-wrapper" data-aos="fade-up">
                         {!! Form::open(['route'=> 'client.cart.updateQuantity', 'id' => 'form-update']) !!}
                         <table class="table table-cyan">
                             <thead>

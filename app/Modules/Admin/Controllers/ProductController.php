@@ -61,7 +61,7 @@ class ProductController extends Controller
                 </label>
               ';
                 })->editColumn('img_url',function($product){
-                    return '<img src="'.asset('public/uploads/'.$product->img_url).'" width="60" class="img-fluid">';
+                    return '<img src="'.asset($product->img_url).'" width="60" class="img-fluid">';
                 })->editColumn('hot', function($product){
                     $hot = $product->hot ? 'checked' : '';
                     $product_id =$product->id;
@@ -110,8 +110,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         if($request->has('img_url')){
-            $img_url = $this->common->getPath($request->input('img_url'));
-            $thumb = $this->common->createThumbnail(asset('public/uploads/'.$img_url),$this->_thumbnail_path,350, 350, base_path($this->_removePath));
+            $img_url = $this->common->getPath($request->input('img_url'),'public/uploads/');
+            $thumb = $this->common->createThumbnail($img_url,$this->_thumbnail_path,350, 350, base_path($this->_removePath));
         }else{
           $img_url = "";
           $thumb = "";
@@ -210,9 +210,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $img_url = $this->common->getPath($request->input('img_url'));
+        $img_url = $this->common->getPath($request->input('img_url'),'public/uploads/');
         if($img_url){
-            $thumb = $this->common->createThumbnail(asset('public/uploads/'.$img_url),$this->_thumbnail_path,350, 350, base_path($this->_removePath));
+            $thumb = $this->common->createThumbnail($img_url,$this->_thumbnail_path,350, 350, base_path($this->_removePath));
         }else{
             $thumb = '';
         }

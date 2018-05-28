@@ -13,8 +13,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <div class="photo-wrapper">
-                        <img data-zoom-image="{!! asset('public/uploads/'.$product->img_url) !!}" src="{!! asset($product->thumb_img_url) !!}" class="img-fluid" id="zoom_photo" alt="{!! ($name = trans('variable.name') ) ? $product->$name : null !!}">
+                    <div class="photo-wrapper" data-aos="slide-right">
+                        <img data-zoom-image="{!! asset($product->img_url) !!}" src="{!! asset($product->thumb_img_url) !!}" class="img-fluid" id="zoom_photo" alt="{!! ($name = trans('variable.name') ) ? $product->$name : null !!}">
                         @if(!$product->photos->isEmpty())
                         <div id="gallery">
                             @foreach($product->photos as $photo)
@@ -29,9 +29,9 @@
                     </div>
                 </div>
                 <div class="col-md-7">
-                    {!! Form::open(['route'=>'client.product.addToCart', 'class'=>'form']) !!}
+                    {!! Form::open(['route'=>'client.product.addToCart', 'class'=>'form' ]) !!}
                     {!! Form::hidden('product_id',$product->id) !!}
-                    <div class="information-wrapper">
+                    <div class="information-wrapper" data-aos="slide-left">
                         <h2 class="title-product">{!! ($name = trans('variable.name') ) ? $product->$name : null !!}</h2>
                         <div class="info">
                             <p>{!! trans('static.brand') !!}: <i>{!! ($name = trans('variable.name') ) ? $product->brands->$name : null !!}</i></p>
@@ -41,7 +41,7 @@
                             <input type="number" min="1"  name="quantity" value="1" class="quantity form-control">
                         </div>
                         <div class="price-wrapper">
-                            <p class="price">{!! ($price = trans('variable.price') ) ? $product->$price : null !!} {!! trans('variable.currency') !!}</p>
+                            <p class="price">{!! Helper::_getPrice($product->price_vi, $tygia)!!} {!! trans('variable.currency') !!}</p>
                         </div>
                         <div class="btn-wrapper">
                             <button type="submit" class="btn btn-submit">{!! trans('home.add_cart') !!}</button>
@@ -98,6 +98,7 @@
 
             $('#gallery').slick({
                 slidesToShow: 4,
+                centerMode: false
             })
 
 

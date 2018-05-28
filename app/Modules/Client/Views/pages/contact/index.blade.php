@@ -13,7 +13,7 @@
         <div class="container ">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="map-wrapper">
+                    <div class="map-wrapper" data-aos="slide-right">
                         <div id="input-director" class="mb-4">
                             <div class="input-group">
                                 <input type="text" name="from_gmap" class="form-control" placeholder="{!! trans('contact.type_address') !!}">
@@ -27,8 +27,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="info">
+                <div class="col-md-6" data-aos="slide-left">
+                    <div class="info" >
                         <p><img src="{!! asset('public/assets/client') !!}/images/logo.png" class="img-fluid" alt="CÔNG TY TNHH THE OFFICE "></p>
                         @if(isset($companies))
                             <p><b>{!! trans('contact.address') !!}:</b> {!! $companies->address !!}</p>

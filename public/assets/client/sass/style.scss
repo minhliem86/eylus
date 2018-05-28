@@ -216,6 +216,7 @@ header.header{
             right:0;
             top:calc(100% + 0.3rem);
             width:220px;
+            z-index:200;
             @include media{
               width:100%;
               position: static;
@@ -262,6 +263,17 @@ section{
   }
   &.banner{
     padding:0;
+    .bannercontainer{
+      ul{
+        li:first-child{
+          img.caption-first{
+            @include media(){
+              transform:matrix(0.9,0,0,0.9,0,0)
+            }
+          }
+        }
+      }
+    }
   }
   .title-wrapper{
     margin-bottom:3rem;

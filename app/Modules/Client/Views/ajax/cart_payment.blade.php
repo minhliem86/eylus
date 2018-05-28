@@ -16,7 +16,7 @@
                 {!! $item_cart->quantity !!}
             </td>
             <td class="text-right">
-                {!! number_format($item_cart->price) !!} vnd
+                {!! Helper::_getPrice($item_cart->price,$tygia) !!} {!! trans('variable.currency') !!}
             </td>
         </tr>
     @endforeach
@@ -24,7 +24,7 @@
     <tfoot>
     <tr>
         <td colspan="2">{!! trans('payment.subtotal') !!}:</td>
-        <td class="text-right">{!! number_format(Cart::getSubTotal()) !!} VND</td>
+        <td class="text-right">{!! Helper::_getPrice(Cart::getSubTotal(),$tygia) !!} {!! trans('variable.currency') !!}</td>
     </tr>
     </tfoot>
 </table>
@@ -34,6 +34,6 @@
         {!! trans('payment.total') !!}
     </p>
     <p class="price">
-        {!! number_format(Cart::getTotal()) !!} VND
+        {!! Helper::_getPrice(Cart::getTotal(), $tygia) !!} {!! trans('variable.currency') !!}
     </p>
 </div>

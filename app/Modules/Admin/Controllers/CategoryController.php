@@ -48,7 +48,7 @@ class CategoryController extends Controller
                 </label>
               ';
                 })->editColumn('img_url',function($category){
-                    return '<img src="'.asset('public/uploads/'.$category->img_url).'" width="60" class="img-fluid">';
+                    return '<img src="'.asset($category->img_url).'" width="60" class="img-fluid">';
                 })->filter(function($query) use ($request){
                     if (request()->has('name')) {
                         $query->where('name_vi', 'like', "%{$request->input('name')}%");
@@ -78,7 +78,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         if($request->has('img_url')){
-            $img_url = $this->common->getPath($request->input('img_url'));
+            $img_url = 'public/uploads/'.$this->common->getPath($request->input('img_url'));
         }else{
             $img_url = '';
         }
@@ -129,7 +129,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $img_url = $this->common->getPath($request->input('img_url'));
+        $img_url = 'public/uploads/'.$this->common->getPath($request->input('img_url'));
         $data = [
             'name_vi' => $request->input('name_vi'),
             'name_en' => $request->input('name_en'),

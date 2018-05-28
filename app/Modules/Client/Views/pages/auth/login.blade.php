@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row justify-content-around">
                 <div class="col-md-4">
-                    <div class="login-wrapper">
+                    <div class="login-wrapper" data-aos="slide-right">
                         <h3>{!! trans('auth.your_acc') !!}</h3>
                         @if($errors->login->first('error_login'))
                         <div class="alert alert-danger" role="alert">
@@ -43,7 +43,7 @@
                     <div class="line-break d-flex justify-content-center"></div>
                 </div>
                 <div class="col-md-4">
-                    <div class="register-wrapper">
+                    <div class="register-wrapper" data-aos="slide-left">
                         <h3>{!! trans('auth.your_info') !!}</h3>
                         @if($errors->register_error->any())
                             <div class="alert alert-danger" role="alert">

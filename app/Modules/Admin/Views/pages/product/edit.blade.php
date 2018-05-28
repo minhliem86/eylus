@@ -145,7 +145,7 @@
                                 </span>
                                     {{Form::hidden('img_url',old('img_url'), ['class'=>'form-control', 'id'=>'thumbnail' ])}}
                                 </div>
-                                <img id="holder" style="margin-top:15px;max-height:100px;" src="{{asset('public/uploads/'.$inst->img_url)}}">
+                                <img id="holder" style="margin-top:15px;max-height:100px;" src="{{asset($inst->img_url)}}">
                             </div>
                         </div>
                         <div class="form-group row">

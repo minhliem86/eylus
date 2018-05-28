@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @yield('meta')
+    <link href="{!! asset('public/favi.png') !!}" rel="shortcut icon" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&amp;subset=vietnamese" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lobster&amp;subset=vietnamese" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&amp;subset=vietnamese" rel="stylesheet">
@@ -98,21 +99,26 @@
         @if(session('error'))
             alertify.error("{!! session()->get('error') !!}");
         @endif
-    })
 
-</script>
-
-@yield("script")
-<script>
-    $(document).ready(function(){
         //BANNER
         $('#banner-slider').show().revolution({
             sliderLayout: 'auto',
             startwidth:1920,
             startheight:500,
             startWithSlide:0,
+            responsiveLevels: [1240, 1024, 778, 480],
+            gridwidth:[1240, 1024, 778, 480],
+            gridheight:[450, 430, 450, 500],
         })
+        /*AOS INIT*/
+        AOS.init({
+            offset: 150,
+            disable: 'mobile',
+            once: true
+        });
     })
+
 </script>
+@yield("script")
 </body>
 </html>
