@@ -5,7 +5,7 @@
 @section('content')
     <div class="py-4">
         <div class="row">
-            <div class="col-lg-2 col-md-3 col-sm-6">
+            <div class="col-xl-2 col-lg-3 col-md-6">
                 <div class="card text-white bg-info">
                     <div class="card-body">
                         <div class="h1 text-muted text-right mb-2">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-3 col-sm-6">
+            <div class="col-xl-2 col-lg-3 col-md-6">
                 <div class="card text-white bg-success">
                     <div class="card-body">
                         <div class="h1 text-muted text-right mb-2">
@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-2 col-md-3 col-sm-6">
+            <div class="col-xl-2 col-lg-3 col-md-6">
                 <div class="card text-white bg-primary">
                     <div class="card-body">
                         <div class="h1 text-muted text-right mb-2">
@@ -49,7 +49,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-2 col-md-3 col-sm-6">
+            <div class="col-xl-2 col-lg-3 col-md-6">
                 <div class="card text-white bg-warning">
                     <div class="card-body">
                         <div class="h1 text-muted text-right mb-2">
@@ -64,7 +64,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-2 col-md-3 col-sm-6">
+            <div class="col-xl-2 col-lg-3 col-md-6">
                 <div class="card text-white bg-danger">
                     <div class="card-body">
                         <div class="h1 text-muted text-right mb-2">
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-2 col-md-3 col-sm-6">
+            <div class="col-xl-2 col-lg-3 col-md-6">
                 <div class="card text-white bg-secondary">
                     <div class="card-body">
                         <div class="h1 text-muted text-right mb-2">
@@ -135,7 +135,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-xl-6">
                 <div class="card">
                     <div class="card-header bg-gray-400">
                         <h4 class="card-title text-white my-0">Khách Hàng</h4>
@@ -176,7 +176,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-xl-6">
                 <div class="card">
                     <div class="card-header bg-gray-600">
                         <h4 class="card-title text-white my-0">Khuyến Mãi</h4>
@@ -189,7 +189,7 @@
 
                             const pro_active = {
                                 label: 'Khuyến mãi đang chạy',
-                                data: ,
+                                data: {!! $j_promotion_active !!},
                                 backgroundColor: 'rgba(0, 99, 132, 0.6)',
                                 borderWidth: 0,
                                 yAxisID: "y-axis-active"
@@ -197,7 +197,7 @@
 
                             const pro_deactive = {
                                 label: 'Khuyến mãi đã ngưng',
-                                data: ,
+                                data: {!! $j_promotion_deactive !!},
                                 backgroundColor: 'rgba(99, 132, 0, 0.6)',
                                 borderWidth: 0,
                                 yAxisID: "y-axis-deactive"
@@ -222,7 +222,7 @@
                                 datasets: [pro_active, pro_deactive]
                             };
                             const myChart_promotion = new Chart(ctx_promotion, {
-                                type: "pie",
+                                type: "bar",
                                 data: promotionData,
                                 options: chartOptions
                             });
@@ -233,193 +233,6 @@
                 </div>
             </div>
         </div>
-
-        {{--<div class="row">--}}
-        {{--<div class="col-md-6">--}}
-        {{--<div class="panel panel-danger">--}}
-        {{--<div class="panel-heading">--}}
-        {{--<h3 class="panel-title">Sản phẩm được quan tâm nhiều nhất</h3>--}}
-        {{--</div>--}}
-        {{--<div class="panel-body-dashboard">--}}
-        {{--<div class="wrap-view-product">--}}
-        {{--<canvas id="view-product"></canvas>--}}
-        {{--<script>--}}
-        {{--const ctx_view = document.getElementById('view-product');--}}
-        {{--const myChart_view = new Chart(ctx_view, {--}}
-        {{--type: "doughnut",--}}
-        {{--data: {--}}
-        {{--labels: [--}}
-        {{--@foreach($view_sp as $item_view_name)--}}
-        {{--'{!! $item_view_name->name !!}',--}}
-        {{--@endforeach--}}
-        {{--],--}}
-        {{--datasets:[--}}
-        {{--{--}}
-        {{--label: "Sản Phẩm Yêu Thích",--}}
-        {{--data:[--}}
-
-        {{--],--}}
-        {{--backgroundColor: [--}}
-        {{--"rgb(255, 99, 132)",--}}
-        {{--"rgb(54, 162, 235)",--}}
-        {{--"rgb(255, 205, 86)"--}}
-        {{--],--}}
-        {{--hoverBackgroundColor: [--}}
-        {{--"rgb(186,137,183)",--}}
-        {{--"rgb(82,136,170)",--}}
-        {{--"rgb(237,237,144)",--}}
-        {{--]--}}
-        {{--}--}}
-        {{--],--}}
-        {{--},--}}
-        {{--options: {--}}
-        {{--responsive: true,--}}
-
-        {{--}--}}
-        {{--});--}}
-        {{--</script>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="col-md-6">--}}
-        {{--<div class="panel panel-danger">--}}
-        {{--<div class="panel-heading">--}}
-        {{--<h3 class="panel-title">Thống Kê Chương Trình Khuyến Mãi</h3>--}}
-        {{--</div>--}}
-        {{--<div class="panel-body-dashboard">--}}
-        {{--<div class="wrap-view-product">--}}
-        {{--<canvas id="view-promotion"></canvas>--}}
-        {{--<script>--}}
-        {{--const ctx_promotion = document.getElementById('view-promotion');--}}
-        {{--const myChart_promotion = new Chart(ctx_promotion, {--}}
-        {{--type: "pie",--}}
-        {{--data: {--}}
-        {{--labels: [--}}
-        {{--'Khuyến mãi đang chạy',--}}
-        {{--'Khuyến mãi đã ngưng',--}}
-        {{--],--}}
-        {{--datasets:[--}}
-        {{--{--}}
-        {{--label: "Các Chương Trình Khuyến Mãi",--}}
-        {{--data:[--}}
-        {{--'{!! $promotion_active !!}',--}}
-        {{--'{!! $promotion_deactive !!}'--}}
-        {{--],--}}
-        {{--backgroundColor: [--}}
-        {{--"rgb(255, 99, 132)",--}}
-        {{--"rgb(54, 162, 235)",--}}
-        {{--],--}}
-        {{--hoverBackgroundColor: [--}}
-        {{--"rgb(186,137,183)",--}}
-        {{--"rgb(82,136,170)",--}}
-        {{--]--}}
-        {{--}--}}
-        {{--],--}}
-        {{--},--}}
-        {{--options: {--}}
-        {{--responsive: true,--}}
-
-        {{--}--}}
-        {{--});--}}
-        {{--</script>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-
-        {{--<div class="row">--}}
-        {{--<div class="col-md-6">--}}
-        {{--<div class="panel panel-primary">--}}
-        {{--<div class="panel-heading">--}}
-        {{--<h3 class="panel-title">Thống Kê Doanh Số</h3>--}}
-        {{--</div>--}}
-        {{--<div class="panel-body-dashboard">--}}
-        {{--<div class="wrap-chart-order">--}}
-        {{--<canvas id="chart-order"></canvas>--}}
-        {{--<script>--}}
-        {{--const ctx_order = document.getElementById('chart-order');--}}
-        {{--const data = {--}}
-        {{--labels: [--}}
-        {{--@foreach($data_bar_chart as $k => $v)--}}
-        {{--'{!! $k !!}',--}}
-        {{--@endforeach--}}
-        {{--],--}}
-        {{--datasets: [--}}
-        {{--{--}}
-        {{--label: 'Đơn Hàng',--}}
-        {{--backgroundColor: "Blue",--}}
-        {{--hoverBackgroundColor: "Green",--}}
-        {{--data : [--}}
-        {{--@foreach($data_bar_chart as  $v)--}}
-        {{--'{!! $v !!}',--}}
-        {{--@endforeach--}}
-        {{--]--}}
-        {{--}--}}
-        {{--]--}}
-        {{--}--}}
-        {{--const myChart_order = new Chart(ctx_order, {--}}
-        {{--type: "bar",--}}
-        {{--data: data,--}}
-        {{--options: {--}}
-        {{--responsive: true,--}}
-
-        {{--}--}}
-        {{--});--}}
-        {{--</script>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="col-md-6">--}}
-        {{--<div class="panel panel-primary">--}}
-        {{--<div class="panel-heading">--}}
-        {{--<h3 class="panel-title">Thống Kê Doanh Thu</h3>--}}
-        {{--</div>--}}
-        {{--<div class="panel-body-dashboard">--}}
-        {{--<div class="wrap-chart-order">--}}
-        {{--<canvas id="chart-total"></canvas>--}}
-        {{--<script>--}}
-        {{--const ctx_total = document.getElementById('chart-total');--}}
-        {{--const data2 = {--}}
-        {{--labels: [--}}
-        {{--@foreach($data_bar_chart as $k => $v)--}}
-        {{--'{!! $k !!}',--}}
-        {{--@endforeach--}}
-        {{--],--}}
-        {{--datasets: [--}}
-        {{--{--}}
-        {{--label: 'Doanh Thu',--}}
-        {{--backgroundColor: "Red",--}}
-        {{--hoverBackgroundColor: "Yellow",--}}
-        {{--data : [--}}
-        {{--@foreach($data_bar_order as  $v)--}}
-        {{--'{!! $v !!}',--}}
-        {{--@endforeach--}}
-        {{--]--}}
-        {{--}--}}
-        {{--]--}}
-        {{--}--}}
-        {{--const myChart_total = new Chart(ctx_total, {--}}
-        {{--type: "bar",--}}
-        {{--data: data2,--}}
-        {{--options: {--}}
-        {{--tooltips: {--}}
-        {{--mode: 'label',--}}
-        {{--label: 'mylabel',--}}
-        {{--callbacks: {--}}
-        {{--label: function(tooltipItem, data) {--}}
-        {{--return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }, },--}}
-        {{--},--}}
-        {{--}--}}
-        {{--});--}}
-        {{--</script>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
     </div>
 @endsection
 
